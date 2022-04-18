@@ -23,8 +23,6 @@
 1. Instalar Xcode vía App Store o descargar desde la Web de Apple
    - Instalar XCode con la siguiente linea de comando
      Run ```xcode-select --install``` in terminal
-   - Instalar Cocoapods
-     Run ```sudo gem install cocoapods``` in terminal
 
 2. Instalar Android Studio
    https://developer.android.com/studio
