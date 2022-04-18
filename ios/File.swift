@@ -1,8 +1,8 @@
 //
 //  File.swift
-//  Tododeusa
+//  Easyclub
 //
-//  Created on 27/09/2021.
+//  Created by Brian Saban on 18/04/2022.
 //
 
 import Foundation

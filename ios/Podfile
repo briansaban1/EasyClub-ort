@@ -3,7 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'Tododeusa' do
+target 'Easyclub' do
 
   # Pods for Tododeusa
   pod 'Firebase/Messaging'
@@ -14,19 +14,9 @@ target 'Tododeusa' do
 
   use_react_native!(:path => config["reactNativePath"])
 
-  target 'TododeusaTests' do
+  target 'EasyclubTests' do
     inherit! :complete
     # Pods for testing
   end
 
 end
-
-target 'Tododeusa-tvOS' do
-  # Pods for Tododeusa-tvOS
-
-  target 'Tododeusa-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-end
-
