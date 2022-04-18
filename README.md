@@ -20,7 +20,7 @@
 
 
 
-1. Instalar Xcode vía App Store
+1. Instalar Xcode vía App Store o descargar desde la Web de Apple
    - Instalar XCode con la siguiente linea de comando
      Run ```xcode-select --install``` in terminal
    - Instalar Cocoapods
@@ -61,21 +61,25 @@
    brew install android-ndk
    ```
 
-5. Instalar React Native CLI
-
-   Reference: https://reactnative.dev/docs/environment-setup
-
-   ```brew install node```
-
-   ```brew install watchman```
-
-   ```npx react-native init Example```
+5. Instalar Node.js
 
 
-6. Abrir el proyecto en visual studio code
+6. Instalar librarias de node:
+  ```
+   npm install
+  ```
+
+7. Instalar librarias Cocoapods (ios):
+  ```
+   cd/ios
+   sudo gem install cocoapods:1.10.2
+   pod install
+  ```
+
+8. Ejecutá el proyecto en Visual Studio Code
    - Para correr en iOS, seleccioná el emulador en Xcode y hacé click en el botón "Run"
-    También se puede compilar usando la siguiente linea de comando:```react-native run-ios```
-   - Para correr en Android, primero se debe abrir el emilador (virtual device)
+   - También se puede compilar usando la siguiente linea de comando desde el Visual Studio Code:```react-native run-ios```
+   - Para correr en Android, primero se debe abrir el emulador (virtual device)
     y luego usar la siguiente linea ```react-native run-android``` en la terminal.
 
 
