@@ -25,6 +25,7 @@
      Run ```xcode-select --install``` in terminal
    - Instalar Cocoapods
      Run ```sudo gem install cocoapods``` in terminal
+
 2. Instalar Android Studio
    https://developer.android.com/studio
    - Crear un "virtual device"
@@ -42,7 +43,6 @@
      - Android SDK Platform-Tools
      - Google Play services
      - Intel x86 Emulator Accelerator (HAXM installer)
-
 
 3. Instalar Homebrew:
    ```
@@ -63,12 +63,11 @@
 
 5. Instalar Node.js
 
-
 6. Instalar librarias de node:
   ```
    npm install
   ```
-
+  
 7. Instalar librarias Cocoapods (ios):
   ```
    cd/ios
