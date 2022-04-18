@@ -14,6 +14,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		5E9243E4280D2F5B00F6992E /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9243E3280D2F5B00F6992E /* File.swift */; };
 		5E9243E7280D2F8B00F6992E /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9243E6280D2F8B00F6992E /* CloudKit.framework */; };
+		5E9243E9280DF72300F6992E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E9243E8280DF72300F6992E /* GoogleService-Info.plist */; };
 		7699B88040F8A987B510C191 /* libPods-Easyclub-EasyclubTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Easyclub-EasyclubTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,7 @@
 		5E9243E3280D2F5B00F6992E /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		5E9243E5280D2F8200F6992E /* Easyclub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Easyclub.entitlements; path = Easyclub/Easyclub.entitlements; sourceTree = "<group>"; };
 		5E9243E6280D2F8B00F6992E /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		5E9243E8280DF72300F6992E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Easyclub/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Easyclub-EasyclubTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Easyclub-EasyclubTests.release.xcconfig"; path = "Target Support Files/Pods-Easyclub-EasyclubTests/Pods-Easyclub-EasyclubTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -93,6 +95,7 @@
 		13B07FAE1A68108700A75B9A /* Easyclub */ = {
 			isa = PBXGroup;
 			children = (
+				5E9243E8280DF72300F6992E /* GoogleService-Info.plist */,
 				5E9243E5280D2F8200F6992E /* Easyclub.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -254,6 +257,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				5E9243E9280DF72300F6992E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +592,8 @@
 					"-DFOLLY_NO_CONFIG",
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
+					"-fmodules",
+					"-fcxx-modules",
 				);
 				SDKROOT = iphoneos;
 			};
@@ -651,6 +657,8 @@
 					"-DFOLLY_NO_CONFIG",
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
+					"-fmodules",
+					"-fcxx-modules",
 				);
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
