@@ -26,15 +26,9 @@ DerivedData
 build/
 .idea
 .gradle
-drawable-hdpi/
-drawable-mdpi/
-drawable-xhdpi/
-drawable-xxhdpi/
-drawable-xxxhdpi/
 android/app/src/main/assets/index.android.bundle
 java_pid54079.hprof
 java_pid42367.hprof
-local.properties
 *.iml
 
 # node.js
