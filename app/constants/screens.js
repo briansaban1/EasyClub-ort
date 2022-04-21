@@ -36,7 +36,8 @@ const Screens = {
    Obtenerlos: "Obtenerlos",
    Canjear: "Canjear",
    Billetera: "Billetera",
-   Reservas: "Reservas"
+   Reservas: "Reservas",
+   ComoLlegar: "ComoLlegar"
 
 };
 

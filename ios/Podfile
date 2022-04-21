@@ -10,9 +10,12 @@ target 'Easyclub' do
 
   pod 'react-native-document-picker', :path => '../node_modules/react-native-document-picker'
 
+
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
+
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
 
   target 'EasyclubTests' do
     inherit! :complete

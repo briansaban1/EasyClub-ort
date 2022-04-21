@@ -15,7 +15,7 @@ import Billetera from '../screens/wallet'
 
 import Reservas from '../screens/alertar/reserva'
 
-
+import ComoLlegar from '../screens/mapas'
 
 import AlertasModificar from '../screens/alertar/alertaModificar';
 
@@ -75,6 +75,8 @@ function App() {
             <Drawer.Screen name="Pago" component={Pago} />
 
             <Drawer.Screen name="Reservas" component={Reservas} />
+            <Drawer.Screen name="ComoLlegar" component={ComoLlegar} />
+
 
 
 

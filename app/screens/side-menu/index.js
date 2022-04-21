@@ -101,7 +101,7 @@ function SideMenu() {
             <MenuButton
                 label={"¿Cómo llegar?"}
                 source={require('@assets/addresses.png')}
-                screen={Screens.Alertar}
+                screen={Screens.ComoLlegar}
             />
             <Divider />
 

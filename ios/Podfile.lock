@@ -249,7 +249,11 @@ PODS:
   - React-jsinspector (0.63.4)
   - react-native-document-picker (2.3.0):
     - React
+  - react-native-location (2.5.0):
+    - React
   - react-native-mail (3.0.7):
+    - React
+  - react-native-maps (0.24.2):
     - React
   - react-native-safe-area-context (3.2.0):
     - React-Core
@@ -363,8 +367,8 @@ PODS:
     - Yoga
   - RNScreens (2.18.1):
     - React-Core
-  - RNSVG (12.1.1-0):
-    - React
+  - RNSVG (12.3.0):
+    - React-Core
   - RNVectorIcons (6.7.0):
     - React
   - Yoga (1.14.0)
@@ -391,7 +395,9 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
+  - react-native-location (from `../node_modules/react-native-location`)
   - react-native-mail (from `../node_modules/react-native-mail`)
+  - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - react-native-webview (from `../node_modules/react-native-webview`)
@@ -468,8 +474,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   react-native-document-picker:
     :path: "../node_modules/react-native-document-picker"
+  react-native-location:
+    :path: "../node_modules/react-native-location"
   react-native-mail:
     :path: "../node_modules/react-native-mail"
+  react-native-maps:
+    :path: "../node_modules/react-native-maps"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-splash-screen:
@@ -549,7 +559,9 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 93bd528844ad21dc07aab1c67cb10abae6df6949
   React-jsinspector: 58aef7155bc9a9683f5b60b35eccea8722a4f53a
   react-native-document-picker: 8508bfda34be6c24a2cbecbe515b15108658c183
+  react-native-location: 5a40ec1cc6abf2f6d94df979f98ec76c3a415681
   react-native-mail: 021d8ee60e374609f5689ef354dc8e36839a9ba6
+  react-native-maps: 0316ed017dbb64b33b227751fa810e2454fcfa39
   react-native-safe-area-context: e471852c5ed67eea4b10c5d9d43c1cebae3b231d
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-webview: aea3233f26253f5c360164ee87d01ef9f7b9a27f
@@ -571,10 +583,10 @@ SPEC CHECKSUMS:
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNReanimated: c5e9d841d33ed7f83861462756cec7146e73afaa
   RNScreens: f7ad633b2e0190b77b6a7aab7f914fad6f198d8d
-  RNSVG: 1a8855adeb20c5beb0a808281608315fc1092d15
+  RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
   RNVectorIcons: 368d6d8b8301224e5ffb6254191f4f8876c2be0d
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
 
-PODFILE CHECKSUM: e0199ad0519a39894d280d688fbb170e4a53ddba
+PODFILE CHECKSUM: 780c540dea2c1b09a82071f3baa3115889909484
 
 COCOAPODS: 1.10.1
