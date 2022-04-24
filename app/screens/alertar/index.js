@@ -20,6 +20,7 @@ const [visibleModal, setVisibleModal] = useState(false);
 const [modalData, setModalData] = useState({});
 const { navigate } = useNavigation();
 
+
 console.log(actividades, _actividades)
 
     return (
@@ -39,7 +40,8 @@ console.log(actividades, _actividades)
                     />
                 }
                 {actividades.map(i => <SubmissionAlerta data={i} profile={profile} onPress={(data) => {
-                   navigate(Screens.Reservas, data)
+                   navigate(Screens.Reservas, {data})
+                   
                 }} />)}
                 <View style={{height:30}} />
             </ScrollView>

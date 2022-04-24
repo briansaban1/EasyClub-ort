@@ -161,6 +161,13 @@ WService.prototype.tracking = function (track) {
   });
 };
 
+WService.prototype.getHorarios = function (actividad) {
+  return NetworkHelper.requestPost(this.makeUrl('horarios.php'), {
+    flag: 'actividad',
+    actividad
+  });
+};
+
 WService.prototype.contactus = function (data) {
   return NetworkHelper.requestPost(this.makeUrl('contactus.php'), {
     flag: 'contactus',

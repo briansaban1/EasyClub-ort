@@ -6,7 +6,6 @@ import { Colors, Dimensions } from '../constants';
 import Images from '../constants/images';
 import WService from '../service/WebService';
 import ImageButton from './ImageButton';
-import { emailCompanies } from '../screens/alertar/data1'
 import { AppText, FlexWrapper, Loader, Space } from './styled-components';
 import { Header, Steps, AppInputModal, DropDownAlerta, Button, DropDownAlertasLarge } from '../components';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';

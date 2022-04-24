@@ -8,11 +8,16 @@ import { AppText, FlexWrapper, Loader, Space } from '../../components/styled-com
 import { Colors, Dimensions } from '../../constants';
 import { horario } from './horarios'
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import moment from 'moment';
+import moment, { min } from 'moment';
 import 'moment/locale/es' 
+import WService from '../../service/WebService';
 
 
 function ReservaScreen(data) {
+
+
+const parametro = data.route.params.data.nombre;
+console.log(parametro)
 
     const profile = useSelector(store => store.user.profile)
 
@@ -30,7 +35,7 @@ function ReservaScreen(data) {
     const [date, setDate] = useState('');
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
-    console.log(date)
+    //console.log(date)
 
     const fadeIn = () => {
         Animated.timing(fadeAnim, {
@@ -77,6 +82,83 @@ function ReservaScreen(data) {
     const confirm =() =>{
        
     }
+    const wservice = new WService();
+
+    const [horarios, setHorarios] = useState([]);
+    const [inicioHora, setInicioHora] = useState();
+    const [finHora, setFinHora] = useState();
+    const [intHora, setIntHora] = useState();
+
+
+    useEffect(() => {
+        console.log(parametro)
+        wservice.getHorarios(parametro)
+            .then(response => {
+                console.log(response.status)
+
+                if (response.status == 1) {
+                    console.log(response.data)
+                    
+
+                    const datos = response.data
+                    
+                    setHorarios(datos.map(item => ({
+                        inicio: item.inicio,
+                        fin: item.fin,
+                        intervalo: item.intervalo,
+                    })));  
+
+                    setInicioHora(horarios[horarios.length-1].inicio);
+                    setFinHora(horarios[horarios.length-1].fin);
+                    setIntHora(horarios[horarios.length-1].intervalo);
+                    
+                }
+                
+                
+            })
+    }, [])
+   
+
+    function intervaloHora(inicioHora, finHora, intHora) {
+
+
+        //se reciben por parametro la hora de inicio, fin e intervalo.
+
+        //hay que convertir las horas recibidas en string a tipo TIME
+
+        //Generar un FOR para listar todos los horarios disponibles
+
+        console.log(inicioHora, finHora, intHora)
+        const date = new Date();
+        
+        const dt = date.getMinutes(inicioHora)
+
+        console.log(inicioHora) 
+
+        const dt1 = date.getMinutes(finHora)
+        console.log(dt, dt1)
+
+        const ranges = [];
+        const format = {
+            hour: 'numeric',
+            minute: 'numeric',
+        };
+
+        
+        for (let minutes = inicioHora; minutes < 8 * 60; minutes = minutes + intervalos) {
+            console.log(minutes)
+            date.setHours(0);
+            date.setMinutes(minutes);
+            ranges.push(date.toLocaleTimeString(format));
+        }
+        console.log(ranges)
+        return ranges;
+
+
+
+    }
+
+console.log(intervaloHora(inicioHora, finHora, intHora) )
 
     return (
         <>
@@ -102,27 +184,44 @@ function ReservaScreen(data) {
                         format="DD-MM-YYYY"
                         onConfirm={handleConfirm}
                         onCancel={hideDatePicker}
+                        minimumDate={moment().toDate()}
+                        maximumDate={moment(new Date()).add(5, 'days').toDate()}
                     />
 
                     <View style={{ height: 20 }} />
                     <View style={{height:'50%',width:'100%', alignItems:'center' }}>
-                    <FlatList
-                        showsHorizontalScrollIndicator={false}
-                        style={styles.FlatList}
-                        keyExtractor={(item) => item.id.toString()}
-                        data={horario}
-                        renderItem={({ item }) => (
-                            <TouchableOpacity style={styles.timeContainer} onPress={() => addTime(item.id)}>
+
+                    {horarios.length == 0 &&
+                    <Image
+                        source={Images.submissionEmpty}
+                        style={AppStyles.submissionEmpty}
+                    />
+                }
+                    {horarios.map(i => 
+
+                    // <FlatList
+                    //     showsHorizontalScrollIndicator={false}
+                    //     style={styles.FlatList}
+                    //     keyExtractor={(i) => i.inicio.toString()}
+                    //     data={i}
+                    //     renderItem={({ i }) => (
+                            
+                    //         <TouchableOpacity style={styles.timeContainer} onPress={() => addTime(i.inicio)}>
                                 
-                                <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center',}}>
-                                    <Text style={item.id == isSelected ? styles.selected : styles.textTime}>
-                                    {item.inicio} - {item.final}
-                                </Text>
+                    //             <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center',}}>
+                    //                 <Text style={i.inicio == isSelected ? styles.selected : styles.textTime}>
+                    //                 {i.inicio} - {i.final}
+                    //             </Text>
                                 
-                                    <Text style={item.id == isSelected ? styles.selected : styles.textTime}> LIBRE</Text>
-                                </View>
-                            </TouchableOpacity>
-                        )} />
+                    //                 <Text style={item.inicio == isSelected ? styles.selected : styles.textTime}> LIBRE</Text>
+                    //             </View>
+                    //         </TouchableOpacity>
+                    //     )} />
+                    <Text>{i.inicio} {i.fin} {i.intervalo}</Text>
+                    
+
+                        )}
+                        
                         </View>
          <Button
                 disabled={!date || !isSelected}
