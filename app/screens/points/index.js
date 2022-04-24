@@ -12,8 +12,7 @@ import { Colors, Dimensions, Images, AppStyles } from '../../constants';
 import { useNavigation } from '@react-navigation/native';
 
 import { getPuntos } from '../../store/user/action';
-import { getCanjear } from '../../store/user/action';
-import { getDescuento } from '../../store/user/action';
+
 
 
 function ContactScreen() {
