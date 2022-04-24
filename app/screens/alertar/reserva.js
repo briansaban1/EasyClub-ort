@@ -128,6 +128,8 @@ console.log(parametro)
 
         //Generar un FOR para listar todos los horarios disponibles
 
+        //Nos quedamos ACA !
+
         console.log(inicioHora, finHora, intHora)
         const date = new Date();
         
