@@ -64,7 +64,6 @@ function SubmissionPuntos({ data, profile, onPress }) {
     } else {
         var result = 'Has gastado';
         var signo = ''
-        var codigo = data.tipo;
     }
 
     return (
@@ -81,16 +80,7 @@ function SubmissionPuntos({ data, profile, onPress }) {
                 <View style={{ flexDirection: 'row', alignContent: 'center', alignItems: 'center' }}>
                     <AppText>El día </AppText><AppText>{moment(data.fecha).format("DD MMM YYYY")}</AppText>
                 </View>
-               {codigo&&<View style={{ flexDirection: 'row', alignContent: 'center', alignItems: 'center' }}>
-                    <BoldText>{codigo}</BoldText><TouchableOpacity style={{}} onPress={() => {Clipboard.setString(codigo); toastRef.current.show('Copiado!', 800, () => {})}}>          
-                            <Image
-                            source={require('@assets/copy.png')}
-                            imageStyle={{ resizeMode: 'stretch' }}
-                            style={{width: 15, height: 15, marginLeft: 5, marginTop:0}}
-                        />
-                   </TouchableOpacity>
-                </View>
-              }
+               
 
 
             </View>

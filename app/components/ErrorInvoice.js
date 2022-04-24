@@ -16,7 +16,7 @@ export default class Error extends Component {
                 />
                 
                 <AppText style={{alignItems: 'center', justifyContent: 'center', textAlign:'center', fontSize: 16, fontWeight: '500', width:'60%', marginTop:10}}>
-                    {'De momento no tenés ningún Invoice cargado'}
+                    {'De momento no tenés ninguna factura cargada'}
                     </AppText>
             </View>
 

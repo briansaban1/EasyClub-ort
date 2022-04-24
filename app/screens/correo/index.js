@@ -2,11 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Alert, Image, ScrollView, View, SafeAreaView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Header, SearchInput, Error } from '../../components';
-import EnviosItem from '../../components/EnviosItem';
 import CorreosModal from '../../components/CorreosModal';
 
-import { AppStyles, Images } from '../../constants';
-import { getCorreos } from '../../store/user/action';
 import styles from './styles';
 
 

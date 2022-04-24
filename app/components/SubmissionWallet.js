@@ -76,7 +76,7 @@ function SubmissionWallet({ data, profile, onPress }) {
             />
             <View style={styles.mainContainer} >
                 <View style={{ flexDirection: 'row', alignContent: 'center', alignItems: 'center' }}>
-                    <BoldText>{result} U$S {data.monto}</BoldText>
+                    <BoldText>{result} $ {data.monto}</BoldText>
                 </View>
                 <View style={{ flexDirection: 'row', alignContent: 'center', alignItems: 'center' }}>
                     <AppText>El día </AppText><AppText>{moment(data.fecha).format("DD MMM YYYY")}</AppText>

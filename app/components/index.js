@@ -14,7 +14,6 @@ export { default as ErrorInvoice } from './ErrorInvoice'
 export { default as ErrorNotif } from './ErrorNotif' 
 export { default as ErrorPuntos } from './ErrorPuntos' 
 
-export { default as HeaderAlertas } from './HeaderAlertas'
 export { default as SubmissionCanje } from './SubmissionCanje'
 export { default as CanjeModal } from './CanjeModal'
 
@@ -23,12 +22,10 @@ export { default as CanjeModal } from './CanjeModal'
 export { default as Header } from './Header'
 export { default as UserAvatar } from './UserAvatar'
 export { default as ShadowDivider } from './ShadowDivider'
-export { default as TrackModal } from './TrackModal'
 export { default as AlertaModal } from './AlertaModal'
 export { default as ModalWallet } from './ModalWallet'
 
 
-export { default as PackageModal } from './PackageModal'
 export { default as Steps } from './Steps'
 export { default as DropDown } from './DropDown' 
 export { default as DropDownAlerta } from './DropDownAlerta' 
