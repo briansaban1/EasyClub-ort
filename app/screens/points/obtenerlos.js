@@ -43,12 +43,9 @@ function ContactScreen() {
                         <View style={{width: '85%', marginBottom: 25 }}>
                            
                             <Text style={styles.text15}>
-                                Todos los pagos realizados por actividades aranceladas sumarán 1 punto por cada peso facturado, los cuales vas a poder canjear por cupones de descuento aplicable a tus próximas actividades.
+                                Todos los pagos realizados por actividades aranceladas sumarán 1 punto por cada peso facturado, los cuales vas a poder canjear por cupones de descuento aplicable a tus próximas actividades....
                             </Text>
 
-                            <Text style={styles.text152}>
-                                Los puntos tienen una vigencia de 6 meses a partir de la fecha en la que se generó la factura.
-                            </Text>
 
                             
                         </View>
