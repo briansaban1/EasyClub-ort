@@ -123,12 +123,6 @@ WService.prototype.getSessions1 = function (email) {
   });
 };
 
-WService.prototype.getGrafico = function (email) {
-  return NetworkHelper.requestPost(this.makeUrl('grafico.php'), {
-    flag: 'grafico',
-    email,
-  });
-};
 
 
 
@@ -154,12 +148,6 @@ WService.prototype.getFacturas = function (email) {
   });
 };
 
-WService.prototype.tracking = function (track) {
-  return NetworkHelper.requestPost(this.makeUrl('tracking.php'), {
-    flag: 'flag',
-    track
-  });
-};
 
 WService.prototype.getHorarios = function (actividad) {
   return NetworkHelper.requestPost(this.makeUrl('horarios.php'), {
@@ -175,13 +163,6 @@ WService.prototype.contactus = function (data) {
   });
 };
 
-WService.prototype.alertarCompras = function (data) {
-  return NetworkHelper.requestPost(this.makeUrl('alertas.php'), {
-    flag: 'alertas',
-    estado: "Acceptance",
-   ...data
-  });
-};
 
 WService.prototype.cargarPuntos = function (data) {
   return NetworkHelper.requestPost(this.makeUrl('canjear.php'), {
