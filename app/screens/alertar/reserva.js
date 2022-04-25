@@ -89,18 +89,24 @@ console.log(parametro)
     const [finHora, setFinHora] = useState();
     const [intHora, setIntHora] = useState();
 
+console.log(inicioHora, finHora, intHora);
 
     useEffect(() => {
         console.log(parametro)
         wservice.getHorarios(parametro)
             .then(response => {
-                console.log(response.status)
+
+                console.log(response.status, 'flag')
+
+            //error en el listado de horas
+            //error en api
+
+        //Nos quedamos ACA !
 
                 if (response.status == 1) {
-                    console.log(response.data)
-                    
 
-                    const datos = response.data
+                    console.log(response.data, 'flag2')
+
                     
                     setHorarios(datos.map(item => ({
                         inicio: item.inicio,
@@ -108,9 +114,9 @@ console.log(parametro)
                         intervalo: item.intervalo,
                     })));  
 
-                    setInicioHora(horarios[horarios.length-1].inicio);
-                    setFinHora(horarios[horarios.length-1].fin);
-                    setIntHora(horarios[horarios.length-1].intervalo);
+                    setInicioHora(response.data[0].inicio);
+                    setFinHora(response.data[0].fin);
+                    setIntHora(response.data[0].intervalo);
                     
                 }
                 
@@ -119,48 +125,6 @@ console.log(parametro)
     }, [])
    
 
-    function intervaloHora(inicioHora, finHora, intHora) {
-
-
-        //se reciben por parametro la hora de inicio, fin e intervalo.
-
-        //hay que convertir las horas recibidas en string a tipo TIME
-
-        //Generar un FOR para listar todos los horarios disponibles
-
-        //Nos quedamos ACA !
-
-        console.log(inicioHora, finHora, intHora)
-        const date = new Date();
-        
-        const dt = date.getMinutes(inicioHora)
-
-        console.log(inicioHora) 
-
-        const dt1 = date.getMinutes(finHora)
-        console.log(dt, dt1)
-
-        const ranges = [];
-        const format = {
-            hour: 'numeric',
-            minute: 'numeric',
-        };
-
-        
-        for (let minutes = inicioHora; minutes < 8 * 60; minutes = minutes + intervalos) {
-            console.log(minutes)
-            date.setHours(0);
-            date.setMinutes(minutes);
-            ranges.push(date.toLocaleTimeString(format));
-        }
-        console.log(ranges)
-        return ranges;
-
-
-
-    }
-
-console.log(intervaloHora(inicioHora, finHora, intHora) )
 
     return (
         <>
