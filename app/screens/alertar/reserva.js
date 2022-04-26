@@ -53,6 +53,17 @@ console.log(parametro)
             useNativeDriver: true,
         }).start();
     };
+const datohr = (horadata)=>{
+   console.log(horadata, 'aca')
+    var hr = ''
+    if (horadata >= '12:00'){
+    hr = 'PM'
+    }else{
+    hr= 'AM'
+    }
+    return hr
+};
+    
 
     useEffect(() => {
         if (isSelected && date) {
@@ -85,11 +96,7 @@ console.log(parametro)
     const wservice = new WService();
 
     const [horarios, setHorarios] = useState([]);
-    const [inicioHora, setInicioHora] = useState();
-    const [finHora, setFinHora] = useState();
-    const [intHora, setIntHora] = useState();
 
-console.log(inicioHora, finHora, intHora);
 
     useEffect(() => {
         console.log(parametro)
@@ -98,32 +105,53 @@ console.log(inicioHora, finHora, intHora);
 
                 console.log(response.status, 'flag')
 
+
             //error en el listado de horas
             //error en api
 
         //Nos quedamos ACA !
 
                 if (response.status == 1) {
-
+ 
                     console.log(response.data, 'flag2')
-
-                    
-                    setHorarios(datos.map(item => ({
-                        inicio: item.inicio,
-                        fin: item.fin,
-                        intervalo: item.intervalo,
-                    })));  
-
-                    setInicioHora(response.data[0].inicio);
-                    setFinHora(response.data[0].fin);
-                    setIntHora(response.data[0].intervalo);
+            
+                
+                    setHorarios(response.data.map(item => ({
+                        
+                        hora: item,
+                    })));                    
+console.log(horarios)
                     
                 }
                 
                 
             })
     }, [])
+
+    console.log(moment(date).format('DD-MM-YYYY'))
    
+// function horariosdisp(inicioHora, finHora, intHora){
+
+//     var ini = moment(inicioHora,'HH:mm');
+//     var fn = moment(finHora,'HH:mm');
+//     var int = moment(intHora,'HH:mm');
+
+//     var ininv = moment(new Date (ini)).format('HH:mm')
+//     var fnn =  moment(new Date (fn)).format('HH:mm')
+//     var intt = moment(new Date (int)).format('HH:mm')
+
+//     var suma = moment(new Date(int)).format('HH:mm')
+
+//     for (let index = ini; ininv <= fnn; ini++) {
+//         const resultado = [ininv];
+//         console.log(resultado , suma) 
+//     }  
+//     //console.log(resultado)
+   
+    
+// }
+
+// console.log(horariosdisp(inicioHora, finHora, intHora)) 
 
 
     return (
@@ -168,7 +196,7 @@ console.log(inicioHora, finHora, intHora);
                     // <FlatList
                     //     showsHorizontalScrollIndicator={false}
                     //     style={styles.FlatList}
-                    //     keyExtractor={(i) => i.inicio.toString()}
+                    //     keyExtractor={(i) => i.hora.toString()}
                     //     data={i}
                     //     renderItem={({ i }) => (
                             
@@ -183,58 +211,27 @@ console.log(inicioHora, finHora, intHora);
                     //             </View>
                     //         </TouchableOpacity>
                     //     )} />
-                    <Text>{i.inicio} {i.fin} {i.intervalo}</Text>
-                    
-
-                        )}
-                        
-                        </View>
-         <Button
-                disabled={!date || !isSelected}
-                text={"Confirmar"}
-                onPress={confirm}
-            />
-
-
-
-
-
-
-
+<TouchableOpacity style={{}} onPress={() => addTime(i.hora)}>
                     <FlexWrapper>
-                        {/* <View style={{
+                        <View style={i.hora == isSelected ? styles.selected : styles.textTime}></View>
+                        <View style={{
                             alignItems: 'center',
-                            color: Colors.blue400,
+                            color: Colors.blue300,
                             //borderColor: '#A8B3C8',
                             //borderWidth: 1,
                             width: '90%',
                             //borderRadius: 5,
-                            height: 95,
+                            height: 65,
                             borderStyle: 'dotted',
                             backgroundColor: '#fff'
                         }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', alignSelf:'flex-start' }}>
-
-                                <View style={{
-                                    color: Colors.blue400,
-                                    borderColor: Colors.blue400,
-                                    borderWidth: 1,
-                                    width: '3%',
-                                    borderRadius: 25,
-                                    height: '60%',
-                                    borderStyle: 'dotted',
-                                    backgroundColor: Colors.blue400
-                                }}></View>
-                                <AppText style={styles.label}> Domingo, 10 de Abril de 2022</AppText>
-                            </View>
-
-                            <Space />
-                            <View style={{
+                           
+                            <View style={i.hora == isSelected ? styles.selected : {
                                 //color: Colors.blue400,
                                 borderColor: '#A8B3C8',
                                 borderWidth: 1,
-                                width: '95%',
+                                width: '100%',
                                 borderRadius: 5,
                                 height: 60,
                                 borderStyle: 'dotted',
@@ -247,9 +244,9 @@ console.log(inicioHora, finHora, intHora);
 
                                 <View style={{ flexDirection: 'row', alignItems: 'center', padding: 10, alignContent: 'space-between', width: '100%' }}>
                                     <View style={{ alignContent: 'space-between', width: '45%' }}>
-                                        <AppText style={styles.subtitle}>TENIS</AppText></View>
+                                        <AppText style={styles.subtitle}>{parametro}</AppText></View>
                                     <View style={{ alignContent: 'space-between' }}>
-                                        <AppText style={styles.label}> 10/04/2022 | 8.30AM</AppText>
+                                        <AppText style={styles.label}> {moment(date).format('DD-MM-YYYY')} | {i.hora} {datohr(i.hora)} </AppText>
                                     </View>
                                 </View>
 
@@ -260,11 +257,29 @@ console.log(inicioHora, finHora, intHora);
 
 
 
-                        </View> */}
+                        </View>
                     </FlexWrapper>
+                    </TouchableOpacity>
+                    
+
+                    
+                    
+
+                        )}
+                        
+                        </View>
+        
+
+
+                    
                 </View>
-
-
+<View>
+                <Button
+                disabled={!date || !isSelected}
+                text={"Confirmar"}
+                onPress={confirm}
+            />
+            </View>
                 <View style={{ height: 30 }} />
             </ScrollView>
         </>

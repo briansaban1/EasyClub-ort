@@ -61,7 +61,17 @@ const styles = StyleSheet.create({
    fontSize: Dimensions.px14,
   },
   selected:{
-    color:'#154DDE'
+                               borderColor: '#A8B3C8',
+                                borderWidth: 1,
+                                //width: '50%',
+                                borderRadius: 5,
+                                height: 60,
+                                //borderStyle: 'dotted',
+                                //backgroundColor: '#f',
+                                justifyContent: 'center',
+                                backgroundColor: '#fffa',
+                                //shadowOffset:'5',
+                                //shadowOpacity: '#f'
   },
   FlatList:{
     width:'85%',
