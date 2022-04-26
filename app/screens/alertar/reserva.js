@@ -53,8 +53,10 @@ console.log(parametro)
             useNativeDriver: true,
         }).start();
     };
+
+    //se recibe por parametro la hora y verifica si es AM o PM
 const datohr = (horadata)=>{
-   console.log(horadata, 'aca')
+   console.log(horadata)
     var hr = ''
     if (horadata >= '12:00'){
     hr = 'PM'
@@ -98,6 +100,7 @@ const datohr = (horadata)=>{
     const [horarios, setHorarios] = useState([]);
 
 
+    //se pasa por parametro a la API el tipo de actividad y devuelta la lista de horas
     useEffect(() => {
         console.log(parametro)
         wservice.getHorarios(parametro)
@@ -183,7 +186,25 @@ console.log(horarios)
                     />
 
                     <View style={{ height: 20 }} />
+
+
+                    <View style={{width:'85%', marginBottom:10 }}>
+
+                        <AppText style={styles.subtitleHorario}>Horarios disponibles</AppText>
+<View style={{flexDirection: 'row',}}>
+                        <Image
+                            source={require('@assets/punto2.png')}
+                            imageStyle={{width: 12, height: 22,}}
+                            style={styles.location}
+                        />
+                        <AppText style={styles.dia}>{moment(date).format('dddd, DD MMMM YYYY')}</AppText>
+                        </View>
+                    </View>
+
                     <View style={{height:'50%',width:'100%', alignItems:'center' }}>
+
+
+                        
 
                     {horarios.length == 0 &&
                     <Image
@@ -246,7 +267,7 @@ console.log(horarios)
                                     <View style={{ alignContent: 'space-between', width: '45%' }}>
                                         <AppText style={styles.subtitle}>{parametro}</AppText></View>
                                     <View style={{ alignContent: 'space-between' }}>
-                                        <AppText style={styles.label}> {moment(date).format('DD-MM-YYYY')} | {i.hora} {datohr(i.hora)} </AppText>
+                                        <AppText style={styles.label}> {moment(date).format('DD/MM/YYYY')} | {i.hora} {datohr(i.hora)} </AppText>
                                     </View>
                                 </View>
 
@@ -274,11 +295,11 @@ console.log(horarios)
                     
                 </View>
 <View>
-                <Button
+                {/* <Button
                 disabled={!date || !isSelected}
                 text={"Confirmar"}
                 onPress={confirm}
-            />
+            /> */}
             </View>
                 <View style={{ height: 30 }} />
             </ScrollView>
