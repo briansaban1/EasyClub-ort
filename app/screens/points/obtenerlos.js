@@ -6,7 +6,6 @@ import styles from './styles';
 import { Title } from '../../components/Header';
 import Screens from '../../constants/screens';
 import { useSelector } from 'react-redux';
-import PercentageCircle from 'react-native-percentage-circle';
 import { safeGetOr } from '../../utils/fp';
 import { Colors, Dimensions, Images, AppStyles } from '../../constants';
 

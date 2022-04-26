@@ -6,7 +6,6 @@ import styles from './styles';
 import { Title } from '../../components/Header';
 import Screens from '../../constants/screens';
 import { useSelector, useDispatch } from 'react-redux';
-import PercentageCircle from 'react-native-percentage-circle';
 import { safeGetOr } from '../../utils/fp';
 import { Colors, Dimensions, Images, AppStyles } from '../../constants';
 import { useNavigation } from '@react-navigation/native';
@@ -70,8 +69,6 @@ function ContactScreen() {
                     </View>
                     <View style={{ flexDirection: 'row', paddingHorizontal: 20, marginTop: 15, alignItems: 'center', }}>
                         <View>
-                            <PercentageCircle style={{ alignItems: 'center', justifyContent: 'center', }} alignItems={'center'} radius={38} bgcolor="#fafafa" borderWidth={4} percent={safeGetOr("", "puntos")(resumen) / safeGetOr("", "puntos")(resumen) + 99} color={Colors.darkblue}>
-
                                 <View>
 
                                     <Image
@@ -88,7 +85,6 @@ function ContactScreen() {
                                     />
                                 </View>
 
-                            </PercentageCircle>
                         </View>
 
                         <View style={{ marginLeft: 15, marginTop: 0, }}>

@@ -3,7 +3,6 @@
   "version": "1.0.17.4.22",
   "private": true,
   "scripts": {
-    "postinstall": "./additional-npm.sh",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
@@ -53,7 +52,6 @@
     "react-native-modal-dropdown": "^0.6.2",
     "react-native-modal-dropdown-v2": "^1.0.1",
     "react-native-orientation-loading-overlay": "^0.1.6",
-    "react-native-percentage-circle": "^1.0.7",
     "react-native-progress-steps": "^1.2.7",
     "react-native-reanimated": "^2.0.0",
     "react-native-safe-area-context": "^3.2.0",
