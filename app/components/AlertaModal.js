@@ -69,9 +69,16 @@ console.log(hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
                 //si la carga es exitosa se redirecciona a la ventana de exito
                 //goExito()
                 console.log(response.status)
+                onClose();
 
-                //FALTA IMPLEMENTAR El BORRADO DE CONST PARA QUE VUELTA TODO A 0
+                //se redirecciona a la pantalla de exito
                 navigate(Screens.ExitoReserva)
+                //se borran todas las propiedades
+                setActividades('')
+                setHora('')
+                setFechas('')
+                setModalidad('')
+                setHoraDataAMPM('')
             }
         })
     }
