@@ -157,6 +157,20 @@ WService.prototype.getHorarios = function (actividad, dia) {
   });
 };
 
+WService.prototype.cargarReserva = function (mail, actividades, hora, fechaArregada, modalidades) {
+  return NetworkHelper.requestPost(this.makeUrl('generarReserva.php'), {
+    flag: 'reserva',
+    correo: mail,
+    actividad: actividades,
+    hora: hora,
+    fecha: fechaArregada,
+    modalidad: modalidades
+  });
+};
+
+
+
+
 WService.prototype.contactus = function (data) {
   return NetworkHelper.requestPost(this.makeUrl('contactus.php'), {
     flag: 'contactus',
