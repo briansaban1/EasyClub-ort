@@ -21,14 +21,7 @@ const Screens = {
    Funcionamiento1:"Funcionamiento1",
    Pago:"Pago",
    Envios:"Envios",
-   Almacenamiento:"Almacenamiento",
-   TallesYMedidas:"TallesYMedidas",
-   Amazon:"Amazon",
-   Ebay:"Ebay",
-   MejoresPrecios:"MejoresPrecios",
-   GanarDinero:"GanarDinero",
    Direcciones:"Direcciones",
-   Calculadora:"Calculadora",
    Alertar:"Alertar",
    Correos:"Correos",
    Facturas:"Facturas",
@@ -37,7 +30,9 @@ const Screens = {
    Canjear: "Canjear",
    Billetera: "Billetera",
    Reservas: "Reservas",
-   ComoLlegar: "ComoLlegar"
+   ComoLlegar: "ComoLlegar",
+   ExitoReserva: "ExitoReserva",
+   Home: "Home"
 
 };
 
