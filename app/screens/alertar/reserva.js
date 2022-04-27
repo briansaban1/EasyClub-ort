@@ -17,6 +17,7 @@ function ReservaScreen(data) {
 
 
     const parametro = data.route.params.data.nombre;
+    const modalidades = data.route.params.data.modalidad;
     console.log(parametro)
 
     const profile = useSelector(store => store.user.profile)
@@ -92,9 +93,7 @@ function ReservaScreen(data) {
         hideDatePicker();
     };
 
-    const hacerReserva = (hora, fecha, deporte) => {
 
-    }
     const wservice = new WService();
 
     const [horarios, setHorarios] = useState([]);
@@ -264,7 +263,7 @@ console.log(modalData, 'aca')
                 </View>
                 <View style={{ height: 30 }} />
             </ScrollView>
-            {visibleModal && <AlertaModal onClose={() => { setVisibleModal(false) }} data={modalData} fecha={date} actividad={parametro} horadata={datohr(modalData)} />}
+            {visibleModal && <AlertaModal onClose={() => { setVisibleModal(false) }} data={modalData} fecha={date} actividad={parametro} horadata={datohr(modalData)} modalidad={modalidades} />}
         </>
     );
 }

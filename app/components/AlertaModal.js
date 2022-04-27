@@ -15,7 +15,8 @@ import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker
 import OrientationLoadingOverlay from 'react-native-orientation-loading-overlay';
 import LottieView from 'lottie-react-native';
 import colors from '../constants/colors';
-
+import { useNavigation } from '@react-navigation/native';
+import Screens from '../constants/screens';
 
 
 const wservice = new WService();
@@ -26,18 +27,24 @@ const TrackModal = ({
     fecha,
     actividad,
     horadata,
+    modalidad,
     onClose,
 }) => {
-    const [hisotry, setHistory] = useState([]);
     
+    const { navigate } = useNavigation();
+
+
     const profile = useSelector(store => store.user.profile)
-    const nom = safeGetOr('', 'tx_nombre')(profile)
-    const ape = safeGetOr('', 'tx_apellido')(profile)
+
     const mail = safeGetOr('', 'tx_correo')(profile)
+    console.log(mail)
     const [actividades, setActividades] = useState(actividad);
     const [hora, setHora] = useState(data);
     const [fechas, setFechas] = useState(fecha);
 const fechaArregada = moment(fechas).format('DD/MM/YYYY')
+
+const [modalidades, setModalidad] = useState(modalidad);
+
 
     const [horadataAMPM, setHoraDataAMPM] = useState(horadata);
 
@@ -46,19 +53,21 @@ console.log(hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
     const [loading, setLoadng] = useState(false)
 
 //se carga la reserva a la base de datos
-    const generarReserva = (actividades, hora, fechaArregada) => {
+    const generarReserva = (mail, actividades, hora, fechaArregada, modalidades) => {
+        console.log(mail, actividades, hora, fechaArregada, modalidades, 'aca1!')
         wservice.cargarReserva({
-            nom,
-            ape,
             mail,
             actividades,
             hora,
-            fechaArregada
-            
+            fechaArregada,
+            modalidades
+
         }).then(response => {
             if (response.status == 1) {
                 //si la carga es exitosa se redirecciona a la ventana de exito
-                goExito()
+                //goExito()
+                console.log(response.status)
+                navigate(Screens.ExitoReserva)
             }
         })
     }
@@ -109,7 +118,7 @@ console.log(hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
                         //onPress={}
                         buttonStyle={{width:'47%', backgroundColor:'#36E26F'}}
                         onPress={() => {
-                            generarReserva(actividades, hora, fechaArregada);
+                            generarReserva(mail, actividades, hora, fechaArregada, modalidades);
                         }}
                     />
                     <Button
@@ -124,47 +133,6 @@ console.log(hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
                     </View>
                 </View>
             </View>
-            
-      <Modal
-                    animationType="slide"
-                    transparent={true}
-                    style={styles.modal}
-                    visible={loading}
-                    >
-                    <StatusBar backgroundColor="#00000040"  barStyle="light-content"/>
-
-                    <View style={styles.modal}>
-                        <View style={styles.modalContainer}>
-                            <AppText style={styles.title1}>¡Modificación exitosa!</AppText>
-                            <View style={styles.hr} />
-
-                            <Text style={{color: Colors.blue400, fontSize: Dimensions.px15, marginTop:12, width: '85%', alignItems: 'center', textAlign: 'center', justifyContent: 'center',}}>En breve vamos a estar validando la información.</Text>
-                            <View style={styles.flexContainer1}>
-                            <LottieView source={require('@assets/check.json')}
-                    autoPlay={true}
-                    loop={false}
-                    resizeMode="cover" 
-                    style={{ width: 110, height: 110, marginVertical: 5, alignSelf: 'center' }}
-                    />
-
-
-                            </View>
-                            
-
-                            <TouchableOpacity style={styles.button1}
-                                onPress={() => onClose() }
-                            >
-                                <AppText style={styles.text1}>Aceptar</AppText>
-                            </TouchableOpacity>
-
-                           
-
-
-                        </View>
-                    </View>
-                </Modal>
-
-
 
         </Modal>
     );
