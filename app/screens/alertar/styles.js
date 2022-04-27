@@ -120,6 +120,11 @@ const styles = StyleSheet.create({
     //alignContent:'center',
     alignSelf:'center'
 },
+title_corto:{
+    color: Colors.blue400,
+    fontSize: Dimensions.px15,
+    
+}
 });
 
 export default styles;
