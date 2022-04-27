@@ -18,25 +18,138 @@ import colors from '../constants/colors';
 
 
 
-const createFormData = (photo, body) => {
-    const data = new FormData();
-
-    data.append("fileToUpload", {
-        name: photo.fileName,
-        type: photo.type,
-        uri:
-            Platform.OS === "android" ? photo.uri : photo.uri.replace("file://", "")
-    });
-
-    Object.keys(body).forEach(key => {
-        data.append(key, body[key]);
-    });
-
-    return data;
-};
-
 const wservice = new WService();
 const detalle1 = String();
+
+
+const TrackModal = ({
+    data,
+    fecha,
+    actividad,
+    horadata,
+    onClose,
+}) => {
+    const [hisotry, setHistory] = useState([]);
+    
+    const profile = useSelector(store => store.user.profile)
+    const nom = safeGetOr('', 'tx_nombre')(profile)
+    const ape = safeGetOr('', 'tx_apellido')(profile)
+    const mail = safeGetOr('', 'tx_correo')(profile)
+    const [actividades, setActividades] = useState(actividad);
+    const [hora, setHora] = useState(data);
+    const [fechas, setFechas] = useState(fecha);
+    const [horadataAMPM, setHoraDataAMPM] = useState(horadata);
+
+console.log(hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
+
+    const [fileName, setFileName] = useState(null)
+    const [loading, setLoadng] = useState(false)
+
+
+
+    const [searchValue, setSearchValue] = useState()
+
+
+
+ 
+
+    return (
+        
+        <Modal
+            transparent={true}
+            visible={true}
+            animationType={'fade'}
+            onRequestClose={() => {
+                onClose();
+            }}>
+            <View style={styles.body}>
+                <View style={styles.container}>
+                    <ImageButton
+                        source={Images.Close}
+                        imageStyle={styles.close}
+                        style={{ alignSelf: 'flex-end' }}
+                        onPress={() => {
+                            onClose();
+                        }}/>
+                    <View style={styles.mainContainer}>
+                        <AppText style={styles.title}>{"Confirmar Reserva"}</AppText>
+                   
+                        <Space />
+
+                        <AppText style={styles.textDeporte}>{actividad}</AppText>
+                        <AppText style={styles.text2}>Fecha: {moment(fechas).format('DD/MM/YYYY')} </AppText>
+                        <AppText style={styles.text2}>Hora: {hora} {horadataAMPM} </AppText>
+                        
+                        <Space />
+
+                        <View>
+                        
+                        </View>
+                        <Space />
+
+                    
+
+                        <Space />
+
+                      
+                        <Button
+                        text={"Continuar"}
+                        //onPress={}
+                        disabled={!fileName}
+                    />
+                        <Space />
+                    </View>
+                </View>
+            </View>
+            
+      <Modal
+                    animationType="slide"
+                    transparent={true}
+                    style={styles.modal}
+                    visible={loading}
+                    >
+                    <StatusBar backgroundColor="#00000040"  barStyle="light-content"/>
+
+                    <View style={styles.modal}>
+                        <View style={styles.modalContainer}>
+                            <AppText style={styles.title1}>¡Modificación exitosa!</AppText>
+                            <View style={styles.hr} />
+
+                            <Text style={{color: Colors.blue400, fontSize: Dimensions.px15, marginTop:12, width: '85%', alignItems: 'center', textAlign: 'center', justifyContent: 'center',}}>En breve vamos a estar validando la información.</Text>
+                            <View style={styles.flexContainer1}>
+                            <LottieView source={require('@assets/check.json')}
+                    autoPlay={true}
+                    loop={false}
+                    resizeMode="cover" 
+                    style={{ width: 110, height: 110, marginVertical: 5, alignSelf: 'center' }}
+                    />
+
+
+                            </View>
+                            
+
+                            <TouchableOpacity style={styles.button1}
+                                onPress={() => onClose() }
+                            >
+                                <AppText style={styles.text1}>Aceptar</AppText>
+                            </TouchableOpacity>
+
+                           
+
+
+                        </View>
+                    </View>
+                </Modal>
+
+
+
+        </Modal>
+    );
+};
+
+export default TrackModal;
+
+
 
 const styles = StyleSheet.create({
     body: {
@@ -139,211 +252,22 @@ const styles = StyleSheet.create({
       color: Colors.white,
       fontSize: Dimensions.px16,
       fontWeight: 'bold'
-    }
-});
-
-const TrackModal = ({
-    data,
-    onClose,
-}) => {
-    const [hisotry, setHistory] = useState([]);
+    },
+    text2: {
+        color: Colors.blue400,
+        fontSize: Dimensions.px15,
+        paddingVertical: 2,
+        //marginBottom: 5,
+        //paddingHorizontal: 30,
     
-    const profile = useSelector(store => store.user.profile)
-    const nom = safeGetOr('', 'tx_nombre')(profile)
-    const ape = safeGetOr('', 'tx_apellido')(profile)
-    const mail = safeGetOr('', 'tx_correo')(profile)
-    const [step, setStep] = useState(1);
-    const [actividad, setTracking] = useState(data.actividad);
-    const [courier, setCourier] = useState('');
-    const [estado, setEstado] = useState('');
-    const [met, setMet] = useState('');
-    const [det, setDet] = useState('');
-    const [file, setFile] = useState('')
-    const [fileName, setFileName] = useState(null)
-    const [loading, setLoadng] = useState(false)
-
-    const _actividades = useSelector(store => store.user.actividades)
-    const [actividades, setActividad] = useState(_actividades)
-
-    const [searchValue, setSearchValue] = useState()
-
-    useEffect(() => {
-        handleSearch();
-    }, [searchValue])
-
-    function handleSearch() {
-        if (searchValue) {
-            const filteredData = _actividades.filter(data => {
-                const searchData = data && data.color.toUpperCase()
-                const textData = searchValue.toUpperCase()
-                return searchData.indexOf(textData) > -1
-            })
-            setActividad(filteredData)
-        } else {
-            setActividad(_actividades)
-        }
-    }
-
-
- 
-
-    return (
-        
-        <Modal
-            transparent={true}
-            visible={true}
-            animationType={'fade'}
-            onRequestClose={() => {
-                onClose();
-            }}>
-            <View style={styles.body}>
-                <View style={styles.container}>
-                    <ImageButton
-                        source={Images.Close}
-                        imageStyle={styles.close}
-                        style={{ alignSelf: 'flex-end' }}
-                        onPress={() => {
-                            onClose();
-                        }}/>
-                    <View style={styles.mainContainer}>
-                        <AppText style={styles.title}>{"Reservar Actividad"}</AppText>
-                        <Space />
-
-                        <FlexWrapper>
-                            <AppText style={styles.label}>Listado de Horarios</AppText>
-                        </FlexWrapper>
-
-                        <SearchInput 
-             onChangeText={setSearchValue}
-             value={searchValue}
-            />
-                        
-                        <Space />
-                        <AppText style={styles.subtitle}>{"Horarios Disponibles"}</AppText>
-                        <Space />
-
-                        <View>
-                        <FlexWrapper style={{}}>
-                            <View style={{
-                                color: Colors.blue400,
-                                //borderColor: '#A8B3C8',
-                                //borderWidth: 1,
-                                width: '95%',
-                                //borderRadius: 5,
-                                height: 95,
-                                borderStyle: 'dotted',
-                                backgroundColor: '#fff'
-                            }}>
-
-                        <View style={{flexDirection:'row', alignItems:'center'}}>
-
-                            <View style={{
-                                color: Colors.blue400,
-                                borderColor: Colors.blue400,
-                                borderWidth: 1,
-                                width: '3%',
-                                borderRadius: 25,
-                                height: '60%',
-                                borderStyle: 'dotted',
-                                backgroundColor: Colors.blue400
-                            }}></View>
-                            <AppText style={styles.label}> Domingo, 10 de Abril de 2022</AppText>
-                            </View>
-
-                            <Space />
-                            <View style={{
-                                //color: Colors.blue400,
-                                borderColor: '#A8B3C8',
-                                borderWidth: 1,
-                                width: '95%',
-                                borderRadius: 5,
-                                height: 60,
-                                borderStyle: 'dotted',
-                                //backgroundColor: '#f',
-                                justifyContent:'center',
-                                backgroundColor:'#fff',
-                                //shadowOffset:'5',
-                                shadowOpacity:'#0000030'
-                            }}>
-
-                   <View style={{flexDirection:'row', alignItems:'center', padding:10, alignContent:'space-between', width:'100%'}}> 
-                        <View style={{alignContent:'space-between', width:'45%'}}>
-                        <AppText style={styles.subtitle}>{data.nombre}</AppText></View>
-                        <View style={{alignContent:'space-between'}}>
-                        <AppText style={styles.label}> 10/04/2022 | 8.30AM</AppText>
-                        </View>
-                        </View>
-
-                            </View>
-
-
-
-
-
-                            
-                            </View>
-                        </FlexWrapper>
-                        </View>
-                        <Space />
-
-                    
-
-                        <Space />
-
-                      
-                        <Button
-                        text={"Continuar"}
-                        //onPress={}
-                        disabled={!fileName}
-                    />
-                        <Space />
-                    </View>
-                </View>
-            </View>
-            
-      <Modal
-                    animationType="slide"
-                    transparent={true}
-                    style={styles.modal}
-                    visible={loading}
-                    >
-                    <StatusBar backgroundColor="#00000040"  barStyle="light-content"/>
-
-                    <View style={styles.modal}>
-                        <View style={styles.modalContainer}>
-                            <AppText style={styles.title1}>¡Modificación exitosa!</AppText>
-                            <View style={styles.hr} />
-
-                            <Text style={{color: Colors.blue400, fontSize: Dimensions.px15, marginTop:12, width: '85%', alignItems: 'center', textAlign: 'center', justifyContent: 'center',}}>En breve vamos a estar validando la información.</Text>
-                            <View style={styles.flexContainer1}>
-                            <LottieView source={require('@assets/check.json')}
-                    autoPlay={true}
-                    loop={false}
-                    resizeMode="cover" 
-                    style={{ width: 110, height: 110, marginVertical: 5, alignSelf: 'center' }}
-                    />
-
-
-                            </View>
-                            
-
-                            <TouchableOpacity style={styles.button1}
-                                onPress={() => onClose() }
-                            >
-                                <AppText style={styles.text1}>Aceptar</AppText>
-                            </TouchableOpacity>
-
-                           
-
-
-                        </View>
-                    </View>
-                </Modal>
-
-
-
-        </Modal>
-    );
-};
-
-export default TrackModal;
+      },
+      textDeporte: {
+        color: Colors.blue400,
+        fontSize: Dimensions.px16,
+        paddingVertical: 2,
+        fontWeight: 'bold'
+        //marginBottom: 5,
+        //paddingHorizontal: 30,
+    
+      },
+});

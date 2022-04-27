@@ -9,15 +9,15 @@ import { Colors, Dimensions } from '../../constants';
 import { horario } from './horarios'
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import moment, { min } from 'moment';
-import 'moment/locale/es' 
+import 'moment/locale/es'
 import WService from '../../service/WebService';
 
 
 function ReservaScreen(data) {
 
 
-const parametro = data.route.params.data.nombre;
-console.log(parametro)
+    const parametro = data.route.params.data.nombre;
+    console.log(parametro)
 
     const profile = useSelector(store => store.user.profile)
 
@@ -32,7 +32,7 @@ console.log(parametro)
     const [inicio, setInicio] = useState('');
     const fadeAnim = useRef(new Animated.Value(0)).current;
     const position = new Animated.ValueXY({ x: 0, y: 0 });
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState(moment());
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
     //console.log(date)
@@ -55,17 +55,17 @@ console.log(parametro)
     };
 
     //se recibe por parametro la hora y verifica si es AM o PM
-const datohr = (horadata)=>{
-   console.log(horadata)
-    var hr = ''
-    if (horadata >= '12:00'){
-    hr = 'PM'
-    }else{
-    hr= 'AM'
-    }
-    return hr
-};
-    
+    const datohr = (horadata) => {
+        console.log(horadata)
+        var hr = ''
+        if (horadata >= '12:00') {
+            hr = 'PM'
+        } else {
+            hr = 'AM'
+        }
+        return hr
+    };
+
 
     useEffect(() => {
         if (isSelected && date) {
@@ -87,13 +87,13 @@ const datohr = (horadata)=>{
         setDatePickerVisibility(false);
     };
 
-     const handleConfirm = (date) => {
-         setDate(date)
-         hideDatePicker();
+    const handleConfirm = (date) => {
+        setDate(date)
+        hideDatePicker();
     };
 
-    const confirm =() =>{
-       
+    const hacerReserva = (hora, fecha, deporte) => {
+
     }
     const wservice = new WService();
 
@@ -108,54 +108,26 @@ const datohr = (horadata)=>{
 
                 console.log(response.status, 'flag')
 
-
-            //error en el listado de horas
-            //error en api
-
-        //Nos quedamos ACA !
-
                 if (response.status == 1) {
- 
+
                     console.log(response.data, 'flag2')
-            
-                
+
+
                     setHorarios(response.data.map(item => ({
-                        
+
                         hora: item,
-                    })));                    
-console.log(horarios)
-                    
+                    })));
+                    console.log(horarios)
+
                 }
-                
-                
+
+
             })
     }, [])
 
     console.log(moment(date).format('DD-MM-YYYY'))
-   
-// function horariosdisp(inicioHora, finHora, intHora){
 
-//     var ini = moment(inicioHora,'HH:mm');
-//     var fn = moment(finHora,'HH:mm');
-//     var int = moment(intHora,'HH:mm');
-
-//     var ininv = moment(new Date (ini)).format('HH:mm')
-//     var fnn =  moment(new Date (fn)).format('HH:mm')
-//     var intt = moment(new Date (int)).format('HH:mm')
-
-//     var suma = moment(new Date(int)).format('HH:mm')
-
-//     for (let index = ini; ininv <= fnn; ini++) {
-//         const resultado = [ininv];
-//         console.log(resultado , suma) 
-//     }  
-//     //console.log(resultado)
-   
-    
-// }
-
-// console.log(horariosdisp(inicioHora, finHora, intHora)) 
-
+console.log(modalData, 'aca')
 
     return (
         <>
@@ -183,126 +155,116 @@ console.log(horarios)
                         onCancel={hideDatePicker}
                         minimumDate={moment().toDate()}
                         maximumDate={moment(new Date()).add(5, 'days').toDate()}
+                    //defaultValue={moment().toDate()}
                     />
 
                     <View style={{ height: 20 }} />
 
 
-                    <View style={{width:'85%', marginBottom:10 }}>
+                    <View style={{ width: '85%', marginBottom: 10 }}>
 
                         <AppText style={styles.subtitleHorario}>Horarios disponibles</AppText>
-<View style={{flexDirection: 'row',}}>
-                        <Image
-                            source={require('@assets/punto2.png')}
-                            imageStyle={{width: 12, height: 22,}}
-                            style={styles.location}
-                        />
-                        <AppText style={styles.dia}>{moment(date).format('dddd, DD MMMM YYYY')}</AppText>
+                        <View style={{ flexDirection: 'row', }}>
+                            <Image
+                                source={require('@assets/punto2.png')}
+                                imageStyle={{ width: 10, height: 10, }}
+                                style={styles.location}
+                            />
+                            <AppText style={styles.dia}>{moment(date).format('dddd, DD MMMM YYYY')}</AppText>
                         </View>
                     </View>
 
-                    <View style={{height:'50%',width:'100%', alignItems:'center' }}>
+                    <View style={{ height: '50%', width: '100%', alignItems: 'center' }}>
 
 
-                        
 
-                    {horarios.length == 0 &&
-                    <Image
-                        source={Images.submissionEmpty}
-                        style={AppStyles.submissionEmpty}
-                    />
-                }
-                    {horarios.map(i => 
 
-                    // <FlatList
-                    //     showsHorizontalScrollIndicator={false}
-                    //     style={styles.FlatList}
-                    //     keyExtractor={(i) => i.hora.toString()}
-                    //     data={i}
-                    //     renderItem={({ i }) => (
-                            
-                    //         <TouchableOpacity style={styles.timeContainer} onPress={() => addTime(i.inicio)}>
-                                
-                    //             <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center',}}>
-                    //                 <Text style={i.inicio == isSelected ? styles.selected : styles.textTime}>
-                    //                 {i.inicio} - {i.final}
-                    //             </Text>
-                                
-                    //                 <Text style={item.inicio == isSelected ? styles.selected : styles.textTime}> LIBRE</Text>
-                    //             </View>
-                    //         </TouchableOpacity>
-                    //     )} />
-<TouchableOpacity style={{}} onPress={() => addTime(i.hora)}>
-                    <FlexWrapper>
-                        <View style={i.hora == isSelected ? styles.selected : styles.textTime}></View>
-                        <View style={{
-                            alignItems: 'center',
-                            color: Colors.blue300,
-                            //borderColor: '#A8B3C8',
-                            //borderWidth: 1,
-                            width: '90%',
-                            //borderRadius: 5,
-                            height: 65,
-                            borderStyle: 'dotted',
-                            backgroundColor: '#fff'
-                        }}>
+                        {horarios.length == 0 &&
+                            <Image
+                                source={Images.submissionEmpty}
+                                style={AppStyles.submissionEmpty}
+                            />
+                        }
+                        {horarios.map(i =>
 
-                           
-                            <View style={i.hora == isSelected ? styles.selected : {
-                                //color: Colors.blue400,
-                                borderColor: '#A8B3C8',
-                                borderWidth: 1,
-                                width: '100%',
-                                borderRadius: 5,
-                                height: 60,
-                                borderStyle: 'dotted',
-                                //backgroundColor: '#f',
-                                justifyContent: 'center',
-                                backgroundColor: '#fff',
-                                //shadowOffset:'5',
-                                //shadowOpacity: '#f'
+                            // <FlatList
+                            //     showsHorizontalScrollIndicator={false}
+                            //     style={styles.FlatList}
+                            //     keyExtractor={(i) => i.hora.toString()}
+                            //     data={i}
+                            //     renderItem={({ i }) => (
+
+                            //         <TouchableOpacity style={styles.timeContainer} onPress={() => addTime(i.inicio)}>
+
+                            //             <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center',}}>
+                            //                 <Text style={i.inicio == isSelected ? styles.selected : styles.textTime}>
+                            //                 {i.inicio} - {i.final}
+                            //             </Text>
+
+                            //                 <Text style={item.inicio == isSelected ? styles.selected : styles.textTime}> LIBRE</Text>
+                            //             </View>
+                            //         </TouchableOpacity>
+                            //     )} />
+                            <TouchableOpacity style={{}} 
+                            onPress={() => {
+                                addTime(i.hora); 
+                                setModalData(i.hora, date, parametro);
+                                setVisibleModal(true);
                             }}>
+                                <FlexWrapper>
+                                    <View style={i.hora == isSelected ? styles.selected : styles.textTime}></View>
+                                    <View style={{
+                                        alignItems: 'center',
+                                        color: Colors.blue300,
+                                        //borderColor: '#A8B3C8',
+                                        //borderWidth: 1,
+                                        width: '90%',
+                                        //borderRadius: 5,
+                                        height: 65,
+                                        borderStyle: 'dotted',
+                                        backgroundColor: '#fff'
+                                    }}>
 
-                                <View style={{ flexDirection: 'row', alignItems: 'center', padding: 10, alignContent: 'space-between', width: '100%' }}>
-                                    <View style={{ alignContent: 'space-between', width: '45%' }}>
-                                        <AppText style={styles.subtitle}>{parametro}</AppText></View>
-                                    <View style={{ alignContent: 'space-between' }}>
-                                        <AppText style={styles.label}> {moment(date).format('DD/MM/YYYY')} | {i.hora} {datohr(i.hora)} </AppText>
+
+                                        <View style={i.hora == isSelected ? styles.selected : {
+                                            //color: Colors.blue400,
+                                            borderColor: '#A8B3C8',
+                                            borderWidth: 1,
+                                            width: '100%',
+                                            borderRadius: 5,
+                                            height: 60,
+                                            borderStyle: 'dotted',
+                                            //backgroundColor: '#f',
+                                            justifyContent: 'center',
+                                            backgroundColor: '#fff',
+                                            //shadowOffset:'5',
+                                            //shadowOpacity: '#f'
+                                        }}>
+
+                                            <View style={{ flexDirection: 'row', alignItems: 'center', padding: 10, alignContent: 'space-between', width: '100%' }}>
+                                                <View style={{ alignContent: 'space-between', width: '45%' }}>
+                                                    <AppText style={styles.subtitle}>{parametro}</AppText></View>
+                                                <View style={{ alignContent: 'space-between' }}>
+                                                    <AppText style={styles.label}> {moment(date).format('DD/MM/YYYY')} | {i.hora} {datohr(i.hora)} </AppText>
+                                                </View>
+                                            </View>
+
+                                        </View>
+
                                     </View>
-                                </View>
-
-                            </View>
-
-
-
-
-
-
-                        </View>
-                    </FlexWrapper>
-                    </TouchableOpacity>
-                    
-
-                    
-                    
+                                </FlexWrapper>
+                            </TouchableOpacity>
 
                         )}
-                        
-                        </View>
-        
 
-
-                    
+                    </View>
                 </View>
-<View>
-                {/* <Button
-                disabled={!date || !isSelected}
-                text={"Confirmar"}
-                onPress={confirm}
-            /> */}
-            </View>
+                <View>
+
+                </View>
                 <View style={{ height: 30 }} />
             </ScrollView>
+            {visibleModal && <AlertaModal onClose={() => { setVisibleModal(false) }} data={modalData} fecha={date} actividad={parametro} horadata={datohr(modalData)} />}
         </>
     );
 }
