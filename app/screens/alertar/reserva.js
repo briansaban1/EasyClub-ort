@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Image, ScrollView, View, Text, TouchableOpacity, FlatList, Animated, Easing } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Header, SearchInput, AlertaModal, SubmissionAlerta, Button } from '../../components';
 import { AppStyles, Images } from '../../constants';
 import styles from './styles';
@@ -11,10 +11,12 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import moment, { min } from 'moment';
 import 'moment/locale/es'
 import WService from '../../service/WebService';
+import { getHorarios } from '../../store/user/action';
 
 
 function ReservaScreen(data) {
 
+    const dispatch = useDispatch();
 
     const parametro = data.route.params.data.nombre;
     const modalidades = data.route.params.data.modalidad;
@@ -93,24 +95,20 @@ function ReservaScreen(data) {
         hideDatePicker();
     };
 
+    
 
     const wservice = new WService();
 
     const [horarios, setHorarios] = useState([]);
-
-
+   
     //se pasa por parametro a la API el tipo de actividad y devuelta la lista de horas
     useEffect(() => {
-        console.log(parametro)
-        wservice.getHorarios(parametro)
-            .then(response => {
-
+        wservice.getHorarios(parametro).then(response => {
                 console.log(response.status, 'flag')
 
                 if (response.status == 1) {
 
                     console.log(response.data, 'flag2')
-
 
                     setHorarios(response.data.map(item => ({
 
@@ -118,15 +116,14 @@ function ReservaScreen(data) {
                     })));
                     console.log(horarios)
 
+
                 }
-
-
+               
             })
-    }, [])
+            
+    },[parametro])
 
     console.log(moment(date).format('DD-MM-YYYY'))
-
-console.log(modalData, 'aca')
 
     return (
         <>

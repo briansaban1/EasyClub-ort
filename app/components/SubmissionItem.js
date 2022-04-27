@@ -5,7 +5,7 @@ import { Colors, Dimensions } from '../constants';
 import { AppText, FlexWrapper } from './styled-components';
 import ImageButton from './ImageButton';
 import { getActividades } from '../store/user/action';
-
+import moment from 'moment';
 
 const styles = StyleSheet.create({
 
@@ -54,6 +54,7 @@ function SubmissionItem({ data, profile, onPress }) {
     const [display, setDisplay] = useState(false)
 
 
+
     function visible(modalidad, cancha){
         if(modalidad != "" && cancha != ""){
         return display
@@ -76,7 +77,7 @@ function SubmissionItem({ data, profile, onPress }) {
             />
             <View style={styles.mainContainer} >
                 <BoldText>Actividad: {data.actividad}</BoldText>
-                <AppText>Reserva: {data.fecha}</AppText>
+                <AppText>Reserva: {moment(data.fecha).format('DD/MM/YYYY')} | {(data.horaReserva)}</AppText>
                 
                 {visible(data.cancha, data.modalidad) &&
                     <View>
@@ -85,9 +86,10 @@ function SubmissionItem({ data, profile, onPress }) {
                             
                           <View>
                             <View style={{marginTop:5}} >
-                                <AppText>Cancha: {data.cancha}</AppText>  
+                                
                                 <AppText>Modalidad: {data.modalidad}</AppText>
-
+                                <AppText>Estado: {data.estado}</AppText>  
+                                <AppText>Reservado el día: {moment(data.fecha).format('DD/MM/YY')}</AppText>  
                             </View>
                             </View> 
                         </FlexWrapper>
