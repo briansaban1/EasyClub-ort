@@ -149,12 +149,11 @@ WService.prototype.getFacturas = function (email) {
 };
 
 
-WService.prototype.getHorarios = function (actividad, dia) {
+WService.prototype.getHorarios = function (actividad) {
   return NetworkHelper.requestPost(this.makeUrl('horarios.php'), {
     flag: 'actividad',
-    actividad,
-    dia
-  });
+    actividad
+    });
 };
 
 WService.prototype.cargarReserva = function (data) {

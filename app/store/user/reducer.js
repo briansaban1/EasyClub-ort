@@ -10,6 +10,7 @@ const INITIAL_STATE = {
     submissions: [],
     submissions1: [],
     activiades: [],
+    horarios: [],
     grafico: [],
     descuento: [],
     puntos: [],
@@ -108,6 +109,24 @@ export const UserReducer = (
                     ...state,
                     loadingActividades: false,
                     actividades: action.payload
+                };
+
+
+                case ActionTypes.GET_HORARIOS_START:
+                return {
+                    ...state,
+                    loadingHorarios: true,
+                };
+            case ActionTypes.GET_HORARIOS_FAILED:
+                return {
+                    ...state,
+                    loadingHorarios: false,
+                };
+            case ActionTypes.GET_HORARIOS_SUCCESS:
+                return {
+                    ...state,
+                    loadingHorarios: false,
+                    horarios: action.payload
                 };
 
 

@@ -138,8 +138,6 @@ return async (dispatch) => {
 };
 
 
-
-
 export const getSubmissions = (email) => {
   return async (dispatch) => {
     dispatch({ type: ActionTypes.GET_SUBMISSIONS_START });
@@ -182,14 +180,13 @@ export const getActividades = () => {
 
 export const getHorarios = (actividad) => {
   return async (dispatch) => {
-    dispatch({ type: ActionTypes.GET_ACTIVIDADES_START });
+    dispatch({ type: ActionTypes.GET_HORARIOS_START });
       const data = await wservice.getHorarios(actividad)
-      
       console.log(data, "ACAAAA")
       if (data.status == 1){
-      dispatch({ type: ActionTypes.GET_ACTIVIDADES_SUCCESS, payload: data.data });
+      dispatch({ type: ActionTypes.GET_HORARIOS_SUCCESS, payload: data.data });
        } 
-      dispatch({ type: ActionTypes.GET_ACTIVIDADES_FAILED });
+      dispatch({ type: ActionTypes.GET_HORARIOS_FAILED });
     
   };
 };
