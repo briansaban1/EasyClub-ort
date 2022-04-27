@@ -13,7 +13,10 @@ import ContactUs from '../screens/contact/contact-us'
 import Alertar from '../screens/alertar'
 import Billetera from '../screens/wallet'
 
-import Reservas from '../screens/alertar/reserva'
+import Reservas from '../screens/alertar/reserva' 
+import ExitoReserva from '../screens/alertar/exitoReserva'
+import Home from '../screens/home'
+
 
 import ComoLlegar from '../screens/mapas'
 
@@ -59,6 +62,8 @@ function App() {
             <Drawer.Screen name="Alertar" component={Alertar} />
             <Drawer.Screen name="AlertasModificar" component={AlertasModificar} />
 
+            <Drawer.Screen name="Home" component={Home} />
+
             <Drawer.Screen name="Billetera" component={Billetera} />
 
             <Drawer.Screen name="Facturas" component={Facturas} />
@@ -76,6 +81,7 @@ function App() {
 
             <Drawer.Screen name="Reservas" component={Reservas} />
             <Drawer.Screen name="ComoLlegar" component={ComoLlegar} />
+            <Drawer.Screen name="ExitoReserva" component={ExitoReserva} />
 
 
 
