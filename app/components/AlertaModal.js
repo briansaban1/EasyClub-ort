@@ -41,9 +41,9 @@ const TrackModal = ({
     const [actividades, setActividades] = useState(actividad);
     const [hora, setHora] = useState(data);
     const [fechas, setFechas] = useState(fecha);
-const fechaArregada = moment(fechas).format('DD/MM/YYYY')
+    const fechaArregada = moment(fechas).format('DD/MM/YYYY')
 
-const [modalidades, setModalidad] = useState(modalidad);
+    const [modalidades, setModalidad] = useState(modalidad);
 
 
     const [horadataAMPM, setHoraDataAMPM] = useState(horadata);
@@ -53,20 +53,24 @@ console.log(hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
     const [loading, setLoadng] = useState(false)
 
 //se carga la reserva a la base de datos
-    const generarReserva = (mail, actividades, hora, fechaArregada, modalidades) => {
-        console.log(mail, actividades, hora, fechaArregada, modalidades, 'aca1!')
+    function generarReserva (mail, actividad, hora, fechaphp, modalidad) {
+        console.log(mail, actividad, hora, fechaphp, modalidad, 'FLAG-1!')
+
+        
         wservice.cargarReserva({
             mail,
-            actividades,
+            actividad,
             hora,
-            fechaArregada,
-            modalidades
-
+            //se pasa la fecha en otro formato para que lo tome la api
+            fechaphp: moment(fechas).format('YYYY-MM-DD'),
+            modalidad
         }).then(response => {
             if (response.status == 1) {
                 //si la carga es exitosa se redirecciona a la ventana de exito
                 //goExito()
                 console.log(response.status)
+
+                //FALTA IMPLEMENTAR El BORRADO DE CONST PARA QUE VUELTA TODO A 0
                 navigate(Screens.ExitoReserva)
             }
         })
