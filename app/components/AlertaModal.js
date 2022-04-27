@@ -19,7 +19,6 @@ import colors from '../constants/colors';
 
 
 const wservice = new WService();
-const detalle1 = String();
 
 
 const TrackModal = ({
@@ -38,18 +37,31 @@ const TrackModal = ({
     const [actividades, setActividades] = useState(actividad);
     const [hora, setHora] = useState(data);
     const [fechas, setFechas] = useState(fecha);
+const fechaArregada = moment(fechas).format('DD/MM/YYYY')
+
     const [horadataAMPM, setHoraDataAMPM] = useState(horadata);
 
 console.log(hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
 
-    const [fileName, setFileName] = useState(null)
     const [loading, setLoadng] = useState(false)
 
-
-
-    const [searchValue, setSearchValue] = useState()
-
-
+//se carga la reserva a la base de datos
+    const generarReserva = (actividades, hora, fechaArregada) => {
+        wservice.cargarReserva({
+            nom,
+            ape,
+            mail,
+            actividades,
+            hora,
+            fechaArregada
+            
+        }).then(response => {
+            if (response.status == 1) {
+                //si la carga es exitosa se redirecciona a la ventana de exito
+                goExito()
+            }
+        })
+    }
 
  
 
@@ -74,12 +86,12 @@ console.log(hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
                     <View style={styles.mainContainer}>
                         <AppText style={styles.title}>{"Confirmar Reserva"}</AppText>
                    
-                        <Space />
-
-                        <AppText style={styles.textDeporte}>{actividad}</AppText>
-                        <AppText style={styles.text2}>Fecha: {moment(fechas).format('DD/MM/YYYY')} </AppText>
+                        <View style={{ height: 25 }} />
+                       <View>
+                        <AppText style={styles.textDeporte}>{actividades}</AppText>
+                        <AppText style={styles.text2}>Fecha: {fechaArregada} </AppText>
                         <AppText style={styles.text2}>Hora: {hora} {horadataAMPM} </AppText>
-                        
+                        </View>
                         <Space />
 
                         <View>
@@ -91,12 +103,23 @@ console.log(hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
 
                         <Space />
 
-                      
-                        <Button
-                        text={"Continuar"}
+                      <View style={{flexDirection:'row', width:'100%', justifyContent:'space-between'}}>
+                    <Button
+                        text={"Aceptar"}
                         //onPress={}
-                        disabled={!fileName}
+                        buttonStyle={{width:'47%', backgroundColor:'#36E26F'}}
+                        onPress={() => {
+                            generarReserva(actividades, hora, fechaArregada);
+                        }}
                     />
+                    <Button
+                        text={"Cancelar"}
+                        buttonStyle={{width:'47%'}}
+                        onPress={() => {
+                            onClose();
+                        }}
+                    />
+                    </View>
                         <Space />
                     </View>
                 </View>
