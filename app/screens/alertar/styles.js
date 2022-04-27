@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   location: {
-    width: 15,
-    height: 15,
+    width: 12,
+    height: 12,
     marginHorizontal: 10,
     //alignContent:'center',
     alignSelf:'center'
