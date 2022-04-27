@@ -157,15 +157,14 @@ WService.prototype.getHorarios = function (actividad, dia) {
   });
 };
 
-WService.prototype.cargarReserva = function (mail, actividades, hora, fechaArregada, modalidades) {
+WService.prototype.cargarReserva = function (data) {
+  console.log(data)
   return NetworkHelper.requestPost(this.makeUrl('generarReserva.php'), {
     flag: 'reserva',
-    correo: mail,
-    actividad: actividades,
-    hora: hora,
-    fecha: fechaArregada,
-    modalidad: modalidades
+    estado: 'Pendiente',
+    ...data
   });
+  
 };
 
 
