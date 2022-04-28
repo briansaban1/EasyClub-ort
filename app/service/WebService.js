@@ -54,6 +54,12 @@ WService.prototype.getActividades = function () {
   });
 };
 
+WService.prototype.getPromociones = function () {
+  return NetworkHelper.requestPost(this.makeUrl('promociones.php'), {
+    flag: 'promociones'
+  });
+};
+
 
 WService.prototype.getPuntos = function (email) {
   return NetworkHelper.requestPost(this.makeUrl('puntos.php'), {

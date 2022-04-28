@@ -244,6 +244,19 @@ export const getWallet = (email, username) => {
   };
 };
 
+export const getPromociones = () => {
+  return async (dispatch) => {
+    dispatch({ type: ActionTypes.GET_PROMOCIONES_START });
+      const data = await wservice.getPromociones()
+      console.log(data)
+      if (data.status == 1){
+      dispatch({ type: ActionTypes.GET_PROMOCIONES_SUCCESS, payload: data.data });
+    } 
+      dispatch({ type: ActionTypes.GET_PROMOCIONES_FAILED });
+    
+  };
+};
+
 
 export const getProducts = () => {
   return async (dispatch) => {
