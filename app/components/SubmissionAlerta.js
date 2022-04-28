@@ -63,14 +63,6 @@ function arancel(arancel){
     };
 
 
-function visible(modalidad){
-if(modalidad != ""){
-const visibilidad = <AppText>Modalidad: <BoldText>{data.modalidad}</BoldText></AppText>
-
-return visibilidad
- };
-};
-
 
 
 const valores = data.modalidad
@@ -86,9 +78,8 @@ const valores = data.modalidad
             />
             <View style={styles.mainContainer} >
                 <BoldText>Deporte: {data.nombre}</BoldText>
-                <AppText>Disponibilidad: {data.cantidad}</AppText>
+                <AppText>Disponibilidad diaria: {data.cantidad}</AppText>
                 
-                <View>{(visible(data.modalidad))}</View>
                 <View>{(arancel(data.arancelado))}</View>
                 
             </View>

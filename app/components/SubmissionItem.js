@@ -87,7 +87,6 @@ function SubmissionItem({ data, profile, onPress }) {
                           <View>
                             <View style={{marginTop:5}} >
                                 
-                                <AppText>Modalidad: {data.modalidad}</AppText>
                                 <AppText>Estado: {data.estado}</AppText>  
                                 <AppText>Reservado el día: {moment(data.fecha).format('DD/MM/YY')}</AppText>  
                             </View>
