@@ -12,7 +12,7 @@ import Submissions from './Submissions';
 
 import styles from './styles';
 import Tab from './Tab';
-import { getGrafico, getSubmissions } from '../../store/user/action';
+import { getPromociones, getSubmissions } from '../../store/user/action';
 import { getSubmissions1 } from '../../store/user/action';
 import { getActividades } from '../../store/user/action';
 
@@ -50,6 +50,7 @@ function HomeScreen() {
     dispatch(getSubmissions(profile.tx_correo));
     dispatch(getSubmissions1(profile.tx_correo));
     dispatch(getActividades());
+    dispatch(getPromociones());
     dispatch(getFacturas(profile.tx_correo));
     dispatch(getCorreos(profile.tx_correo));
     dispatch(getPuntos(profile.tx_correo));
@@ -74,6 +75,7 @@ function HomeScreen() {
       dispatch(getSubmissions(profile.tx_correo));
       dispatch(getSubmissions1(profile.tx_correo));
       dispatch(getActividades());
+      dispatch(getPromociones());
       dispatch(getFacturas(profile.tx_correo));
       dispatch(getCorreos(profile.tx_correo));
       dispatch(getDescuento(profile.tx_correo));
