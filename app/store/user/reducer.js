@@ -13,6 +13,7 @@ const INITIAL_STATE = {
     horarios: [],
     grafico: [],
     descuento: [],
+    promociones: [],
     puntos: [],
     wallet: [],
     canjear: [],
@@ -110,6 +111,29 @@ export const UserReducer = (
                     loadingActividades: false,
                     actividades: action.payload
                 };
+
+
+
+                case ActionTypes.GET_PROMOCIONES_START:
+                    return {
+                        ...state,
+                        loadingPromociones: true,
+                    };
+                case ActionTypes.GET_PROMOCIONES_FAILED:
+                    return {
+                        ...state,
+                        loadingPromociones: false,
+                    };
+                case ActionTypes.GET_PROMOCIONES_SUCCESS:
+                    return {
+                        ...state,
+                        loadingPromociones: false,
+                        promociones: action.payload
+                    };
+
+
+
+
 
 
                 case ActionTypes.GET_HORARIOS_START:
