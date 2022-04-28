@@ -1,33 +1,52 @@
-import React from 'react';
-import { View, ScrollView, Text } from 'react-native';
-import { Header } from '../../components';
+import React, { useState } from 'react';
+import { Image, ScrollView, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { Header, SearchInput, AlertaModal, SubmissionPromociones } from '../../components';
+import { AppStyles, Images } from '../../constants';
 import styles from './styles';
-import { Divider, Space, Loader } from '../../components/styled-components';
+import { useNavigation } from '@react-navigation/native';
+import Screens from '../../constants/screens';
 
-import { WebView } from 'react-native-webview';
-import { Colors, Dimensions } from '../../constants';
-function OptionsScreen() {
+
+
+function PromocionesScreen() {
+
+const profile = useSelector(store => store.user.profile)
+
+const _promociones = useSelector(store => store.user.promociones)
+const [promociones, setPromociones] = useState(_promociones)
+
+const [visibleModal, setVisibleModal] = useState(false);
+const [modalData, setModalData] = useState({});
+const { navigate } = useNavigation();
+
+
+console.log(promociones)
 
     return (
-        <View style={styles.container}>
-        <Header
-           title={"Promociones"}
-           
+        <>
+            <ScrollView style={styles.container}>
+                <Header
+                    title={"Promociones"}
+                    description={'Listado de ofertas'}
+                />
+                
+                <View style={{height:20}} />
 
-        />
-
-<Divider />
-        
-<View>
-                        <Text style={styles.Colors}>PROMOCIONES...</Text>
-                       
-                    </View>
-
-        
-        <Space/>
-        
-    </View>
+                {_promociones.length == 0 &&
+                    <Image
+                        source={Images.submissionEmpty}
+                        style={AppStyles.submissionEmpty}
+                    />
+                }
+                {promociones.map(i => <SubmissionPromociones data={i} profile={profile} onPress={(data) => {
+                   navigate(Screens.Pago, {data})
+                   
+                }} />)}
+                <View style={{height:30}} />
+            </ScrollView>
+        </>
     );
 }
 
-export default OptionsScreen;
+export default PromocionesScreen;
