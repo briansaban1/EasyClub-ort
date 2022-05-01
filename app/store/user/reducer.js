@@ -29,6 +29,7 @@ const INITIAL_STATE = {
         direccion: null,
         cod: null,
         telefono: null,
+        whatsapp: null,
         correo: null,
         localidad: null,
         username: null,

@@ -16,6 +16,8 @@ function UserDataScreen() {
   const [loading, setLoading] = useState(false);
 
   function updateProfile(prop) {
+    console.log(prop)
+
     dispatch(updateRegisterProfile({ ...profile, ...prop }))
   }
 

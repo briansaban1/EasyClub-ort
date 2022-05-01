@@ -19,6 +19,7 @@ function SignupFinalScreen() {
     const [loading, setLoading] = useState(false)
     async function register() {
         setLoading(true);
+        console.log(profile)
         try {
             await dispatch(registerUser(profile))
             setLoading(false);

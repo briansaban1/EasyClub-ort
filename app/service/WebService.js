@@ -103,6 +103,7 @@ WService.prototype.checkExistingUser = function (checkType, value) {
 };
 
 WService.prototype.register = function (profile) {
+  console.log(profile, 'flag registro')
   return NetworkHelper.requestPost(this.makeUrl('signup.php'), {
     ...profile,
     flag: 'signup',

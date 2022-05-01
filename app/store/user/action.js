@@ -40,11 +40,11 @@ export const loginUser = ({ username, password }, rememberMe = false) => {
 };
 
 export const registerUser = (profile) => {
-  console.log(profile)
   return async (dispatch) => {
+    console.log(profile, 'flag action')
     const response0 = await wservice.register(profile)
     if (response0.status == 1) {
-      console.log(response0.status, response0.msg)
+      console.log(response0.msg)
       await AsyncStorage.removeItem('profile');
       reset('Exito');
     }
