@@ -25,7 +25,8 @@ const wservice = new WService();
 const TrackModal = ({
     data,
     fecha,
-    actividad,
+    nombre,
+    idActividad,
     horadata,
     onClose,
 }) => {
@@ -35,29 +36,31 @@ const TrackModal = ({
 
     const profile = useSelector(store => store.user.profile)
 
-    const mail = safeGetOr('', 'tx_correo')(profile)
-    console.log(mail)
-    const [actividades, setActividades] = useState(actividad);
+    const id = safeGetOr('', 'id_usuario')(profile)
+    console.log(id)
+    const [actividades, setActividades] = useState(idActividad);
     const [hora, setHora] = useState(data);
     const [fechas, setFechas] = useState(fecha);
     const fechaArregada = moment(fechas).format('DD/MM/YYYY')
 
+    const [nombreDeporte, setNombreDeporte] = useState(nombre);
 
+    console.log(nombreDeporte)
 
     const [horadataAMPM, setHoraDataAMPM] = useState(horadata);
 
-console.log(hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
+console.log(id, hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
 
     const [loading, setLoadng] = useState(false)
 
 //se carga la reserva a la base de datos
-    function generarReserva (mail, actividad, hora, fechaphp) {
-        console.log(mail, actividad, hora, fechaphp, 'FLAG-1!')
+    function generarReserva (id, idActividad, hora, fechaphp) {
+        console.log(id, idActividad, hora, fechaphp, 'FLAG-1!')
 
         
         wservice.cargarReserva({
-            mail,
-            actividad,
+            id,
+            idActividad,
             hora,
             //se pasa la fecha en otro formato para que lo tome la api
             fechaphp: moment(fechas).format('YYYY-MM-DD'),
@@ -104,7 +107,7 @@ console.log(hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
                    
                         <View style={{ height: 25 }} />
                        <View>
-                        <AppText style={styles.textDeporte}>{actividades}</AppText>
+                        <AppText style={styles.textDeporte}>{nombreDeporte}</AppText>
                         <AppText style={styles.text2}>Fecha: {fechaArregada} </AppText>
                         <AppText style={styles.text2}>Hora: {hora} {horadataAMPM} </AppText>
                         </View>
@@ -127,7 +130,7 @@ console.log(hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
                         buttonStyle={{width:'47%', backgroundColor:'#36E26F'}}
                         onPress={() => {
                             setLoadng(true)
-                            generarReserva(mail, actividades, hora, fechaArregada);
+                            generarReserva(id, actividades, hora, fechaArregada);
                         }}
                     />
                     <Button

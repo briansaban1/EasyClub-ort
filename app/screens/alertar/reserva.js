@@ -18,9 +18,11 @@ function ReservaScreen(data) {
 
     const dispatch = useDispatch();
 
-    const parametro = data.route.params.data.nombre;
+    const idActividad = data.route.params.data.id;
     const modalidades = data.route.params.data.modalidad;
-    console.log(parametro)
+    const nombre = data.route.params.data.nombre;
+
+    console.log(idActividad, 'id')
 
     const profile = useSelector(store => store.user.profile)
 
@@ -103,8 +105,10 @@ function ReservaScreen(data) {
    
     //se pasa por parametro a la API el tipo de actividad y devuelta la lista de horas
     useEffect(() => {
-        wservice.getHorarios(parametro).then(response => {
-                console.log(response.status, 'flag')
+        wservice.getHorarios(idActividad).then(response => {
+                console.log(idActividad, response.data, 'flag') 
+                
+
 
                 if (response.status == 1) {
 
@@ -121,7 +125,7 @@ function ReservaScreen(data) {
                
             })
             
-    },[parametro])
+    },[idActividad])
 
     console.log(moment(date).format('DD-MM-YYYY'))
 
@@ -204,7 +208,7 @@ function ReservaScreen(data) {
                             <TouchableOpacity style={{}} 
                             onPress={() => {
                                 addTime(i.hora); 
-                                setModalData(i.hora, date, parametro);
+                                setModalData(i.hora, date, idActividad, nombre);
                                 setVisibleModal(true);
                             }}>
                                 <FlexWrapper>
@@ -239,7 +243,7 @@ function ReservaScreen(data) {
 
                                             <View style={{ flexDirection: 'row', alignItems: 'center', padding: 10, alignContent: 'space-between', width: '100%' }}>
                                                 <View style={{ alignContent: 'space-between', width: '45%' }}>
-                                                    <AppText style={styles.subtitle}>{parametro}</AppText></View>
+                                                    <AppText style={styles.subtitle}>{nombre}</AppText></View>
                                                 <View style={{ alignContent: 'space-between' }}>
                                                     <AppText style={styles.label}> {moment(date).format('DD/MM/YYYY')} | {i.hora} {datohr(i.hora)} </AppText>
                                                 </View>
@@ -260,7 +264,7 @@ function ReservaScreen(data) {
                 </View>
                 <View style={{ height: 30 }} />
             </ScrollView>
-            {visibleModal && <AlertaModal onClose={() => { setVisibleModal(false) }} data={modalData} fecha={date} actividad={parametro} horadata={datohr(modalData)} modalidad={modalidades} />}
+            {visibleModal && <AlertaModal onClose={() => { setVisibleModal(false) }} data={modalData} fecha={date} nombre={nombre} idActividad={idActividad} horadata={datohr(modalData)} modalidad={modalidades} />}
         </>
     );
 }

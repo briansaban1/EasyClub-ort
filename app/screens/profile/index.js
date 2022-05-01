@@ -108,7 +108,7 @@ function ProfileScreen() {
                 />
                 <AppInput
                     label={'Localidad'}
-                    onChangeText={(tx_provincia) => { setProfile({ ...profile, tx_localidad }) }}
+                    onChangeText={(tx_localidad) => { setProfile({ ...profile, tx_localidad }) }}
                     value={safeGetOr('', 'tx_localidad')(profile)}
                 />
                 <AppInput

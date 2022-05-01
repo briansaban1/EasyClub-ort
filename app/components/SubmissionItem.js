@@ -76,7 +76,7 @@ function SubmissionItem({ data, profile, onPress }) {
                 style={styles.location}
             />
             <View style={styles.mainContainer} >
-                <BoldText>Actividad: {data.actividad}</BoldText>
+                <BoldText>Actividad: {data.nombre}</BoldText>
                 <AppText>Reserva: {moment(data.fecha).format('DD/MM/YYYY')} | {(data.horaReserva)}</AppText>
                 
                 {visible(data.cancha, data.modalidad) &&
