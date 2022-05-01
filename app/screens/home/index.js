@@ -47,16 +47,16 @@ function HomeScreen() {
 
 
   useEffect(() => {
-    dispatch(getSubmissions(profile.tx_correo));
-    dispatch(getSubmissions1(profile.tx_correo));
+    dispatch(getSubmissions(profile.id_usuario));
+    dispatch(getSubmissions1(profile.id_usuario));
     dispatch(getActividades());
     dispatch(getPromociones());
-    dispatch(getFacturas(profile.tx_correo));
-    dispatch(getCorreos(profile.tx_correo));
-    dispatch(getPuntos(profile.tx_correo));
+    dispatch(getFacturas(profile.id_usuario));
+    dispatch(getCorreos(profile.id_usuario));
+    dispatch(getPuntos(profile.id_usuario));
     dispatch(getWallet(profile.tx_correo, profile.username));
-    dispatch(getDescuento(profile.tx_correo));
-    dispatch(getCanjear(profile.tx_correo));
+    dispatch(getDescuento(profile.id_usuario));
+    dispatch(getCanjear(profile.id_usuario));
     dispatch(mytoken(profile.tx_correo));
 
 
@@ -72,17 +72,17 @@ function HomeScreen() {
       setRefreshing(true);
       wait(1000).then(() => setRefreshing(false));
 
-      dispatch(getSubmissions(profile.tx_correo));
-      dispatch(getSubmissions1(profile.tx_correo));
+      dispatch(getSubmissions(profile.id_usuario));
+      dispatch(getSubmissions1(profile.id_usuario));
       dispatch(getActividades());
       dispatch(getPromociones());
-      dispatch(getFacturas(profile.tx_correo));
-      dispatch(getCorreos(profile.tx_correo));
-      dispatch(getDescuento(profile.tx_correo));
-      dispatch(getPuntos(profile.tx_correo));
-      dispatch(getWallet(profile.tx_correo, profile.username));
-      dispatch(getCanjear(profile.tx_correo));
-      dispatch(getUserMenu(profile.tx_correo));
+      dispatch(getFacturas(profile.id_usuario));
+      dispatch(getCorreos(profile.id_usuario));
+      dispatch(getDescuento(profile.id_usuario));
+      dispatch(getPuntos(profile.id_usuario));
+      dispatch(getWallet(profile.id_usuario, profile.username));
+      dispatch(getCanjear(profile.id_usuario));
+      dispatch(getUserMenu(profile.id_usuario));
 
     }, []);
   

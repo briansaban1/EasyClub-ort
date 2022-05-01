@@ -20,30 +20,30 @@ WService.prototype.login = function (username, password) {
     device: Platform.OS,
     version: Platform.Version
   });
-  
+
 };
 
 
-WService.prototype.getUserMenu = function (email) {
+WService.prototype.getUserMenu = function (id_usuario) {
   return NetworkHelper.requestPost(this.makeUrl('user_menu.php'), {
     flag: 'user_menu',
-    email
+    id_usuario
   });
 };
 
 
 
-WService.prototype.getSubmissions = function (email) {
-  return NetworkHelper.requestPost(this.makeUrl('vehicle.php'), {
-    flag: 'vehicle',
-    email
+WService.prototype.getSubmissions = function (id_usuario) {
+  return NetworkHelper.requestPost(this.makeUrl('listadoReservas.php'), {
+    flag: 'listadoReservas',
+    id_usuario
   });
 };
 
-WService.prototype.getSubmissions1 = function (email) {
+WService.prototype.getSubmissions1 = function (id_usuario) {
   return NetworkHelper.requestPost(this.makeUrl('historial.php'), {
     flag: 'historial',
-    email
+    id_usuario
   });
 };
 
@@ -61,9 +61,10 @@ WService.prototype.getPromociones = function () {
 };
 
 
-WService.prototype.getPuntos = function (email) {
+WService.prototype.getPuntos = function (id_usuario) {
+  console.log(id_usuario) 
   return NetworkHelper.requestPost(this.makeUrl('puntos.php'), {
-    email,
+    id_usuario,
     flag: 'puntos',
   });
 };
@@ -82,16 +83,17 @@ WService.prototype.updateProfile = function (profile) {
     nombre: profile.tx_nombre,
     apellido: profile.tx_apellido,
     provincia: profile.tx_provincia,
+    localidad: profile.tx_localidad,
     direccion: profile.tx_direccion,
     cod: profile.tx_cod,
     telefono: profile.tx_telefono,
     whatsapp: profile.tx_whatsapp,
     id: profile.id_usuario,
-    
+
   });
 };
 
-WService.prototype.checkExistingUser = function (checkType,value) {
+WService.prototype.checkExistingUser = function (checkType, value) {
   return NetworkHelper.requestPost(this.makeUrl('checkExistingUser.php'), {
     token: 'checkExistingUser',
     checkType,
@@ -107,18 +109,18 @@ WService.prototype.register = function (profile) {
   });
 };
 
-WService.prototype.changePassword = function (email, password) {
+WService.prototype.changePassword = function (id_usuario, password) {
   return NetworkHelper.requestPost(this.makeUrl('updatepassword.php'), {
     flag: 'updatepassword',
-    email,
+    id_usuario,
     password
   });
 };
 
-WService.prototype.getSessions = function (usuario) {
+WService.prototype.getSessions = function (id_usuario) {
   return NetworkHelper.requestPost(this.makeUrl('sesiones.php'), {
     flag: 'sesiones',
-    usuario: usuario,
+    usuario: id_usuario,
   });
 };
 
@@ -143,33 +145,34 @@ WService.prototype.getCorreos = function (email) {
   return NetworkHelper.requestPost(this.makeUrl('listado.php'), {
     flag: 'listado',
     email,
-    
+
   });
 };
 
-WService.prototype.getFacturas = function (email) {
+WService.prototype.getFacturas = function (id_usuario) {
   return NetworkHelper.requestPost(this.makeUrl('facturas.php'), {
     flag: 'facturas',
-    email,
+    id_usuario,
   });
 };
 
 
 WService.prototype.getHorarios = function (actividad) {
+  console.log(actividad, 'flag webservice')
   return NetworkHelper.requestPost(this.makeUrl('horarios.php'), {
     flag: 'actividad',
     actividad
-    });
+  });
 };
 
 WService.prototype.cargarReserva = function (data) {
-  console.log(data)
+  console.log(data, 'flag webservice')
   return NetworkHelper.requestPost(this.makeUrl('generarReserva.php'), {
     flag: 'reserva',
     estado: 'Pendiente',
     ...data
   });
-  
+
 };
 
 
@@ -186,7 +189,7 @@ WService.prototype.contactus = function (data) {
 WService.prototype.cargarPuntos = function (data) {
   return NetworkHelper.requestPost(this.makeUrl('canjear.php'), {
     flag: 'puntos',
-   ...data
+    ...data
   });
 };
 
@@ -209,7 +212,7 @@ WService.prototype.setDelete = function (id) {
 WService.prototype.getProducts = function () {
   return NetworkHelper.requestPost(this.makeUrl('getProducts.php'), {
     flag: 'getProducts',
-   
+
   });
 };
 
