@@ -40,9 +40,11 @@ export const loginUser = ({ username, password }, rememberMe = false) => {
 };
 
 export const registerUser = (profile) => {
+  console.log(profile)
   return async (dispatch) => {
     const response0 = await wservice.register(profile)
     if (response0.status == 1) {
+      console.log(response0.status, response0.msg)
       await AsyncStorage.removeItem('profile');
       reset('Exito');
     }
@@ -318,11 +320,11 @@ export const updateRegisterProfile = (profile) => {
   };
 };
 
-export const getUserMenu = (email) => {
+export const getUserMenu = (id_usuario) => {
   return async (dispatch) => {
     const profileData = await AsyncStorage.getItem('profile');
     const profile = JSON.parse(profileData)
-    const resumen = await wservice.getUserMenu(email)
+    const resumen = await wservice.getUserMenu(id_usuario)
     const payload = { profile, resumen }
     console.log(payload);
     dispatch({ type: ActionTypes.LOGIN_SUCCESS, payload });
