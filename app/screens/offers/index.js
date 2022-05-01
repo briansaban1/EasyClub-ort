@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, ScrollView, View } from 'react-native';
+import { Image, ScrollView, View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Header, SearchInput, AlertaModal, SubmissionPromociones } from '../../components';
 import { AppStyles, Images } from '../../constants';
@@ -21,7 +21,7 @@ const [modalData, setModalData] = useState({});
 const { navigate } = useNavigation();
 
 
-console.log(promociones)
+console.log(promociones, 'flag')
 
     return (
         <>
@@ -38,6 +38,7 @@ console.log(promociones)
                         source={Images.submissionEmpty}
                         style={AppStyles.submissionEmpty}
                     />
+                    
                 }
                 {promociones.map(i => <SubmissionPromociones data={i} profile={profile} onPress={(data) => {
                    navigate(Screens.Pago, {data})

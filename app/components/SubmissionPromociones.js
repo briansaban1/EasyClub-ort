@@ -69,7 +69,7 @@ const valores = data.modalidad
             />
             <View style={styles.mainContainer} >
             <BoldText>PROMOCIÓN {data.id}</BoldText>
-                <BoldText>{data.actividad} - {data.detalle}</BoldText>
+                <BoldText>{data.nombre} - {data.detalle}</BoldText>
                 <AppText>Valor Regular: ${data.valorRegular}</AppText>
                 <Text style={{fontWeight:'bold', fontSize: Dimensions.multiplier * 14, color:'green', letterSpacing:0.135, marginTop:3 }}>Valor Promocional: ${data.valorPromocional}</Text>
 
