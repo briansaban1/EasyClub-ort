@@ -16,7 +16,7 @@ export const loginUser = ({ username, password }, rememberMe = false) => {
     const response = await wservice.login(username, password)
     console.log('login-[response]', response)
     if (response.status == 1) {
-      const resumen = await wservice.getUserMenu(response.data.tx_correo)
+      const resumen = await wservice.getUserMenu(response.data.id_usuario)
       console.log(resumen)
       if (rememberMe) {
         await AsyncStorage.setItem('profile', JSON.stringify(response.data));
