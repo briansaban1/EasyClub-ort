@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.white
     },
     mainContainer: {
-        width: Dimensions.deviceWidth - 130,
+        width: Dimensions.deviceWidth - 140,
+        marginTop: -10
     },
     location: {
         width: 35,
@@ -59,7 +60,6 @@ function InvoiceItem({ data, profile, onPress }) {
                 imageStyle={{ resizeMode: 'stretch' }}
                 style={styles.location}
             />
-            
             <View style={styles.mainContainer} >
                 <AppText>{data.tipo}</AppText>
                 <BoldText>{data.concepto}</BoldText>
@@ -69,9 +69,10 @@ function InvoiceItem({ data, profile, onPress }) {
                         <BoldText style={{marginTop:7}}>{'Detalles del Pago:'}</BoldText>
                         <FlexWrapper style={{ alignSelf: 'flex-start' }}>
                           <View>
-                            <View style={{marginTop:5, marginLeft:10}} >
+                            <View style={{marginTop:0, marginLeft:5}} >
                               
-                            <Text13>Importe: ${data.valor}</Text13>                            
+                            <Text13>Importe: ${data.valor}</Text13>     
+                            <Text13>Detalle: {data.concepto}</Text13>                            
                             </View>
                             </View> 
                         </FlexWrapper>

@@ -57,7 +57,7 @@ function HomeScreen() {
     dispatch(getWallet(profile.tx_correo, profile.username));
     dispatch(getDescuento(profile.id_usuario));
     dispatch(getCanjear(profile.id_usuario));
-    dispatch(mytoken(profile.tx_correo));
+    dispatch(mytoken(profile.id_usuario));
 
 
   }, [])
