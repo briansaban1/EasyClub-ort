@@ -27,7 +27,6 @@ const TrackModal = ({
     fecha,
     actividad,
     horadata,
-    modalidad,
     onClose,
 }) => {
     
@@ -43,7 +42,6 @@ const TrackModal = ({
     const [fechas, setFechas] = useState(fecha);
     const fechaArregada = moment(fechas).format('DD/MM/YYYY')
 
-    const [modalidades, setModalidad] = useState(modalidad);
 
 
     const [horadataAMPM, setHoraDataAMPM] = useState(horadata);
@@ -53,8 +51,8 @@ console.log(hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
     const [loading, setLoadng] = useState(false)
 
 //se carga la reserva a la base de datos
-    function generarReserva (mail, actividad, hora, fechaphp, modalidad) {
-        console.log(mail, actividad, hora, fechaphp, modalidad, 'FLAG-1!')
+    function generarReserva (mail, actividad, hora, fechaphp) {
+        console.log(mail, actividad, hora, fechaphp, 'FLAG-1!')
 
         
         wservice.cargarReserva({
@@ -63,21 +61,19 @@ console.log(hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
             hora,
             //se pasa la fecha en otro formato para que lo tome la api
             fechaphp: moment(fechas).format('YYYY-MM-DD'),
-            modalidad
         }).then(response => {
             if (response.status == 1) {
                 //si la carga es exitosa se redirecciona a la ventana de exito
                 //goExito()
                 console.log(response.status)
                 onClose();
-
+                setLoadng(false)
                 //se redirecciona a la pantalla de exito
                 navigate(Screens.ExitoReserva)
                 //se borran todas las propiedades
                 setActividades('')
                 setHora('')
                 setFechas('')
-                setModalidad('')
                 setHoraDataAMPM('')
             }
         })
@@ -127,14 +123,17 @@ console.log(hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
                     <Button
                         text={"Aceptar"}
                         //onPress={}
+                        loading={false}
                         buttonStyle={{width:'47%', backgroundColor:'#36E26F'}}
                         onPress={() => {
-                            generarReserva(mail, actividades, hora, fechaArregada, modalidades);
+                            setLoadng(true)
+                            generarReserva(mail, actividades, hora, fechaArregada);
                         }}
                     />
                     <Button
                         text={"Cancelar"}
                         buttonStyle={{width:'47%'}}
+                        
                         onPress={() => {
                             onClose();
                         }}

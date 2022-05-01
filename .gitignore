@@ -30,6 +30,7 @@ android/app/src/main/assets/index.android.bundle
 java_pid54079.hprof
 java_pid42367.hprof
 *.iml
+local.properties
 
 # node.js
 #
