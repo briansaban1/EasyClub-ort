@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Linking, View, ScrollView, Image, Text, ImageBackground, TouchableOpacity, Alert, SafeAreaView } from 'react-native';
-import { Header, ImageButton, Button, SubmissionPuntos, TrackModal, Error } from '../../components';
+import { Header, ImageButton, Button, SubmissionPuntos, TrackModal, ErrorPuntos } from '../../components';
 import { Divider, FlexWrapper, AppText, Space } from '../../components/styled-components';
 import styles from './styles';
 import { Title } from '../../components/Header';
@@ -41,8 +41,12 @@ function ContactScreen() {
 
                         <View style={{width: '85%', marginBottom: 25 }}>
                            
+                        <View style={{ marginBottom: 20 }}>
+                                    <ErrorPuntos />
+                                </View>
+
                             <Text style={styles.text15}>
-                                Todos los pagos realizados por actividades aranceladas sumarán 1 punto por cada peso facturado, los cuales vas a poder canjear por cupones de descuento aplicable a tus próximas actividades....
+                                Próximamente....
                             </Text>
 
 

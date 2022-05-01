@@ -92,7 +92,7 @@ function ContactScreen() {
                                 <Text style={{ fontSize: 30, justifyContent: 'center', color: "#ADE6FE", fontWeight: 'bold', marginBottom: 5 }}>{safeGetOr("", "puntos")(resumen)}pts</Text>
                             </View>
                             <View style={{width:'90%'}}>
-                                <Text style={{ fontSize: 10, justifyContent: 'center', color: Colors.blue400, fontWeight: 'bold' }}>1200 puntos hasta tu próxima recompensa</Text>
+                                <Text style={{ fontSize: 10, justifyContent: 'center', color: Colors.blue400, fontWeight: 'bold' }}>Disponible Próximamente...</Text>
                             </View>
                         </View>
 
