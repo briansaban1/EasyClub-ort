@@ -13,7 +13,7 @@ import { goBack, reset } from '../../navigation/RootNavigation';
 import LottieView from 'lottie-react-native';
 
 
-const notes = `En breve estarás recibiendo un mail con todos los detalles para que puedas comenzar a utilizar nuestro servicio.`
+const notes = `En breve estarás recibiendo un mail con todos los detalles de tu cuenta.`
 
 function SignupFinalScreen() {
     const dispatch = useDispatch();

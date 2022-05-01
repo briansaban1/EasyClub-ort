@@ -30,7 +30,7 @@ function SignUpDeliveryScreen() {
                 <SafeAreaView />
                 <Header title={"Tus Datos"} description={'Creá tu cuenta ahora.'} />
                 <AppInput
-                    label={'Dirección de Entrega'}
+                    label={'Dirección de Facturación'}
                     onChangeText={(text) => updateProfile({ direccion: text })}
                     value={direccion}
                     containerStyle={{ marginTop: 40 }}
