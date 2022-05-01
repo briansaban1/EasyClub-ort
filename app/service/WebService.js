@@ -69,10 +69,11 @@ WService.prototype.getPuntos = function (id_usuario) {
   });
 };
 
-WService.prototype.getWallet = function (email, username) {
+WService.prototype.getWallet = function (email, username, id_usuario) {
   return NetworkHelper.requestPost(this.makeUrl('wallet.php'), {
     email,
     username,
+    id_usuario,
     flag: 'wallet',
   });
 };
@@ -120,14 +121,14 @@ WService.prototype.changePassword = function (id_usuario, password) {
 WService.prototype.getSessions = function (id_usuario) {
   return NetworkHelper.requestPost(this.makeUrl('sesiones.php'), {
     flag: 'sesiones',
-    usuario: id_usuario,
+    id_usuario: id_usuario,
   });
 };
 
-WService.prototype.getSessions1 = function (email) {
+WService.prototype.getSessions1 = function (id_usuario) {
   return NetworkHelper.requestPost(this.makeUrl('notificaciones.php'), {
     flag: 'notificaciones',
-    email,
+    id_usuario,
   });
 };
 

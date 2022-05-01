@@ -32,7 +32,7 @@ function SessionsScreen() {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        wservice.getSessions(safeGetOr("", "tx_username")(profile))
+        wservice.getSessions(safeGetOr("", "id_usuario")(profile))
             .then(response => {
                 console.log(response)
                 if (response.status == 1) {
