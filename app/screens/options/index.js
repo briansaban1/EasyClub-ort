@@ -63,6 +63,11 @@ function OptionsScreen() {
                 label={"Modificar email"}
                 source={require('@assets/options/change-email.png')}
                 screen={Screens.ChangeEmail}
+            /><Divider marginHorizontal={30} />
+            <OptionButton
+                label={"Eliminar cuenta"}
+                source={require('@assets/options/delete.png')}
+                screen={Screens.DeleteAccount}
             />
             <ShadowDivider/>
             <OptionButton

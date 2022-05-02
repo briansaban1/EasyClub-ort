@@ -10,6 +10,7 @@ const Screens = {
    Profile:'Profile',
    ChangePassword:'ChangePassword',
    ChangeEmail:'ChangeEmail',
+   DeleteAccount:'DeleteAccount',
    Help:"Help",
    Sessions:"Sessions",
    Contact:"Contact",

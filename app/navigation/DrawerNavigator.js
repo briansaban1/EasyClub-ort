@@ -5,6 +5,8 @@ import History from '../screens/history'
 import Notifications from '../screens/notifications'
 import Profile from '../screens/profile'
 import ChangeEmail from '../screens/change-email'
+import DeleteAccount from '../screens/delete-account'
+
 import ChangePassword from '../screens/change-password'
 import Help from '../screens/help'
 import Sessions from '../screens/sessions'
@@ -54,6 +56,9 @@ function App() {
             <Drawer.Screen name="Notifications" component={Notifications} />
             <Drawer.Screen name="Profile" component={Profile} />
             <Drawer.Screen name="ChangeEmail" component={ChangeEmail} />
+            <Drawer.Screen name="DeleteAccount" component={DeleteAccount} />
+            
+
             <Drawer.Screen name="ChangePassword" component={ChangePassword} />
             <Drawer.Screen name="Help" component={Help} />
             <Drawer.Screen name="Sessions" component={Sessions} />

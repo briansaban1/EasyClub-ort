@@ -119,6 +119,16 @@ WService.prototype.changePassword = function (id_usuario, password) {
   });
 };
 
+WService.prototype.deleteAccount = function (id_usuario, password) {
+  console.log(id_usuario, password, 'flag')
+  return NetworkHelper.requestPost(this.makeUrl('deleteAccount.php'), {
+    flag: 'deleteAccount',
+    id_usuario,
+    password
+  });
+};
+
+
 WService.prototype.getSessions = function (id_usuario) {
   return NetworkHelper.requestPost(this.makeUrl('sesiones.php'), {
     flag: 'sesiones',
