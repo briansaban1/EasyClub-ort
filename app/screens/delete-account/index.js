@@ -5,10 +5,14 @@ import { AppInput, Button, Header } from '../../components';
 import { Space } from '../../components/styled-components';
 import styles from './styles';
 import WService from '../../service/WebService';
-import { useSelector } from 'react-redux';
 import { safeGetOr } from '../../utils/fp';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { logoutUser } from '../../store/user/action';
+
 
 const wservice = new WService();
+
 
 
 function DeleteAccountScreen() {
@@ -21,6 +25,9 @@ function DeleteAccountScreen() {
     const [currentPassword, setCurrentPassword] = useState('')
     const [currentRePassword, setCurrentRePassword] = useState('')
     const [loading, setLoading] = useState('')
+
+    const dispatch = useDispatch();
+
 
     async function getCurrentPassword() {
         const credential = await AsyncStorage.getItem('credential')
@@ -41,9 +48,10 @@ function DeleteAccountScreen() {
         wservice.deleteAccount(safeGetOr('', 'id_usuario')(profile), (currentPassword))
             .then(async (response) => {
                 console.log({})
-                console.log({ response })
+                console.log(response.status, response )
                 if (response.status == 1) {
 
+                    dispatch(logoutUser());
 
                     await AsyncStorage.removeItem('profile');
                     reset('Login');
