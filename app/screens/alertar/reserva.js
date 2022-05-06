@@ -21,8 +21,9 @@ function ReservaScreen(data) {
     const idActividad = data.route.params.data.id;
     const modalidades = data.route.params.data.modalidad;
     const nombre = data.route.params.data.nombre;
+    const cantidadporHora = data.route.params.data.cantidad;
+    const img = data.route.params.data.imagen;
 
-    console.log(idActividad, 'id')
 
     const profile = useSelector(store => store.user.profile)
 
@@ -39,6 +40,8 @@ function ReservaScreen(data) {
     const position = new Animated.ValueXY({ x: 0, y: 0 });
     const [date, setDate] = useState(moment());
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+
 
     //console.log(date)
 
@@ -75,8 +78,12 @@ function ReservaScreen(data) {
     useEffect(() => {
         if (isSelected && date) {
             fadeIn(), slide();
-        }
+        };
+
     }), [];
+
+
+
 
     const addTime = (value, inicio) => {
         setSelected(value);
@@ -95,39 +102,85 @@ function ReservaScreen(data) {
     const handleConfirm = (date) => {
         setDate(date)
         hideDatePicker();
+        dispo(date, cantidadporHora);
     };
-
-    
 
     const wservice = new WService();
 
     const [horarios, setHorarios] = useState([]);
-   
+    const dia = moment(date).format('YYYY-MM-DD')
+    const [disponibilidad, setDisponibilidad] = useState([]);
+
+    const [loading, setLoading] = useState(true);
+
+
+    //console.log(dia, 'dia')
+
     //se pasa por parametro a la API el tipo de actividad y devuelta la lista de horas
     useEffect(() => {
-        wservice.getHorarios(idActividad).then(response => {
-                console.log(idActividad, response.data, 'flag') 
-                
+        wservice.getHorarios(idActividad, dia).then(response => {
+            //console.log(idActividad, dia, response.data, 'flag')
+
+            if (response.status == 1) {
+
+                //console.log(response.data, 'flag2')
+                setLoading(false)
+                setHorarios(response.data.map(item => ({
+
+                    hora: item,
+                })));
+
+                //console.log(horarios)
+            }
+        })
+    }, [idActividad])
 
 
-                if (response.status == 1) {
+    useEffect(() => {
+        wservice.getDisponibilidad(idActividad, dia).then(response => {
 
-                    console.log(response.data, 'flag2')
+            //console.log(idActividad, dia, response, 'flag')
 
-                    setHorarios(response.data.map(item => ({
+            if (response.status == 1) {
 
-                        hora: item,
-                    })));
-                    console.log(horarios)
+                console.log(response.data, 'aca')
+
+                setDisponibilidad(response.data.map(item => ({
+                    disponible: item.noDisponible,
+                    horaOcupada: item.horaReserva,
+                    id_act: item.id_actividad,
+                    fechaReserva: item.fechaReserva
+                })));
+
+                //console.log(disponibilidad, 'flag disp')
+            }
+        })
+    }, [idActividad])
+
+    const horaActual = moment().utcOffset('-03:00').format('hh:mm');
 
 
-                }
-               
-            })
-            
-    },[idActividad])
 
-    console.log(moment(date).format('DD-MM-YYYY'))
+    //se verifica la disponibilidad que hay por dia por hora segun la actividad
+    const dispo = (horadata, cantidadporHora, idActividad, dia) => {
+        var cant = cantidadporHora;
+        for (var i = 0; i < disponibilidad.length; i++) {
+            if (horadata == disponibilidad[i].horaOcupada && idActividad == disponibilidad[i].id_act && dia == disponibilidad[i].fechaReserva) {
+
+                cant = cant - (disponibilidad[i].disponible)
+                if (cant <= 0) {
+                    cant = '0'
+                } else {
+                };
+            } else {
+                cant;
+            };
+        };
+        return cant
+    };
+
+
+    //console.log(moment(date).format('DD-MM-YYYY'))
 
     return (
         <>
@@ -155,11 +208,9 @@ function ReservaScreen(data) {
                         onCancel={hideDatePicker}
                         minimumDate={moment().toDate()}
                         maximumDate={moment(new Date()).add(5, 'days').toDate()}
-                    //defaultValue={moment().toDate()}
                     />
 
                     <View style={{ height: 20 }} />
-
 
                     <View style={{ width: '85%', marginBottom: 10 }}>
 
@@ -176,74 +227,33 @@ function ReservaScreen(data) {
 
                     <View style={{ height: '50%', width: '100%', alignItems: 'center' }}>
 
-
-
-
                         {horarios.length == 0 &&
                             <Image
                                 source={Images.submissionEmpty}
                                 style={AppStyles.submissionEmpty}
                             />
                         }
-                        {horarios.map(i =>
-
-                            // <FlatList
-                            //     showsHorizontalScrollIndicator={false}
-                            //     style={styles.FlatList}
-                            //     keyExtractor={(i) => i.hora.toString()}
-                            //     data={i}
-                            //     renderItem={({ i }) => (
-
-                            //         <TouchableOpacity style={styles.timeContainer} onPress={() => addTime(i.inicio)}>
-
-                            //             <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center',}}>
-                            //                 <Text style={i.inicio == isSelected ? styles.selected : styles.textTime}>
-                            //                 {i.inicio} - {i.final}
-                            //             </Text>
-
-                            //                 <Text style={item.inicio == isSelected ? styles.selected : styles.textTime}> LIBRE</Text>
-                            //             </View>
-                            //         </TouchableOpacity>
-                            //     )} />
-                            <TouchableOpacity style={{}} 
-                            onPress={() => {
-                                addTime(i.hora); 
-                                setModalData(i.hora, date, idActividad, nombre);
-                                setVisibleModal(true);
-                            }}>
+                        {!loading && horarios.map(i =>
+                            <TouchableOpacity 
+                                style={{}}
+                                disabled={(dispo(i.hora, cantidadporHora, idActividad, moment(date).format('YYYY-MM-DD')) <= 0) ? true : false || (i.hora >= horaActual) ? true : false}
+                                onPress={() => {
+                                    addTime(i.hora);
+                                    setModalData(i.hora, date, idActividad, nombre);
+                                    setVisibleModal(true);
+                                }}>
                                 <FlexWrapper>
                                     <View style={i.hora == isSelected ? styles.selected : styles.textTime}></View>
-                                    <View style={{
-                                        alignItems: 'center',
-                                        color: Colors.blue300,
-                                        //borderColor: '#A8B3C8',
-                                        //borderWidth: 1,
-                                        width: '90%',
-                                        //borderRadius: 5,
-                                        height: 65,
-                                        borderStyle: 'dotted',
-                                        backgroundColor: '#fff'
-                                    }}>
+                                    <View style={(dispo(i.hora, cantidadporHora, idActividad, moment(date).format('YYYY-MM-DD')) > 0) ? styles.noOculto : styles.oculto || (i.hora >= horaActual) ? styles.noOculto : styles.oculto}>
 
 
-                                        <View style={i.hora == isSelected ? styles.selected : {
-                                            //color: Colors.blue400,
-                                            borderColor: '#A8B3C8',
-                                            borderWidth: 1,
-                                            width: '100%',
-                                            borderRadius: 5,
-                                            height: 60,
-                                            borderStyle: 'dotted',
-                                            //backgroundColor: '#f',
-                                            justifyContent: 'center',
-                                            backgroundColor: '#fff',
-                                            //shadowOffset:'5',
-                                            //shadowOpacity: '#f'
-                                        }}>
+                                        <View style={i.hora == isSelected ? styles.selected : styles.noSelected}>
 
-                                            <View style={{ flexDirection: 'row', alignItems: 'center', padding: 10, alignContent: 'space-between', width: '100%' }}>
+                                            <View style={styles.orden}>
                                                 <View style={{ alignContent: 'space-between', width: '45%' }}>
-                                                    <AppText style={styles.subtitle}>{nombre}</AppText></View>
+                                                    <AppText style={styles.subtitle}>{nombre}</AppText>
+                                                    <AppText style={styles.label}>Lugares: {dispo(i.hora, cantidadporHora, idActividad, moment(date).format('YYYY-MM-DD'))}</AppText>
+                                                </View>
                                                 <View style={{ alignContent: 'space-between' }}>
                                                     <AppText style={styles.label}> {moment(date).format('DD/MM/YYYY')} | {i.hora} {datohr(i.hora)} </AppText>
                                                 </View>
@@ -256,7 +266,7 @@ function ReservaScreen(data) {
                             </TouchableOpacity>
 
                         )}
-
+                        {loading && <Loader color={Colors.darkblue} style={{ flex: 1 }} />}
                     </View>
                 </View>
                 <View>
@@ -264,7 +274,7 @@ function ReservaScreen(data) {
                 </View>
                 <View style={{ height: 30 }} />
             </ScrollView>
-            {visibleModal && <AlertaModal onClose={() => { setVisibleModal(false) }} data={modalData} fecha={date} nombre={nombre} idActividad={idActividad} horadata={datohr(modalData)} modalidad={modalidades} />}
+            {visibleModal && <AlertaModal onClose={() => {{ setVisibleModal(false); setSelected(false); }}} data={modalData} fecha={date} nombre={nombre} idActividad={idActividad} horadata={datohr(modalData)} imagen={img} modalidad={modalidades} />}
         </>
     );
 }
