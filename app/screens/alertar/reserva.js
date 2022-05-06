@@ -157,7 +157,6 @@ function ReservaScreen(data) {
         })
     }, [idActividad])
 
-    const horaActual = moment().utcOffset('-03:00').format('hh:mm');
 
 
 
@@ -177,6 +176,24 @@ function ReservaScreen(data) {
             };
         };
         return cant
+    };
+
+const horaActual = moment().utcOffset('-03:00').format('HH:MM');
+const diaActual = moment().utcOffset('-03:00').format('YYYY-MM-DD');
+
+//se recibe por parametro la hora por cada intervalo y se compara con el dia y fecha actual.
+//Para listar solamente los horarios disponibles a partir de la hora actual.
+const consultaHora = (hora, dia) => {
+    var consulta = true
+    if (hora <= horaActual && dia == diaActual){
+        consulta = false
+        console.log(consulta, hora, horaActual, dia, diaActual)
+      }else{
+        consulta = true
+        console.log(consulta, hora, horaActual, dia, diaActual)
+      };
+      console.log(consulta)
+      return consulta
     };
 
 
@@ -236,7 +253,8 @@ function ReservaScreen(data) {
                         {!loading && horarios.map(i =>
                             <TouchableOpacity 
                                 style={{}}
-                                disabled={(dispo(i.hora, cantidadporHora, idActividad, moment(date).format('YYYY-MM-DD')) <= 0) ? true : false || (i.hora >= horaActual) ? true : false}
+                                disabled={(dispo(i.hora, cantidadporHora, idActividad, moment(date).format('YYYY-MM-DD')) <= 0) ? true : false}
+                               
                                 onPress={() => {
                                     addTime(i.hora);
                                     setModalData(i.hora, date, idActividad, nombre);
@@ -244,7 +262,10 @@ function ReservaScreen(data) {
                                 }}>
                                 <FlexWrapper>
                                     <View style={i.hora == isSelected ? styles.selected : styles.textTime}></View>
-                                    <View style={(dispo(i.hora, cantidadporHora, idActividad, moment(date).format('YYYY-MM-DD')) > 0) ? styles.noOculto : styles.oculto || (i.hora >= horaActual) ? styles.noOculto : styles.oculto}>
+                                    
+                                    {(consultaHora(i.hora, moment(date).format('YYYY-MM-DD'))) && <View style={
+                                    (dispo(i.hora, cantidadporHora, idActividad, moment(date).format('YYYY-MM-DD')) > 0) 
+                                     ? styles.noOculto : styles.oculto }>
 
 
                                         <View style={i.hora == isSelected ? styles.selected : styles.noSelected}>
@@ -261,7 +282,7 @@ function ReservaScreen(data) {
 
                                         </View>
 
-                                    </View>
+                                    </View>}
                                 </FlexWrapper>
                             </TouchableOpacity>
 
