@@ -57,7 +57,7 @@ export const autoLogin = () => {
     const profileData = await AsyncStorage.getItem('profile');
     if (profileData) {
       const profile = JSON.parse(profileData)
-      const resumen = await wservice.getUserMenu(profile.tx_correo)
+      const resumen = await wservice.getUserMenu(profile.id_usuario)
       const payload = { profile, resumen }
       dispatch({ type: ActionTypes.LOGIN_SUCCESS, payload });
       reset('MainApp')
@@ -153,10 +153,10 @@ export const getSubmissions = (email) => {
   };
 };
 
-export const getSubmissions1 = (email) => {
+export const getSubmissions1 = (id) => {
   return async (dispatch) => {
     dispatch({ type: ActionTypes.GET_SUBMISSIONS1_START });
-      const data = await wservice.getSubmissions1(email)
+      const data = await wservice.getSubmissions1(id)
       console.log(data)
       if (data.status == 1){
       dispatch({ type: ActionTypes.GET_SUBMISSIONS1_SUCCESS, payload: data.data });
@@ -220,10 +220,10 @@ export const getDescuento = (email) => {
   };
 };
 
-export const getPuntos = (email) => {
+export const getPuntos = (id) => {
   return async (dispatch) => {
     dispatch({ type: ActionTypes.GET_PUNTOS_START });
-      const data = await wservice.getPuntos(email)
+      const data = await wservice.getPuntos(id)
       console.log(data)
       if (data.status == 1){
       dispatch({ type: ActionTypes.GET_PUNTOS_SUCCESS, payload: data.data });
@@ -273,11 +273,11 @@ export const getProducts = () => {
   };
 };
 
-export const getFacturas = (email) => {
+export const getFacturas = (id) => {
   return async (dispatch) => {
     dispatch({ type: ActionTypes.GET_FACTURAS_START });
    
-      const data = await wservice.getFacturas(email)
+      const data = await wservice.getFacturas(id)
       console.log(data)
       if (data.status == 1){
       dispatch({ type: ActionTypes.GET_FACTURAS_SUCCESS, payload: data.data });
