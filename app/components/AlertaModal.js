@@ -28,9 +28,10 @@ const TrackModal = ({
     nombre,
     idActividad,
     horadata,
+    imagen,
     onClose,
 }) => {
-    
+
     const { navigate } = useNavigation();
 
 
@@ -45,19 +46,20 @@ const TrackModal = ({
 
     const [nombreDeporte, setNombreDeporte] = useState(nombre);
 
+    const [img, setImg] = useState(imagen);
+
+
     console.log(nombreDeporte)
 
     const [horadataAMPM, setHoraDataAMPM] = useState(horadata);
 
-console.log(id, hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
+    console.log(id, hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
 
     const [loading, setLoadng] = useState(false)
 
-//se carga la reserva a la base de datos
-    function generarReserva (id, idActividad, hora, fechaphp) {
-        console.log(id, idActividad, hora, fechaphp, 'FLAG-1!')
+    //se carga la reserva a la base de datos
+    function generarReserva(id, idActividad, hora, fechaphp) {
 
-        
         wservice.cargarReserva({
             id,
             idActividad,
@@ -78,14 +80,15 @@ console.log(id, hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
                 setHora('')
                 setFechas('')
                 setHoraDataAMPM('')
+                setImg('')
             }
         })
     }
 
- 
+
 
     return (
-        
+
         <Modal
             transparent={true}
             visible={true}
@@ -101,47 +104,56 @@ console.log(id, hora, actividades, moment(fechas).format('DD/MM/YYYY'), 'aca')
                         style={{ alignSelf: 'flex-end' }}
                         onPress={() => {
                             onClose();
-                        }}/>
+                        }} />
                     <View style={styles.mainContainer}>
                         <AppText style={styles.title}>{"Confirmar Reserva"}</AppText>
-                   
+
                         <View style={{ height: 25 }} />
-                       <View>
-                        <AppText style={styles.textDeporte}>{nombreDeporte}</AppText>
-                        <AppText style={styles.text2}>Fecha: {fechaArregada} </AppText>
-                        <AppText style={styles.text2}>Hora: {hora} {horadataAMPM} </AppText>
+
+                        <View style={{flexDirection:'row', alignItems:'center', }}>
+                        <Image
+                                source={{
+                                    uri: img,
+                                }}
+                                imageStyle={{ resizeMode: 'stretch' }}
+                                style={styles.location}
+                            />
+                        <View style={{marginLeft:15}}>
+                            <AppText style={styles.textDeporte}>{nombreDeporte}</AppText>
+                            <AppText style={styles.text2}>Fecha: {fechaArregada} </AppText>
+                            <AppText style={styles.text2}>Hora: {hora} {horadataAMPM} </AppText>
+                        </View>
                         </View>
                         <Space />
 
                         <View>
-                        
+
                         </View>
                         <Space />
 
-                    
+
 
                         <Space />
 
-                      <View style={{flexDirection:'row', width:'100%', justifyContent:'space-between'}}>
-                    <Button
-                        text={"Aceptar"}
-                        //onPress={}
-                        loading={false}
-                        buttonStyle={{width:'47%', backgroundColor:'#36E26F'}}
-                        onPress={() => {
-                            setLoadng(true)
-                            generarReserva(id, actividades, hora, fechaArregada);
-                        }}
-                    />
-                    <Button
-                        text={"Cancelar"}
-                        buttonStyle={{width:'47%'}}
-                        
-                        onPress={() => {
-                            onClose();
-                        }}
-                    />
-                    </View>
+                        <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
+                            <Button
+                                text={"Aceptar"}
+                                //onPress={}
+                                loading={false}
+                                buttonStyle={{ width: '47%', backgroundColor: '#36E26F' }}
+                                onPress={() => {
+                                    setLoadng(true)
+                                    generarReserva(id, actividades, hora, fechaArregada);
+                                }}
+                            />
+                            <Button
+                                text={"Cancelar"}
+                                buttonStyle={{ width: '47%' }}
+                                onPress={() => {
+                                    onClose();
+                                }}
+                            />
+                        </View>
                         <Space />
                     </View>
                 </View>
@@ -210,52 +222,52 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#00000040',
-       
+
     },
     modalContainer: {
-      width: '70%',
-      minHeight: 270,
-      backgroundColor: 'white',
-      borderRadius: 10,
-      alignItems: 'center',
-      justifyContent: 'center',
+        width: '70%',
+        minHeight: 270,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-      title1: {
+    title1: {
         fontSize: 20,
         fontWeight: 'bold',
         color: colors.blue400,
         marginBottom: 10,
-        
+
         marginTop: 20,
     },
     hr: {
-      width: '85%',
-      height: 0.6,
-      backgroundColor: '#e3e3e3'
+        width: '85%',
+        height: 0.6,
+        backgroundColor: '#e3e3e3'
     },
     flexContainer1: {
-      alignItems: 'center',
-      textAlign: 'center',
-      justifyContent: 'center',
-      marginTop: 0,
-      marginBottom: 13,
-      width: '85%'
+        alignItems: 'center',
+        textAlign: 'center',
+        justifyContent: 'center',
+        marginTop: 0,
+        marginBottom: 13,
+        width: '85%'
     },
     button1: {
-      height: 45,
-      borderRadius: 10,
-      width: Dimensions.deviceWidth - 200,
-      alignSelf: 'center',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: Colors.blue,
-      marginTop: 10,
-      marginBottom: 20
+        height: 45,
+        borderRadius: 10,
+        width: Dimensions.deviceWidth - 200,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: Colors.blue,
+        marginTop: 10,
+        marginBottom: 20
     },
     text1: {
-      color: Colors.white,
-      fontSize: Dimensions.px16,
-      fontWeight: 'bold'
+        color: Colors.white,
+        fontSize: Dimensions.px16,
+        fontWeight: 'bold'
     },
     text2: {
         color: Colors.blue400,
@@ -263,15 +275,20 @@ const styles = StyleSheet.create({
         paddingVertical: 2,
         //marginBottom: 5,
         //paddingHorizontal: 30,
-    
-      },
-      textDeporte: {
+
+    },
+    textDeporte: {
         color: Colors.blue400,
         fontSize: Dimensions.px16,
         paddingVertical: 2,
         fontWeight: 'bold'
         //marginBottom: 5,
         //paddingHorizontal: 30,
-    
-      },
+
+    },
+    location: {
+        width: 40,
+        height: 40,
+        marginHorizontal: 10
+    },
 });
