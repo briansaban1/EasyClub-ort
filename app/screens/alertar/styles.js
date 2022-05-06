@@ -24,13 +24,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
   },
   dia: {
-    marginTop:5,
+    marginTop: 5,
     color: Colors.blue400,
     fontSize: Dimensions.px14,
     paddingHorizontal: 5,
     paddingLeft: 5,
-    alignSelf:'center',
-    paddingBottom:5
+    alignSelf: 'center',
+    paddingBottom: 5
   },
   label: {
     color: Colors.blue400,
@@ -118,13 +118,43 @@ const styles = StyleSheet.create({
     height: 12,
     marginHorizontal: 10,
     //alignContent:'center',
-    alignSelf:'center'
-},
-title_corto:{
+    alignSelf: 'center'
+  },
+  title_corto: {
     color: Colors.blue400,
     fontSize: Dimensions.px15,
-    
-}
+
+  },
+  oculto: {
+    width: 0,
+    height: 0
+  },
+  noOculto: {
+    alignItems: 'center',
+    color: Colors.blue300,
+    width: '90%',
+    height: 65,
+    borderStyle: 'dotted',
+    backgroundColor: '#fff'
+  },
+  noSelected: {
+    borderColor: '#A8B3C8',
+    borderWidth: 1,
+    width: '100%',
+    borderRadius: 5,
+    height: 60,
+    borderStyle: 'dotted',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+  },
+  orden: {
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    padding: 10, 
+    alignContent: 'space-between', 
+    width: '100%'
+  }
+
 });
 
 export default styles;
