@@ -169,13 +169,23 @@ WService.prototype.getFacturas = function (id_usuario) {
 };
 
 
-WService.prototype.getHorarios = function (actividad) {
-  console.log(actividad, 'flag webservice')
+WService.prototype.getHorarios = function (actividad, dia) {
   return NetworkHelper.requestPost(this.makeUrl('horarios.php'), {
     flag: 'actividad',
-    actividad
+    actividad,
+    dia
   });
 };
+
+
+WService.prototype.getDisponibilidad = function (actividad, dia) {
+  return NetworkHelper.requestPost(this.makeUrl('horariosOcupados.php'), {
+    flag: 'horariosOcupado',
+    actividad,
+    dia
+  });
+};
+
 
 WService.prototype.cargarReserva = function (data) {
   console.log(data, 'flag webservice')
