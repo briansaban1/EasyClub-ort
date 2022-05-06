@@ -41,7 +41,7 @@ function NotificationsScreen() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        wservice.getSessions1(safeGetOr("", "tx_correo")(profile))
+        wservice.getSessions1(safeGetOr("", "id_usuario")(profile))
             .then(response => {
                 console.log(response)
                 if (response.status == 1) {
