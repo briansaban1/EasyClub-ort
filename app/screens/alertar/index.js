@@ -33,7 +33,7 @@ console.log(actividades, _actividades)
                 
                 <View style={{height:20}} />
 
-                {_actividades.length == 0 &&
+                {actividades.length == 0 &&
                     <Image
                         source={Images.submissionEmpty}
                         style={AppStyles.submissionEmpty}
