@@ -145,22 +145,6 @@ WService.prototype.getSessions1 = function (id_usuario) {
 
 
 
-
-WService.prototype.getCanjear = function (email) {
-  return NetworkHelper.requestPost(this.makeUrl('puntos_canje.php'), {
-    email,
-    flag: 'puntos',
-  });
-};
-
-WService.prototype.getCorreos = function (email) {
-  return NetworkHelper.requestPost(this.makeUrl('listado.php'), {
-    flag: 'listado',
-    email,
-
-  });
-};
-
 WService.prototype.getFacturas = function (id_usuario) {
   return NetworkHelper.requestPost(this.makeUrl('facturas.php'), {
     flag: 'facturas',
@@ -208,16 +192,6 @@ WService.prototype.contactus = function (data) {
 };
 
 
-WService.prototype.cargarPuntos = function (data) {
-  return NetworkHelper.requestPost(this.makeUrl('canjear.php'), {
-    flag: 'puntos',
-    ...data
-  });
-};
-
-WService.prototype.sendAlertasEmail = function (data) {
-  return NetworkHelper.requestPost(this.makeUrl('sendAlertasEmail.php'), data);
-};
 
 WService.prototype.sendChangeEmail = function (data) {
   return NetworkHelper.requestPost(this.makeUrl('sendChangeEmail.php'), data);
@@ -231,12 +205,6 @@ WService.prototype.setDelete = function (id) {
   });
 };
 
-WService.prototype.getProducts = function () {
-  return NetworkHelper.requestPost(this.makeUrl('getProducts.php'), {
-    flag: 'getProducts',
-
-  });
-};
 
 
 export default WService;

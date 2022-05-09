@@ -7,7 +7,7 @@ import Images from '../constants/images';
 import WService from '../service/WebService';
 import ImageButton from './ImageButton';
 import { AppText, FlexWrapper, Loader, Space } from './styled-components';
-import { Header, Steps, AppInputModal, DropDownAlerta, Button, DropDownAlertasLarge, SearchInput } from '../components';
+import { Header, Steps, AppInputModal, Button, SearchInput } from '.';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import { safeGetOr } from '../utils/fp';

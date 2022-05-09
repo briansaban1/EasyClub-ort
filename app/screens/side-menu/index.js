@@ -89,7 +89,7 @@ function SideMenu() {
             <MenuButton
                 label={"Reservar Actividades"}
                 source={require('@assets/alert.png')}
-                screen={Screens.Alertar}
+                screen={Screens.Reservas}
             />
             <Divider />
             <MenuButton

@@ -83,19 +83,6 @@ export const logoutUser = () => {
 };
 
 
-export const getCanjear = (email) => {
-  return async (dispatch) => {
-    dispatch({ type: ActionTypes.GET_CANJEAR_START });
-    try {
-      const data = await wservice.getCanjear(email)
-      dispatch({ type: ActionTypes.GET_CANJEAR_SUCCESS, payload: data.data });
-    } catch (error) {
-      dispatch({ type: ActionTypes.GET_CANJEAR_FAILED });
-    }
-  };
-};
-
-
 export const mytoken = (email) => {
 return async (dispatch) => {
   try{
@@ -110,7 +97,7 @@ return async (dispatch) => {
     userTokenRegister(email, fcmToken)
   } 
 } catch (error){
-  dispatch({ type: ActionTypes.GET_CANJEAR_FAILED });
+  dispatch({ type: ActionTypes.GET_ACTIVIDADES_FAILED });
 
 }
 };
@@ -260,19 +247,6 @@ export const getPromociones = () => {
 };
 
 
-export const getProducts = () => {
-  return async (dispatch) => {
-    dispatch({ type: ActionTypes.GET_SUBMISSIONS1_START });
-      const data = await wservice.getProducts()
-      console.log(data)
-      if (data.status == 1){
-      dispatch({ type: ActionTypes.GET_SUBMISSIONS1_SUCCESS, payload: data.data });
-    } 
-      dispatch({ type: ActionTypes.GET_SUBMISSIONS1_FAILED });
-    
-  };
-};
-
 export const getFacturas = (id) => {
   return async (dispatch) => {
     dispatch({ type: ActionTypes.GET_FACTURAS_START });
@@ -283,20 +257,6 @@ export const getFacturas = (id) => {
       dispatch({ type: ActionTypes.GET_FACTURAS_SUCCESS, payload: data.data });
     } 
       dispatch({ type: ActionTypes.GET_FACTURAS_FAILED });
-    
-  };
-};
-
-export const getCorreos = (email) => {
-  return async (dispatch) => {
-    dispatch({ type: ActionTypes.GET_CORREOS_START });
-    
-      const data = await wservice.getCorreos(email)
-      console.log(data)
-      if (data.status == 1){
-      dispatch({ type: ActionTypes.GET_CORREOS_SUCCESS, payload: data.data });
-    } 
-      dispatch({ type: ActionTypes.GET_CORREOS_FAILED });
     
   };
 };

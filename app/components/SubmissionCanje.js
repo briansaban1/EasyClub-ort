@@ -49,7 +49,7 @@ const Text13 = styled(AppText)`
   font-size:${13}px;
 `
 
-function SubmissionAlerta({ data, profile, onPress }) {
+function SubmissionCanje({ data, profile, onPress }) {
     const [display, setDisplay] = useState(false)
 
     return (
@@ -74,4 +74,4 @@ function SubmissionAlerta({ data, profile, onPress }) {
 }
 
 
-export default SubmissionAlerta;
+export default SubmissionCanje;

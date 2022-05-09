@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Image, ScrollView, View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
-import { Header, SearchInput, AlertaModal, SubmissionPromociones } from '../../components';
+import { Header, SearchInput, SubmissionPromociones, ErrorPromociones } from '../../components';
 import { AppStyles, Images } from '../../constants';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
@@ -34,10 +34,8 @@ console.log(promociones, 'flag')
                 <View style={{height:20}} />
 
                 {_promociones.length == 0 &&
-                    <Image
-                        source={Images.submissionEmpty}
-                        style={AppStyles.submissionEmpty}
-                    />
+                
+                    <ErrorPromociones/>
                     
                 }
                 {promociones.map(i => <SubmissionPromociones data={i} profile={profile} onPress={(data) => {

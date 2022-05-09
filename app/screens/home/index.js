@@ -17,11 +17,9 @@ import { getSubmissions1 } from '../../store/user/action';
 import { getActividades } from '../../store/user/action';
 
 import { getFacturas } from '../../store/user/action';
-import { getCorreos } from '../../store/user/action';
 import { getPuntos } from '../../store/user/action';
 import { getWallet } from '../../store/user/action';
 
-import { getCanjear } from '../../store/user/action';
 import { getDescuento } from '../../store/user/action';
 
 import { getUserMenu } from '../../store/user/action';
@@ -52,11 +50,9 @@ function HomeScreen() {
     dispatch(getActividades());
     dispatch(getPromociones());
     dispatch(getFacturas(profile.id_usuario));
-    dispatch(getCorreos(profile.id_usuario));
     dispatch(getPuntos(profile.id_usuario));
     dispatch(getWallet(profile.tx_correo, profile.username));
     dispatch(getDescuento(profile.id_usuario));
-    dispatch(getCanjear(profile.id_usuario));
     dispatch(mytoken(profile.id_usuario));
 
 
@@ -77,11 +73,9 @@ function HomeScreen() {
       dispatch(getActividades());
       dispatch(getPromociones());
       dispatch(getFacturas(profile.id_usuario));
-      dispatch(getCorreos(profile.id_usuario));
       dispatch(getDescuento(profile.id_usuario));
       dispatch(getPuntos(profile.id_usuario));
       dispatch(getWallet(profile.id_usuario, profile.username));
-      dispatch(getCanjear(profile.id_usuario));
       dispatch(getUserMenu(profile.id_usuario));
 
     }, []);

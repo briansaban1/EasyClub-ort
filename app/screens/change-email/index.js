@@ -45,6 +45,9 @@ function ChangeEmailScreen() {
                 
             }).then(res => {
                 setLoading(true)
+                setEmail('');
+                setNewEmail('');
+                setConfNewEmail('');
                
             }).catch(e => {
                 Alert.alert(
@@ -54,7 +57,9 @@ function ChangeEmailScreen() {
                         { text: 'OK', onPress: () => console.warn('NO Pressed'), style: 'ok' }
                     ]
                 );
-                setLoading(false)
+                setLoading(false);
+               
+                
             })
         }
     }
@@ -69,6 +74,7 @@ function ChangeEmailScreen() {
                 title={"Email"}
                 description={"Modificá tus datos de contacto"}
             />
+            <Space />
             <Space />
             <AppInput
                 label={'Email actual'}

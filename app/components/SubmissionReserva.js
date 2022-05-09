@@ -49,7 +49,7 @@ const Text13 = styled(AppText)`
   font-size:${13}px;
 `
 
-function SubmissionAlerta({ data, profile, onPress }) {
+function SubmissionReserva({ data, profile, onPress }) {
     const [display, setDisplay] = useState(false)
 
 
@@ -94,4 +94,4 @@ const valores = data.modalidad
 }
 
 
-export default SubmissionAlerta;
+export default SubmissionReserva;

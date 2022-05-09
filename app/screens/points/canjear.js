@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Linking, View, ScrollView, Image, Text, ImageBackground, TouchableOpacity, Alert, SafeAreaView, Touchable } from 'react-native';
-import { Header, ImageButton, Button, SubmissionPuntos, TrackModal, Error, SubmissionCanje, CanjeModal } from '../../components';
+import { Header, ImageButton, Button, SubmissionPuntos, TrackModal, Error } from '../../components';
 import { Divider, FlexWrapper, AppText, Space } from '../../components/styled-components';
 import styles from './styles';
 import { Title } from '../../components/Header';
@@ -9,8 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { safeGetOr } from '../../utils/fp';
 import { Colors, Dimensions, Images, AppStyles } from '../../constants';
 import { useNavigation } from '@react-navigation/native';
-import { getCanjear, getDescuento } from '../../store/user/action';
-import { getPuntos, getUserMenu } from '../../store/user/action';
+
 
 
 function ContactScreen() {

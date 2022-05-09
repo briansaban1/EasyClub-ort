@@ -12,7 +12,7 @@ const street = require('../../assets/street.png')
 const fin = require('../../assets/fin.png')
 
 
-function FacturasScreen() {
+function MapsScreen() {
     const profile = useSelector(store => store.user.profile);
 
 const [origin, setOrigin] = React.useState({
@@ -145,4 +145,4 @@ const location = {
     );
     
 }
-export default FacturasScreen;
+export default MapsScreen;

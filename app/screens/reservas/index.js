@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Image, ScrollView, View } from 'react-native';
 import { useSelector } from 'react-redux';
-import { Header, SearchInput, AlertaModal, SubmissionAlerta } from '../../components';
+import { Header, SubmissionReserva } from '../../components';
 import { AppStyles, Images } from '../../constants';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
@@ -9,7 +9,7 @@ import Screens from '../../constants/screens';
 
 
 
-function HistoryScreen() {
+function ReservasScreen() {
 
 const profile = useSelector(store => store.user.profile)
 
@@ -39,8 +39,8 @@ console.log(actividades, _actividades)
                         style={AppStyles.submissionEmpty}
                     />
                 }
-                {actividades.map(i => <SubmissionAlerta data={i} profile={profile} onPress={(data) => {
-                   navigate(Screens.Reservas, {data})
+                {actividades.map(i => <SubmissionReserva data={i} profile={profile} onPress={(data) => {
+                   navigate(Screens.GenerarReserva, {data})
                    
                 }} />)}
                 <View style={{height:30}} />
@@ -49,4 +49,4 @@ console.log(actividades, _actividades)
     );
 }
 
-export default HistoryScreen;
+export default ReservasScreen;

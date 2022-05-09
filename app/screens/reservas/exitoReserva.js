@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Linking, View, ScrollView, Image, Text, ImageBackground, TouchableOpacity, Alert, SafeAreaView, Touchable } from 'react-native';
-import { Header, ImageButton, Button, SubmissionPuntos, TrackModal, Error, ErrorPuntos } from '../../components';
+import { Header, ImageButton, Button } from '../../components';
 import { Divider, FlexWrapper, AppText, Space } from '../../components/styled-components';
 import styles from './styles';
 import { Title } from '../../components/Header';
@@ -14,7 +14,7 @@ import LottieView from 'lottie-react-native';
 
 
 
-function ContactScreen() {
+function ExitoScreen() {
     const _profile = useSelector(store => store.user.profile);
     const [profile, setProfile] = useState(_profile);
 
@@ -73,4 +73,4 @@ function ContactScreen() {
     );
 }
 
-export default ContactScreen;
+export default ExitoScreen;

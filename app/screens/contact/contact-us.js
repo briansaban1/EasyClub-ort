@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Linking, View, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { Header, Button, AppInput } from '../../components';
-import { Divider, FlexWrapper } from '../../components/styled-components';
 
 import styles from './styles';
-import { Title } from '../../components/Header';
 
 import { safeGetOr } from '../../utils/fp';
 import { useSelector } from 'react-redux';
@@ -22,6 +20,7 @@ function ContactUsScreen({ route }) {
     const profile = useSelector(store => store.user.profile)
     const [loading, setLoading] = useState(false);
     const [nombre, setNombre] = useState(profile?.tx_nombre);
+    const [apellido, setApellido] = useState(profile?.tx_apellido);
     const [email, setEmail] = useState(profile?.tx_correo);
     const [asunto, setAsunto] = useState('');
     const [mensaje, setMensaje] = useState("");
@@ -32,9 +31,11 @@ function ContactUsScreen({ route }) {
 
     function sendMessage() {
         setLoading(true)
+
         wservice.contactus({
             nombre, email, asunto, mensaje
         }).then(response => {
+            console.log('contacto')
             setLoading(false);
             if (response.status == 1) {
                 localMessage("Hemos enviado tu mensaje con éxito!", true);
@@ -59,7 +60,7 @@ function ContactUsScreen({ route }) {
             <AppInput
                 label={'Normbre y Apellido'}
                 onChangeText={setNombre}
-                value={nombre}
+                value={nombre +' '+ apellido}
             />
             <AppInput
                 label={'Email'}

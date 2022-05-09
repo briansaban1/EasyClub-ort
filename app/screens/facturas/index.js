@@ -7,7 +7,6 @@ import InvoiceItem from '../../components/InvoiceItem';
 import { AppStyles, Images, Colors } from '../../constants';
 import { getFacturas } from '../../store/user/action';
 import styles from './styles';
-import InvoiceModal from '../../components/InvoiceModal';
 
 
 
@@ -67,7 +66,6 @@ function FacturasScreen() {
                 <View style={{height:30}} />
                 
             </ScrollView>
-            {visibleModal && <InvoiceModal onClose={() => { setVisibleModal(false) }} data={modalData} />}
         
         </>
         

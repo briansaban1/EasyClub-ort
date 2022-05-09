@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Linking, View, ScrollView, Image, Text, ImageBackground, TouchableOpacity, Alert, SafeAreaView, Touchable } from 'react-native';
-import { Header, ImageButton, Button, SubmissionWallet, TrackModal, Error, ErrorPuntos, ModalWallet } from '../../components';
+import { Header, ImageButton, Button, SubmissionWallet, TrackModal, Error, ErrorInvoice } from '../../components';
 import { Divider, FlexWrapper, AppText, Space } from '../../components/styled-components';
 import styles from './styles';
 import { Title } from '../../components/Header';
@@ -11,8 +11,7 @@ import { Colors, Dimensions, Images, AppStyles } from '../../constants';
 import { useNavigation } from '@react-navigation/native';
 
 import { getWallet } from '../../store/user/action';
-import { getCanjear } from '../../store/user/action';
-import { getDescuento } from '../../store/user/action';
+
 
 
 function WalletScreen() {
@@ -147,7 +146,7 @@ function WalletScreen() {
 
                             {_wallet.length == 0 &&
                                 <View style={{ marginBottom: 20 }}>
-                                    <ErrorPuntos />
+                                    <ErrorInvoice />
                                 </View>
                             }
                             {_wallet.map(i => <SubmissionWallet data={i} profile={profile} onPress={(data) => {
@@ -164,7 +163,6 @@ function WalletScreen() {
 
             </View>
 
-            {visibleModal && <ModalWallet onClose={() => { setVisibleModal(false) }} data={modalData} />}
 
 
         </ScrollView>

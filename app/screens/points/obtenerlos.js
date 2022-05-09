@@ -11,7 +11,7 @@ import { Colors, Dimensions, Images, AppStyles } from '../../constants';
 
 
 
-function ContactScreen() {
+function ObtenerPuntosScreen() {
     const _profile = useSelector(store => store.user.profile);
     const [profile, setProfile] = useState(_profile);
     const _puntos = useSelector(store => store.user.puntos)
@@ -65,4 +65,4 @@ function ContactScreen() {
     );
 }
 
-export default ContactScreen;
+export default ObtenerPuntosScreen;

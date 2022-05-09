@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import { View } from 'react-native';
 import { AppInput, Button, Header } from '../../components';
-import { Space } from '../../components/styled-components';
+import { Space, AppText } from '../../components/styled-components';
 import styles from './styles';
 import WService from '../../service/WebService';
 import { useSelector } from 'react-redux';
 import { safeGetOr } from '../../utils/fp';
+import { View, ScrollView, SafeAreaView, Modal, TouchableOpacity, StatusBar } from 'react-native';
+import LottieView from 'lottie-react-native';
+
 
 const wservice = new WService();
 
@@ -14,13 +16,15 @@ const wservice = new WService();
 function ChangePasswordScreen() {
     const profile = useSelector(store => store.user.profile)
     const [credential, setCredential] = useState({
-        username: "",
+        id: "",
         password: ""
     })
     const [currentPassword, setCurrentPassword] = useState('')
     const [newPass, setNewPass] = useState('')
     const [newRePass, setNewRePass] = useState('')
     const [loading, setLoading] = useState('')
+    const [modalVisible, setModalVisible] = useState(false);
+
 
     async function getCurrentPassword() {
         const credential = await AsyncStorage.getItem('credential')
@@ -35,27 +39,36 @@ function ChangePasswordScreen() {
 
     function handleChangePassword() {
         setLoading(true);
-        wservice.changePassword(safeGetOr('', 'tx_correo')(profile), newPass)
+        wservice.changePassword(safeGetOr('', 'id_usuario')(profile), newPass)
             .then(async (response) => {
                 console.log({ response })
                 if (response.status == 1) {
-                    const newCredential = { username: credential.username, password: newPass };
+                    const newCredential = { id: credential.id, password: newPass };
                     setCredential(newCredential);
                     await AsyncStorage.setItem('credential', JSON.stringify(newCredential))
                 }
                 setLoading(false);
+                setModalVisible(true);
+                setNewRePass('');
+                setNewPass('');
+                setCurrentPassword('');
+                
             })
             .catch(e => {
                 setLoading(false);
+                setModalVisible(false);
             })
     }
     const allow = credential.password == currentPassword && newPass == newRePass && newRePass.length > 4
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 35 }} showsVerticalScrollIndicator={false}>
+            <SafeAreaView />
+            <View >
             <Header
                 title={"Contraseña"}
                 description={"Modificá tus datos"}
             />
+            <Space />
             <Space />
             <AppInput
                 password
@@ -83,6 +96,46 @@ function ChangePasswordScreen() {
                 onPress={handleChangePassword}
             />
         </View>
+         <Modal
+         animationType="slide"
+         transparent={true}
+         style={styles.modal}
+         visible={modalVisible}
+     >
+         <StatusBar backgroundColor="#00000040" barStyle="light-content" />
+
+         <View style={styles.modal}>
+             <View style={styles.modalContainer}>
+                 <AppText style={styles.title1}>¡Datos Actualizados!</AppText>
+                 <View style={styles.hr} />
+
+                 <View style={styles.flexContainer1}>
+                     <LottieView source={require('@assets/check.json')}
+                         autoPlay={true}
+                         loop={false}
+                         resizeMode="cover" 
+                         style={{ width: 110, height: 110, marginVertical: 7, alignSelf: 'center' }}
+                     />
+
+
+                 </View>
+
+
+                 <TouchableOpacity style={styles.button1}
+                     onPress={() => setModalVisible(!modalVisible)}
+                 >
+                     <AppText style={styles.text1}>Aceptar</AppText>
+                 </TouchableOpacity>
+
+
+
+
+             </View>
+         </View>
+     </Modal>
+
+        </ScrollView>
+
     );
 }
 

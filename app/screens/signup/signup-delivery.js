@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppInput, Header, ImageButton, Button, DropDownAlertasLarge, DropDownGrande } from '../../components';
+import { AppInput, Header, ImageButton, Button, DropDownGrande } from '../../components';
 import { updateRegisterProfile } from '../../store/user/action';
 import styles from './styles';
 import Images from '../../constants/images';

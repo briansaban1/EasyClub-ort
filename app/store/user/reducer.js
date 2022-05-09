@@ -16,9 +16,7 @@ const INITIAL_STATE = {
     promociones: [],
     puntos: [],
     wallet: [],
-    canjear: [],
     facturas: [],
-    correos: [],
     products: [],
     loadingSubmissions: false,
     registerProfile: {
@@ -228,25 +226,6 @@ export const UserReducer = (
 
 
 
-
-                case ActionTypes.GET_CANJEAR_START:
-                return {
-                    ...state,
-                    loadingCanjear: true,
-                };
-            case ActionTypes.GET_CANJEAR_FAILED:
-                return {
-                    ...state,
-                    loadingCanjear: false,
-                };
-            case ActionTypes.GET_CANJEAR_SUCCESS:
-                return {
-                    ...state,
-                    loadingCanjear: false,
-                    canjear: action.payload
-                };
-
-
                 case ActionTypes.GET_FACTURAS_START:
                 return {
                     ...state,
@@ -264,24 +243,6 @@ export const UserReducer = (
                     facturas: action.payload
                 };
                 
-
-                case ActionTypes.GET_CORREOS_START:
-                    return {
-                        ...state,
-                        loadingCorreos: true,
-                    };
-                case ActionTypes.GET_CORREOS_FAILED:
-                    return {
-                        ...state,
-                        loadingCorreos: false,
-                    };
-                case ActionTypes.GET_CORREOS_SUCCESS:
-                    return {
-                        ...state,
-                        loadingCorreos: false,
-                        correos: action.payload
-                    };
-
 
 
         case ActionTypes.UPDATE_PROFILE_SUCCESS:

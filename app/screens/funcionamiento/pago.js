@@ -13,7 +13,7 @@ import { openTermsOfService } from '../../utils';
 
 
 
-function FuncionamientoScreen() {
+function PagosScreen() {
 
     return (
         <ScrollView style={styles.container}>
@@ -63,4 +63,4 @@ function FuncionamientoScreen() {
     );
 }
 
-export default FuncionamientoScreen;
+export default PagosScreen;

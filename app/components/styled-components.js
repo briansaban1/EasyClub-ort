@@ -63,7 +63,7 @@ export const FlexBetweenWrapper_perfil = styled.View`
   padding-horizontal: ${(props) => props.paddingHorizontal || 0}px;
   flex-direction: row;
 `;
-export const FlexBetweenWrapperAlertas = styled.View`
+export const FlexBetweenWrapperReservas = styled.View`
   width: 100%;
   marginTop: ${Platform.OS == 'android' ? 14 : 14};
   justify-content: space-between;

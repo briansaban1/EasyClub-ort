@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Linking, View, ScrollView, Image, Text, ImageBackground, TouchableOpacity, Alert, SafeAreaView, Touchable } from 'react-native';
-import { Header, ImageButton, Button, SubmissionPuntos, TrackModal, Error, ErrorPuntos } from '../../components';
+import { Header, ImageButton, Button, SubmissionPuntos, ErrorPuntos } from '../../components';
 import { Divider, FlexWrapper, AppText, Space } from '../../components/styled-components';
 import styles from './styles';
 import { Title } from '../../components/Header';
@@ -14,7 +14,7 @@ import { getPuntos } from '../../store/user/action';
 
 
 
-function ContactScreen() {
+function PointsScreen() {
     const _profile = useSelector(store => store.user.profile);
     const [profile, setProfile] = useState(_profile);
     const _puntos = useSelector(store => store.user.puntos)
@@ -161,4 +161,4 @@ function ContactScreen() {
     );
 }
 
-export default ContactScreen;
+export default PointsScreen;

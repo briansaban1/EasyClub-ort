@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Image, ScrollView, View, Text, TouchableOpacity, FlatList, Animated, Easing } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { Header, SearchInput, AlertaModal, SubmissionAlerta, Button } from '../../components';
+import { Header, SearchInput, ReservaModal, Button } from '../../components';
 import { AppStyles, Images } from '../../constants';
 import styles from './styles';
 import { AppText, FlexWrapper, Loader, Space } from '../../components/styled-components';
@@ -14,7 +14,7 @@ import WService from '../../service/WebService';
 import { getHorarios } from '../../store/user/action';
 
 
-function ReservaScreen(data) {
+function ReservaHoraFechaScreen(data) {
 
     const dispatch = useDispatch();
 
@@ -295,9 +295,9 @@ const consultaHora = (hora, dia) => {
                 </View>
                 <View style={{ height: 30 }} />
             </ScrollView>
-            {visibleModal && <AlertaModal onClose={() => {{ setVisibleModal(false); setSelected(false); }}} data={modalData} fecha={date} nombre={nombre} idActividad={idActividad} horadata={datohr(modalData)} imagen={img} modalidad={modalidades} />}
+            {visibleModal && <ReservaModal onClose={() => {{ setVisibleModal(false); setSelected(false); }}} data={modalData} fecha={date} nombre={nombre} idActividad={idActividad} horadata={datohr(modalData)} imagen={img} modalidad={modalidades} />}
         </>
     );
 }
 
-export default ReservaScreen;
+export default ReservaHoraFechaScreen;

@@ -14,7 +14,7 @@ import WService from '../../service/WebService';
 import { isValidUsername, isValidEmail } from '../../utils';
 const wservice = new WService();
 
-function NewUserScreen() {
+function ChangePassScreen() {
   const dispatch = useDispatch();
   const { navigate } = useNavigation()
 
@@ -71,7 +71,7 @@ function NewUserScreen() {
     setLoading(true)
     if (email == emailconfirm) {
 
-      fetch('http://tododelmundo.com.ar/app/recoverypassword.php', {
+      fetch('https://easyclub.000webhostapp.com/app/recoverypassword.php', {
         method: 'POST',
         header: {
           'Content-Type': 'application/json',
@@ -180,4 +180,4 @@ function NewUserScreen() {
   );
 }
 
-export default NewUserScreen;
+export default ChangePassScreen;

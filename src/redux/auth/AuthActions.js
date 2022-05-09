@@ -66,12 +66,3 @@ export const updateProfile = (data) => {
 	};
 };
 
-export const getProducts = (data) => {	
-	
-	return dispatch => {
-		dispatch({
-			type: ActionTypes.GET_PRODUCTS,
-			payload: data
-		});
-	};
-};

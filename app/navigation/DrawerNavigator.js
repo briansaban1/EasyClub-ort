@@ -12,20 +12,17 @@ import Help from '../screens/help'
 import Sessions from '../screens/sessions'
 import Contact from '../screens/contact'
 import ContactUs from '../screens/contact/contact-us'
-import Alertar from '../screens/alertar'
+import Reservas from '../screens/reservas'
 import Billetera from '../screens/wallet'
 
-import Reservas from '../screens/alertar/reserva' 
-import ExitoReserva from '../screens/alertar/exitoReserva'
+import GenerarReserva from '../screens/reservas/reserva' 
+import ExitoReserva from '../screens/reservas/exitoReserva'
 import Home from '../screens/home'
 
 
 import ComoLlegar from '../screens/mapas'
 
-import AlertasModificar from '../screens/alertar/alertaModificar';
-
 import Facturas from '../screens/facturas'
-import Correos from '../screens/correo'
 import Obtenerlos from '../screens/points/obtenerlos.js';
 import Canjear from '../screens/points/canjear.js';
 
@@ -64,15 +61,13 @@ function App() {
             <Drawer.Screen name="Sessions" component={Sessions} />
             <Drawer.Screen name="Contact" component={Contact} />
             <Drawer.Screen name="ContactUs" component={ContactUs} />
-            <Drawer.Screen name="Alertar" component={Alertar} />
-            <Drawer.Screen name="AlertasModificar" component={AlertasModificar} />
+            <Drawer.Screen name="Reservas" component={Reservas} />
 
             <Drawer.Screen name="Home" component={Home} />
 
             <Drawer.Screen name="Billetera" component={Billetera} />
 
             <Drawer.Screen name="Facturas" component={Facturas} />
-            <Drawer.Screen name="Correos" component={Correos} />
 
             <Drawer.Screen name="Obtenerlos" component={Obtenerlos} />
             <Drawer.Screen name="Canjear" component={Canjear} />
@@ -84,7 +79,7 @@ function App() {
             <Drawer.Screen name="Funcionamiento1" component={Funcionamiento1} />
             <Drawer.Screen name="Pago" component={Pago} />
 
-            <Drawer.Screen name="Reservas" component={Reservas} />
+            <Drawer.Screen name="GenerarReserva" component={GenerarReserva} />
             <Drawer.Screen name="ComoLlegar" component={ComoLlegar} />
             <Drawer.Screen name="ExitoReserva" component={ExitoReserva} />
 

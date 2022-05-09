@@ -19,24 +19,24 @@ function PoliticasScreen() {
         <View style={styles.container}>
             <Header
                 title={"Términos y Condiciones"}
-                
-                
+
+
             />
             <ScrollView contentContainerStyle={{ paddingBottom: 35 }} showsVerticalScrollIndicator={false}>
-            
-           <View style={{height: 15}}></View>
-            
-            <View style={{ height: Dimensions.deviceHeight * 0.80, width: Dimensions.deviceWidth * 1.0 }}>
-                                        <WebView 
-                                            style={{ flex : 1 }} 
-                                            source={{ uri: "http://easyclub.com.ar/politicas/"}}
-                                            />
-                                       
-                                    </View>
-            
-            
-            
-        </ScrollView>
+
+                <View style={{ height: 15 }}></View>
+
+                <View style={{ height: Dimensions.deviceHeight * 0.80, width: Dimensions.deviceWidth * 1.0 }}>
+                    <WebView
+                        style={{ flex: 1 }}
+                        source={{ uri: "https://easyclub.000webhostapp.com/politicas/" }}
+                    />
+
+                </View>
+
+
+
+            </ScrollView>
 
         </View>
     );
