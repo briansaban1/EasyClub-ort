@@ -7,8 +7,8 @@ const INITIAL_STATE = {
     resumen: {},
     loading: false,
     products: [],
-    submissions: [],
-    submissions1: [],
+    submissions: [], //listado de reservas
+    submissions1: [], //historial de reservas
     activiades: [],
     horarios: [],
     grafico: [],

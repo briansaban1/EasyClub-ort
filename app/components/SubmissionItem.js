@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import { Colors, Dimensions } from '../constants';
 import { AppText, FlexWrapper } from './styled-components';
 import ImageButton from './ImageButton';
+import CancelarReservaModal from './CancelarReservaModal'
 import { getActividades } from '../store/user/action';
+import Button from './Button';
 import moment from 'moment';
 
 const styles = StyleSheet.create({
@@ -52,7 +54,7 @@ const Text13 = styled(AppText)`
 
 function SubmissionItem({ data, profile, onPress }) {
     const [display, setDisplay] = useState(false)
-
+    const [visibleModal, setVisibleModal] = useState(false);
 
 
     function visible(modalidad, cancha){
@@ -93,7 +95,15 @@ function SubmissionItem({ data, profile, onPress }) {
                             </View> 
                         </FlexWrapper>
                         <BoldText style={{marginTop:10}}>{`ID ${data.id}`}</BoldText>
-                    </View>
+                        <Button
+                        text={"Cancelar"}
+                        buttonStyle={{width:'47%', backgroundColor: '#FF0000', position: 'relative', top: '0%', right: '10%' }}
+                        
+                        onPress={() => {
+                            setVisibleModal(true);
+                        }}
+                    />
+                    </View>                    
                 }
             </View>
            <ImageButton
@@ -106,7 +116,7 @@ function SubmissionItem({ data, profile, onPress }) {
                     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
                 }}
             />
-            
+            {visibleModal && <CancelarReservaModal id={data.id} onClose={() => {{ setVisibleModal(false); }}}/>}
         </View>
     )
 }

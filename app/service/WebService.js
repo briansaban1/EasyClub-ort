@@ -205,6 +205,14 @@ WService.prototype.setDelete = function (id) {
   });
 };
 
+WService.prototype.cancelarReserva = function (id) {
+  console.log('ENTROOOOOOOOOOOOOOO', id.id)
+  return NetworkHelper.requestPost(this.makeUrl('cancelarReserva.php'), {
+    flag: 'cancelarReserva',
+    id: id.id
+  });
+};
+
 
 
 export default WService;

@@ -290,3 +290,9 @@ export const getUserMenu = (id_usuario) => {
     dispatch({ type: ActionTypes.LOGIN_SUCCESS, payload });
   };
 };
+
+export const cancelarReserva = (id) => {
+  return async (dispatch) => {
+    dispatch({ type: ActionTypes.PUT_CANCELAR_RESERVA, payload: id });
+  };
+};
