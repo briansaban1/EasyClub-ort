@@ -54,6 +54,7 @@ const Text13 = styled(AppText)`
 
 function SubmissionItem({ data, profile, onPress }) {
     const [display, setDisplay] = useState(false)
+    
     const [visibleModal, setVisibleModal] = useState(false);
 
     function visible(modalidad, cancha){
@@ -94,14 +95,24 @@ function SubmissionItem({ data, profile, onPress }) {
                             </View> 
                         </FlexWrapper>
                         <BoldText style={{marginTop:10}}>{`ID ${data.id}`}</BoldText>
+                        <View style={{flexDirection:'row', justifyContent:'space-between', width:'90%', paddingLeft:10, paddingRight:10}}>
+                        <Button
+                        text={"Modificar"}
+                        buttonStyle={{width:'43%', backgroundColor: Colors.blue300, position: 'relative',  height: 40, }}
+                        onPress={() => {
+                            
+                        }}
+                    />
                         <Button
                         text={"Cancelar"}
-                        buttonStyle={{width:'47%', backgroundColor: '#FF0000', position: 'relative', top: '0%', right: '10%' }}
-                        
+                        buttonStyle={{width:'43%', backgroundColor: Colors.darkblue, position: 'relative', height: 40 }}
                         onPress={() => {
                             setVisibleModal(true);
                         }}
+                        
                     />
+                    </View>
+
                     </View>                    
                 }
             </View>
@@ -115,7 +126,7 @@ function SubmissionItem({ data, profile, onPress }) {
                     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
                 }}
             />
-            {visibleModal && <CancelarReservaModal id={data.id} onClose={() => {{ setVisibleModal(false); }}}/>}
+            {visibleModal && <CancelarReservaModal onClose={() => {setVisibleModal(false)}} id={data.id} />}
         </View>
     )
 }
