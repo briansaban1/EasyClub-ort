@@ -56,7 +56,6 @@ function SubmissionItem({ data, profile, onPress }) {
     const [display, setDisplay] = useState(false)
     const [visibleModal, setVisibleModal] = useState(false);
 
-
     function visible(modalidad, cancha){
         if(modalidad != "" && cancha != ""){
         return display
@@ -79,7 +78,7 @@ function SubmissionItem({ data, profile, onPress }) {
             />
             <View style={styles.mainContainer} >
                 <BoldText>Actividad: {data.nombre}</BoldText>
-                <AppText>Reserva: {moment(data.fecha).format('DD/MM/YYYY')} | {(data.horaReserva)}</AppText>
+                <AppText>Reserva: {moment(data.fechaReserva).format('DD/MM/YYYY')} | {(data.horaReserva)}</AppText>
                 
                 {visible(data.cancha, data.modalidad) &&
                     <View>
