@@ -23,6 +23,8 @@ export { default as Header } from './Header'
 export { default as UserAvatar } from './UserAvatar'
 export { default as ShadowDivider } from './ShadowDivider'
 export { default as ReservaModal } from './ReservaModal'
+export { default as CancelarReservaModal } from './CancelarReservaModal'
+
 
 
 export { default as Steps } from './Steps'
