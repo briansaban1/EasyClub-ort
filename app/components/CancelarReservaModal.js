@@ -1,24 +1,28 @@
-import React from 'react';
-import { Modal, StyleSheet, View,  } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Modal, StyleSheet, View, Image, StatusBar, Text } from 'react-native';
 import { Colors, Dimensions } from '../constants';
 import Images from '../constants/images';
 import WService from '../service/WebService';
 import ImageButton from './ImageButton';
-import { AppText, Space } from './styled-components';
-import { Button } from '../components';
-import { useSelector, useDispatch } from 'react-redux';
-import {  getSubmissions } from '../store/user/action';
+import { AppText, FlexWrapper, Loader, Space } from './styled-components';
+import { Header, Steps, AppInputModal, Button, SearchInput } from '.';
 import colors from '../constants/colors';
 import { useNavigation } from '@react-navigation/native';
 import Screens from '../constants/screens';
+import { useSelector, useDispatch } from 'react-redux';
+import { getSubmissions } from '../store/user/action';
+
+
 
 
 const wservice = new WService();
 
 
-const TrackModal = (
-    id
+const CancelarReservaModal = (
+    id,
+    onClose,
 ) => {
+
     
     const { navigate } = useNavigation();
 
@@ -26,8 +30,9 @@ const TrackModal = (
     const dispatch = useDispatch();
 
 
+
 //se carga la reserva a la base de datos
-    function cancelarReserva ({id,onClose}) {
+    function cancelarReserva ({id}) {
         console.log(id, profile.id_usuario, 'FLAG-1!')        
         
         wservice.cancelarReserva({
@@ -36,8 +41,9 @@ const TrackModal = (
             if (response.status == 1) {
                 //si la cancelacion es exitosa se redirecciona a la ventana de exito
                 console.log(response.status)
-                onClose();
+                
                 dispatch(getSubmissions(profile.id_usuario));
+                id.onClose()
                 navigate(Screens.Reservas)
             }
         })
@@ -52,7 +58,7 @@ const TrackModal = (
             visible={true}
             animationType={'fade'}
             onRequestClose={() => {
-                onClose();
+                id.onClose()
             }}>
             <View style={styles.body}>
                 <View style={styles.container}>
@@ -61,16 +67,16 @@ const TrackModal = (
                         imageStyle={styles.close}
                         style={{ alignSelf: 'flex-end' }}
                         onPress={() => {
-                            onClose();
+                            id.onClose()
                         }}/>
                     <View style={styles.mainContainer}>
-                        <AppText style={styles.title}>{"Realmente desea cancelar la reserva?"}</AppText>
+                        <AppText style={styles.subtitle}>{"¿Estás seguro de cancelar la reserva?"}</AppText>
                    
                         <View style={{ height: 25 }} />
 
                       <View style={{flexDirection:'row', width:'100%', justifyContent:'space-between'}}>
                     <Button
-                        text={"Aceptar"}
+                        text={"Confirmar"}
                         loading={false}
                         buttonStyle={{width:'47%', backgroundColor:'#36E26F'}}
                         onPress={() => {
@@ -80,9 +86,8 @@ const TrackModal = (
                     <Button
                         text={"Cancelar"}
                         buttonStyle={{width:'47%'}}
-                        
                         onPress={() => {
-                            onClose();
+                            id.onClose()
                         }}
                     />
                     </View>
@@ -95,7 +100,7 @@ const TrackModal = (
     );
 };
 
-export default TrackModal;
+export default CancelarReservaModal;
 
 
 
