@@ -1,4 +1,15 @@
 PODS:
+  - AndesUI (3.62.0):
+    - AndesUI/Core (= 3.62.0)
+    - PureLayout (= 3.1.2)
+  - AndesUI/Core (3.62.0):
+    - AndesUI/LocalIcons
+    - PureLayout (= 3.1.2)
+  - AndesUI/LocalIcons (3.62.0):
+    - PureLayout (= 3.1.2)
+  - blackbox-vision-react-native-mercadopago-px (0.7.2):
+    - MercadoPagoSDK (= 4.32.4)
+    - React
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.63.4)
@@ -49,6 +60,7 @@ PODS:
     - boost-for-react-native
     - DoubleConversion
     - glog
+  - FXBlurView (1.6.4)
   - glog (0.3.5)
   - GoogleDataTransport (8.4.0):
     - GoogleUtilities/Environment (~> 7.2)
@@ -71,16 +83,151 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.7.0):
     - GoogleUtilities/Logger
+  - JRSwizzle (1.0)
   - lottie-ios (3.1.8)
   - lottie-react-native (4.0.2):
     - lottie-ios (~> 3.1.8)
     - React-Core
+  - MercadoPagoSDK (4.32.4):
+    - MercadoPagoSDK/Default (= 4.32.4)
+    - MLBusinessComponents (~> 1.0)
+    - MLCardForm (~> 0.1)
+  - MercadoPagoSDK/Default (4.32.4):
+    - MLBusinessComponents (~> 1.0)
+    - MLCardDrawer (~> 1.0)
+    - MLCardForm (~> 0.1)
+    - MLUI (~> 5.0)
+  - MLBusinessComponents (1.38.0):
+    - MLBusinessComponents/Default (= 1.38.0)
+    - MLUI (~> 5.0)
+  - MLBusinessComponents/Default (1.38.0):
+    - MLUI (~> 5.0)
+  - MLCardDrawer (1.8.5):
+    - MLCardDrawer/Default (= 1.8.5)
+  - MLCardDrawer/Default (1.8.5)
+  - MLCardForm (0.10.0):
+    - AndesUI (~> 3.0)
+    - MLCardDrawer (~> 1.0)
+    - MLCardForm/Default (= 0.10.0)
+    - MLUI (~> 5.0)
+  - MLCardForm/Default (0.10.0):
+    - AndesUI (~> 3.0)
+    - MLCardDrawer (~> 1.0)
+    - MLUI (~> 5.0)
+  - MLUI (5.25.0):
+    - MLUI/ActionButton (= 5.25.0)
+    - MLUI/Core (= 5.25.0)
+    - MLUI/Helpers (= 5.25.0)
+    - MLUI/MLButton (= 5.25.0)
+    - MLUI/MLCheckBox (= 5.25.0)
+    - MLUI/MLColorPalette (= 5.25.0)
+    - MLUI/MLContextualMenu (= 5.25.0)
+    - MLUI/MLFonts (= 5.25.0)
+    - MLUI/MLFullscreenModal (= 5.25.0)
+    - MLUI/MLGenericErrorView (= 5.25.0)
+    - MLUI/MLHeader (= 5.25.0)
+    - MLUI/MLHtml (= 5.25.0)
+    - MLUI/MLModal (= 5.25.0)
+    - MLUI/MLRadioButton (= 5.25.0)
+    - MLUI/MLSnackBar (= 5.25.0)
+    - MLUI/MLSpacing (= 5.25.0)
+    - MLUI/MLSpinner (= 5.25.0)
+    - MLUI/MLSwitch (= 5.25.0)
+    - MLUI/MLTextView (= 5.25.0)
+    - MLUI/MLTitledMultiLineTextField (= 5.25.0)
+    - MLUI/MLTitledSingleLineTextField (= 5.25.0)
+    - MLUI/PriceView (= 5.25.0)
+    - MLUI/SnackBarView (= 5.25.0)
+    - MLUI/StyleSheet (= 5.25.0)
+  - MLUI/ActionButton (5.25.0):
+    - MLUI/Core
+  - MLUI/Core (5.25.0):
+    - MLUI/MLFonts
+  - MLUI/Helpers (5.25.0)
+  - MLUI/MLButton (5.25.0):
+    - MLUI/Core
+    - MLUI/MLColorPalette
+    - MLUI/MLFonts
+    - MLUI/MLSpinner
+    - MLUI/StyleSheet
+  - MLUI/MLCheckBox (5.25.0):
+    - MLUI/MLColorPalette
+    - MLUI/StyleSheet
+  - MLUI/MLColorPalette (5.25.0)
+  - MLUI/MLContextualMenu (5.25.0):
+    - MLUI/MLColorPalette
+    - MLUI/MLFonts
+  - MLUI/MLFonts (5.25.0):
+    - JRSwizzle (= 1.0)
+    - MLUI/Helpers
+    - MLUI/StyleSheet
+  - MLUI/MLFullscreenModal (5.25.0):
+    - FXBlurView (~> 1.6)
+    - MLUI/Core
+    - MLUI/MLButton
+    - MLUI/MLColorPalette
+    - MLUI/MLFonts
+    - MLUI/MLHeader
+    - MLUI/StyleSheet
+  - MLUI/MLGenericErrorView (5.25.0):
+    - MLUI/MLButton
+    - MLUI/MLColorPalette
+    - MLUI/MLSpacing
+  - MLUI/MLHeader (5.25.0):
+    - MLUI/MLColorPalette
+    - MLUI/StyleSheet
+  - MLUI/MLHtml (5.25.0):
+    - MLUI/MLFonts
+  - MLUI/MLModal (5.25.0):
+    - FXBlurView (~> 1.6)
+    - MLUI/Core
+    - MLUI/MLButton
+    - MLUI/MLColorPalette
+    - MLUI/MLFonts
+    - MLUI/StyleSheet
+  - MLUI/MLRadioButton (5.25.0):
+    - MLUI/StyleSheet
+  - MLUI/MLSnackBar (5.25.0):
+    - MLUI/Helpers
+    - MLUI/MLButton
+    - MLUI/MLColorPalette
+    - MLUI/MLFonts
+  - MLUI/MLSpacing (5.25.0):
+    - JRSwizzle (= 1.0)
+    - MLUI/MLFonts
+  - MLUI/MLSpinner (5.25.0):
+    - MLUI/MLColorPalette
+    - MLUI/MLFonts
+    - MLUI/StyleSheet
+  - MLUI/MLSwitch (5.25.0):
+    - MLUI/Helpers
+    - MLUI/MLColorPalette
+  - MLUI/MLTextView (5.25.0):
+    - MLUI/MLColorPalette
+    - MLUI/MLFonts
+  - MLUI/MLTitledMultiLineTextField (5.25.0):
+    - MLUI/MLColorPalette
+    - MLUI/MLFonts
+    - MLUI/MLTitledSingleLineTextField
+    - MLUI/StyleSheet
+  - MLUI/MLTitledSingleLineTextField (5.25.0):
+    - MLUI/MLColorPalette
+    - MLUI/MLFonts
+    - MLUI/StyleSheet
+  - MLUI/PriceView (5.25.0):
+    - MLUI/Core
+    - MLUI/MLFonts
+  - MLUI/SnackBarView (5.25.0):
+    - MLUI/Helpers
+    - MLUI/MLFonts
+  - MLUI/StyleSheet (5.25.0)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (1.2.12)
+  - PureLayout (3.1.2)
   - RCTRequired (0.63.4)
   - RCTTypeSafety (0.63.4):
     - FBLazyVector (= 0.63.4)
@@ -247,6 +394,10 @@ PODS:
     - React-cxxreact (= 0.63.4)
     - React-jsi (= 0.63.4)
   - React-jsinspector (0.63.4)
+  - react-native-config (1.4.5):
+    - react-native-config/App (= 1.4.5)
+  - react-native-config/App (1.4.5):
+    - React-Core
   - react-native-document-picker (2.3.0):
     - React
   - react-native-location (2.5.0):
@@ -374,6 +525,7 @@ PODS:
   - Yoga (1.14.0)
 
 DEPENDENCIES:
+  - "blackbox-vision-react-native-mercadopago-px (from `../node_modules/@blackbox-vision/react-native-mercadopago-px`)"
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
@@ -382,6 +534,7 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - lottie-ios (from `../node_modules/lottie-ios`)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
+  - MercadoPagoSDK
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
   - React (from `../node_modules/react-native/`)
@@ -394,6 +547,7 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
+  - react-native-config (from `../node_modules/react-native-config`)
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
   - react-native-location (from `../node_modules/react-native-location`)
   - react-native-mail (from `../node_modules/react-native-mail`)
@@ -425,6 +579,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AndesUI
     - boost-for-react-native
     - Firebase
     - FirebaseCore
@@ -432,12 +587,22 @@ SPEC REPOS:
     - FirebaseInstallations
     - FirebaseInstanceID
     - FirebaseMessaging
+    - FXBlurView
     - GoogleDataTransport
     - GoogleUtilities
+    - JRSwizzle
+    - MercadoPagoSDK
+    - MLBusinessComponents
+    - MLCardDrawer
+    - MLCardForm
+    - MLUI
     - nanopb
     - PromisesObjC
+    - PureLayout
 
 EXTERNAL SOURCES:
+  blackbox-vision-react-native-mercadopago-px:
+    :path: "../node_modules/@blackbox-vision/react-native-mercadopago-px"
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   FBLazyVector:
@@ -472,6 +637,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-config:
+    :path: "../node_modules/react-native-config"
   react-native-document-picker:
     :path: "../node_modules/react-native-document-picker"
   react-native-location:
@@ -530,6 +697,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  AndesUI: 14fc839d31aef32a111f635082b802dd010226fe
+  blackbox-vision-react-native-mercadopago-px: 504d6e9018e19a6e3c818f4a7ae25403db96011c
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: cde416483dac037923206447da6e1454df403714
   FBLazyVector: 3bb422f41b18121b71783a905c10e58606f7dc3e
@@ -541,13 +710,21 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: ad5135045a498d7775903efd39762d2cdfa1be27
   FirebaseMessaging: 4b9b2850fcfcaac2820097ee3703ba6cfff3df84
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
+  FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
   GoogleDataTransport: cd9db2180fcecd8da1b561aea31e3e56cf834aa7
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
+  JRSwizzle: dd5ead5d913a0f29e7f558200165849f006bb1e3
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   lottie-react-native: 4dff8fe8d10ddef9e7880e770080f4a56121397e
+  MercadoPagoSDK: 634fc8a9fe7f99f4d73506659c68cdbb885407fc
+  MLBusinessComponents: 3d25cdd1dd42355969fff0361c2d2247bfadde30
+  MLCardDrawer: 7a49dff578ad5249cbf2b7e28236601647354d11
+  MLCardForm: 917bd5ae0b1828494d078e5622f49206f71177d3
+  MLUI: db4e5bb3aae6884212dcf1213d76b65c5cd26464
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  PureLayout: 4634d0b61e3b5021166e8ec7c18e9e0ca0720c8b
   RCTRequired: 082f10cd3f905d6c124597fd1c14f6f2655ff65e
   RCTTypeSafety: 8c9c544ecbf20337d069e4ae7fd9a377aadf504b
   React: b0a957a2c44da4113b0c4c9853d8387f8e64e615
@@ -558,6 +735,7 @@ SPEC CHECKSUMS:
   React-jsi: a0418934cf48f25b485631deb27c64dc40fb4c31
   React-jsiexecutor: 93bd528844ad21dc07aab1c67cb10abae6df6949
   React-jsinspector: 58aef7155bc9a9683f5b60b35eccea8722a4f53a
+  react-native-config: 6502b1879f97ed5ac570a029961fc35ea606cd14
   react-native-document-picker: 8508bfda34be6c24a2cbecbe515b15108658c183
   react-native-location: 5a40ec1cc6abf2f6d94df979f98ec76c3a415681
   react-native-mail: 021d8ee60e374609f5689ef354dc8e36839a9ba6
@@ -587,6 +765,6 @@ SPEC CHECKSUMS:
   RNVectorIcons: 368d6d8b8301224e5ffb6254191f4f8876c2be0d
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
 
-PODFILE CHECKSUM: 780c540dea2c1b09a82071f3baa3115889909484
+PODFILE CHECKSUM: 44ada92533e383ea7b4edfbc97f1e92b5dc2d5fa
 
 COCOAPODS: 1.10.1

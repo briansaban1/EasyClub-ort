@@ -700,6 +700,11 @@
   "resolved" "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz"
   "version" "0.2.3"
 
+"@blackbox-vision/react-native-mercadopago-px@^0.7.2":
+  "integrity" "sha512-NOULPf0b3c8yws4YI8bXmp1ATkmPErk8sK4s+uMhxemAzNfq7If1y465CE2t3Ng6LKmpJZMw2K8A430piHaksQ=="
+  "resolved" "https://registry.npmjs.org/@blackbox-vision/react-native-mercadopago-px/-/react-native-mercadopago-px-0.7.2.tgz"
+  "version" "0.7.2"
+
 "@cnakazawa/watch@^1.0.3":
   "integrity" "sha512-v9kIhKwjeZThiWrLmj0y17CWoyddASLj9O2yvbZkbvw/N3rWOYy9zkV66ursAoVr0mV15bL8g0c4QZUE6cdDoQ=="
   "resolved" "https://registry.npmjs.org/@cnakazawa/watch/-/watch-1.0.4.tgz"
@@ -6533,6 +6538,11 @@
   "version" "2.1.7"
   dependencies:
     "prop-types" "^15.5.7"
+
+"react-native-config@^1.4.5":
+  "integrity" "sha512-5oiAsoW88SOYDg/0cleJ2vJDqv98FJUbFQYEnH4sdMtEn3AAT3lb7BkTGW8HO/t3Vk9VOruwxUUnO4tzuxzCsw=="
+  "resolved" "https://registry.npmjs.org/react-native-config/-/react-native-config-1.4.5.tgz"
+  "version" "1.4.5"
 
 "react-native-document-picker@^2.3.0":
   "integrity" "sha512-bHMyAOzFl+II0ZdfzobKsZKvTErmXfmQGalpxpGbeN8+/uhfhUcdp4WuIMecZhFyX6rbj3h3XXLdA12hVlGgmw=="

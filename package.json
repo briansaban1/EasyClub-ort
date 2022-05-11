@@ -15,6 +15,7 @@
     "android-debug": "npm run android-bundle && cd android && ./gradlew clean &&./gradlew assembleDebug"
   },
   "dependencies": {
+    "@blackbox-vision/react-native-mercadopago-px": "^0.7.2",
     "@connectedcars/react-native-slide-charts": "^1.0.5",
     "@react-native-community/art": "^1.2.0",
     "@react-native-community/async-storage": "^1.12.1",
@@ -33,6 +34,7 @@
     "react-native": "0.63.4",
     "react-native-chart-kit": "^6.11.0",
     "react-native-check-box": "^2.1.7",
+    "react-native-config": "^1.4.5",
     "react-native-document-picker": "^2.3.0",
     "react-native-dotenv": "^3.3.1",
     "react-native-dropdown-picker": "^5.0.0",
@@ -82,4 +84,4 @@
   "jest": {
     "preset": "react-native"
   }
-} 
+}

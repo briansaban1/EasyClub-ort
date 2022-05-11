@@ -1,17 +1,27 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
+
 platform :ios, '10.0'
+ install! 'cocoapods', :disable_input_output_paths => true
+ plugin 'cocoapods-user-defined-build-types'
+
+enable_user_defined_build_types!
+
 
 target 'Easyclub' do
 
   # Pods for Tododeusa
   pod 'Firebase/Messaging'
+  pod 'MercadoPagoSDK', :build_type => :dynamic_framework
 
   pod 'react-native-document-picker', :path => '../node_modules/react-native-document-picker'
-
+  pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec', :modular_headers => false
+   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec', :modular_headers => false
+   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec', :modular_headers => false
 
   config = use_native_modules!
+  use_modular_headers!
 
   use_react_native!(:path => config["reactNativePath"])
 
