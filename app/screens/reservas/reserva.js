@@ -24,7 +24,12 @@ function ReservaHoraFechaScreen(data) {
     const cantidadporHora = data.route.params.data.cantidad;
     const img = data.route.params.data.imagen;
     const arancel = data.route.params.data.arancelado;
+    const detalle = data.route.params.data.detalle;
 
+    const precioRegular = data.route.params.data.valorRegular;
+    const precioPromocional = data.route.params.data.valorPromocional;
+
+console.log(precioPromocional, precioRegular)
 
     const profile = useSelector(store => store.user.profile)
 
@@ -114,6 +119,17 @@ function ReservaHoraFechaScreen(data) {
     const [disponibilidad, setDisponibilidad] = useState([]);
 
     const [loading, setLoading] = useState(true);
+
+
+    function valor(precioRegular, precioPromocional){
+        if(precioRegular > precioPromocional){
+            precio = precioPromocional
+        }else{
+            precio = precioRegular
+        };
+         return precio;
+    };
+
 
 
     //console.log(dia, 'dia')
@@ -297,7 +313,7 @@ const consultaHora = (hora, dia) => {
                 </View>
                 <View style={{ height: 30 }} />
             </ScrollView>
-            {visibleModal && <ReservaModal onClose={() => {{ setVisibleModal(false); setSelected(false); }}} data={modalData} fecha={date} nombre={nombre} idActividad={idActividad} horadata={datohr(modalData)} imagen={img} modalidad={modalidades} arancel={arancel} />}
+            {visibleModal && <ReservaModal onClose={() => {{ setVisibleModal(false); setSelected(false); }}} data={modalData} fecha={date} nombre={nombre} idActividad={idActividad} horadata={datohr(modalData)} imagen={img} modalidad={modalidades} arancel={arancel} precio={valor(precioPromocional, precioRegular)} detalle={detalle} />}
 
         </>
     );
