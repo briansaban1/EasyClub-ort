@@ -62,7 +62,18 @@ function arancel(arancel){
      };
     };
 
+    
+    function valor(regular, promocion){
+        var precio = <BoldText>{regular}</BoldText>
+        if(regular > promocion){
+            precio = <BoldText>{promocion}</BoldText>
+        }else{
+            precio = <BoldText>{regular}</BoldText>
+        };
+         return precio;
+    };
 
+const esPago = data.arancelado;
 
 
 const valores = data.modalidad
@@ -78,11 +89,18 @@ const valores = data.modalidad
             />
             <View style={styles.mainContainer} >
                 <BoldText>Deporte: {data.nombre}</BoldText>
-                <AppText>Disponibilidad diaria: {data.cantidad}</AppText>
+                <AppText>Disponibilidad: {data.cantidad} lugares</AppText>
                 
+
                 <View>{(arancel(data.arancelado))}</View>
-                
-            </View>
+
+                <View>
+                    {esPago != 0 && <BoldText>Valor: ${(valor(data.valorRegular, data.valorPromocional))}</BoldText>}
+                    
+                    </View>
+               
+               
+                </View>
             
             <ImageButton
                 source={require('@assets/ios-arrow-right.png')}
