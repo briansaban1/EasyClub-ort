@@ -29,6 +29,7 @@ const TrackModal = ({
     idActividad,
     horadata,
     imagen,
+    arancel,
     onClose,
 }) => {
 
@@ -43,6 +44,8 @@ const TrackModal = ({
     const [hora, setHora] = useState(data);
     const [fechas, setFechas] = useState(fecha);
     const fechaArregada = moment(fechas).format('DD/MM/YYYY')
+
+    const [arancelado, setArancelado] = useState(arancel);
 
     const [nombreDeporte, setNombreDeporte] = useState(nombre);
 
@@ -136,7 +139,7 @@ const TrackModal = ({
                         <Space />
 
                         <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
-                            <Button
+                            {arancelado == 0 ? <Button
                                 text={"Aceptar"}
                                 //onPress={}
                                 loading={false}
@@ -145,7 +148,17 @@ const TrackModal = ({
                                     setLoadng(true)
                                     generarReserva(id, actividades, hora, fechaArregada);
                                 }}
-                            />
+                            /> : 
+                            <Button
+                                text={"Abonar"}
+                                //onPress={}
+                                loading={false}
+                                buttonStyle={{ width: '47%', backgroundColor: '#36E26F' }}
+                                onPress={() => {
+                                    setLoadng(true)
+                                    navigate(Screens.RealizarPago, {id: actividades, nombre: nombreDeporte, valor: arancelado, fec: fechaArregada, hr: hora})
+                                }}
+                            />}
                             <Button
                                 text={"Cancelar"}
                                 buttonStyle={{ width: '47%' }}
@@ -160,6 +173,7 @@ const TrackModal = ({
             </View>
 
         </Modal>
+        
     );
 };
 

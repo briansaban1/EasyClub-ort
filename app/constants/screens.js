@@ -31,7 +31,8 @@ const Screens = {
    GenerarReserva:"GenerarReserva",
    ComoLlegar: "ComoLlegar",
    ExitoReserva: "ExitoReserva",
-   Home: "Home"
+   Home: "Home",
+   RealizarPago: "RealizarPago",
 
 };
 

@@ -17,6 +17,10 @@ import Billetera from '../screens/wallet'
 
 import GenerarReserva from '../screens/reservas/reserva' 
 import ExitoReserva from '../screens/reservas/exitoReserva'
+
+import RealizarPago from '../screens/pago'
+
+
 import Home from '../screens/home'
 
 
@@ -62,6 +66,8 @@ function App() {
             <Drawer.Screen name="Contact" component={Contact} />
             <Drawer.Screen name="ContactUs" component={ContactUs} />
             <Drawer.Screen name="Reservas" component={Reservas} />
+            
+            <Drawer.Screen name="RealizarPago" component={RealizarPago} />
 
             <Drawer.Screen name="Home" component={Home} />
 

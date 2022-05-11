@@ -23,6 +23,7 @@ function ReservaHoraFechaScreen(data) {
     const nombre = data.route.params.data.nombre;
     const cantidadporHora = data.route.params.data.cantidad;
     const img = data.route.params.data.imagen;
+    const arancel = data.route.params.data.arancelado;
 
 
     const profile = useSelector(store => store.user.profile)
@@ -32,6 +33,7 @@ function ReservaHoraFechaScreen(data) {
 
     const [visibleModal, setVisibleModal] = useState(false);
     const [modalData, setModalData] = useState({});
+
 
     const [isSelected, setSelected] = useState();
 
@@ -295,7 +297,8 @@ const consultaHora = (hora, dia) => {
                 </View>
                 <View style={{ height: 30 }} />
             </ScrollView>
-            {visibleModal && <ReservaModal onClose={() => {{ setVisibleModal(false); setSelected(false); }}} data={modalData} fecha={date} nombre={nombre} idActividad={idActividad} horadata={datohr(modalData)} imagen={img} modalidad={modalidades} />}
+            {visibleModal && <ReservaModal onClose={() => {{ setVisibleModal(false); setSelected(false); }}} data={modalData} fecha={date} nombre={nombre} idActividad={idActividad} horadata={datohr(modalData)} imagen={img} modalidad={modalidades} arancel={arancel} />}
+
         </>
     );
 }
