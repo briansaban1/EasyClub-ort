@@ -19,7 +19,6 @@
 # Project building guide
 
 
-
 1. Instalar Xcode vía App Store o descargar desde la Web de Apple
    - Instalar XCode con la siguiente linea de comando
      Run ```xcode-select --install``` in terminal
@@ -77,7 +76,7 @@
    - Para correr en iOS, seleccioná el emulador en Xcode y hacé click en el botón "Run"
    - También se puede compilar usando la siguiente linea de comando desde el Visual Studio Code:```react-native run-ios```
    - Para correr en Android, primero se debe abrir el emulador (virtual device)
-    y luego usar la siguiente linea ```react-native run-android``` en la terminal.
+    y luego usar la siguiente linea ```react-native start``` seguido de ```react-native run-android``` en la terminal.
 
 
 
@@ -88,7 +87,10 @@ Importante!
 
 ```sdk.dir = /Users/.../Library/Android/sdk```
 
-
+Test Tarjeta de Crédito MercadoPago
+- Mastercard	5031 7557 3453 0604	- Cod. Seg: 123	- 11/25
+- Visado	4509 9535 6623 3704	- Cod. Seg: 123 -	11/25
+- American Express	3711 803032 57522	- Cod. Seg: 1234 - 11/25
 
 
 
