@@ -17,12 +17,14 @@ import LottieView from 'lottie-react-native';
 import colors from '../constants/colors';
 import { useNavigation } from '@react-navigation/native';
 import Screens from '../constants/screens';
+import MercadoPagoCheckout from '@blackbox-vision/react-native-mercadopago-px';
+import * as MercadoPagoService from '../screens/pago/mercadopago-service';
 
 
 const wservice = new WService();
 
 
-const TrackModal = ({
+const ReservaModal = ({
     data,
     fecha,
     nombre,
@@ -30,6 +32,8 @@ const TrackModal = ({
     horadata,
     imagen,
     arancel,
+    precio,
+    detalles,
     onClose,
 }) => {
 
@@ -51,8 +55,9 @@ const TrackModal = ({
 
     const [img, setImg] = useState(imagen);
 
+    const [precioCobro, setPrecioCobro] = useState(precio);
 
-    console.log(nombreDeporte)
+    const [detalle, setDetalle] = useState(detalles);
 
     const [horadataAMPM, setHoraDataAMPM] = useState(horadata);
 
@@ -84,9 +89,82 @@ const TrackModal = ({
                 setFechas('')
                 setHoraDataAMPM('')
                 setImg('')
+                setPrecioCobro('')
             }
         })
-    }
+    };
+
+
+
+    const [paymentResult, setPaymentResult] = useState(null);
+console.log(parseInt(precioCobro), 'precio')
+
+    const startCheckout = async (id, actividades, hora, fechaArregada, nombreDeporte, precioCobro) => {
+        console.log(id, actividades, hora, fechaArregada, nombreDeporte, precioCobro,'Datos en pago')
+       
+        try {
+            onClose()  
+            const preferenceId = await MercadoPagoService.getPreferenceId('payer@email.com', {
+              title: nombreDeporte,
+              description: nombreDeporte,
+              quantity: 1,
+              currency_id: 'ARS',
+              unit_price: precioCobro,
+            });
+            
+            const payment = await MercadoPagoCheckout.createPayment({
+              publicKey: 'TEST-edd07fe8-f948-4274-8900-c08bc5fc01a5',
+              preferenceId,
+            });
+    
+            console.log(payment)
+    
+            if (payment.status === 'approved'){
+                console.log(payment)
+                setPaymentResult(payment)
+                generarFactura(id, actividades, precioCobro, nombreDeporte)
+                generarReserva(id, actividades, hora, fechaArregada);
+                
+            };
+            if(payment.status === 'rejected'){
+    
+                Alert.alert(
+                    'Pago Rechazado',
+                    'Por favor reintentá el pago. Si el error persiste, por favor contactanos'
+                  );
+                  navigate(Screens.Reservas)
+    
+            };
+             
+    
+          } catch (err) {
+            Alert.alert('Algo salió mal', err.message);
+          }
+        };
+
+
+
+//se carga la factura a la base de datos
+    function generarFactura(id, idActividad, precio, nombreDeporte) {
+console.log(id, idActividad, precio, nombreDeporte, 'factura')
+        wservice.cargarFactura({
+            id,
+            idActividad,
+            precio,
+            nombreDeporte
+           
+        }).then(response => {
+            if (response.status == 1) {
+               
+                console.log(response.status)
+                setLoadng(false)
+                setPrecioCobro('')
+                setDetalle('')
+            }
+        })
+    };
+
+
 
 
 
@@ -123,6 +201,7 @@ const TrackModal = ({
                             />
                         <View style={{marginLeft:15}}>
                             <AppText style={styles.textDeporte}>{nombreDeporte}</AppText>
+                            {arancelado != 0 && <AppText style={styles.textDeporte}>Valor: ${precioCobro}</AppText>}
                             <AppText style={styles.text2}>Fecha: {fechaArregada} </AppText>
                             <AppText style={styles.text2}>Hora: {hora} {horadataAMPM} </AppText>
                         </View>
@@ -156,7 +235,8 @@ const TrackModal = ({
                                 buttonStyle={{ width: '47%', backgroundColor: '#36E26F' }}
                                 onPress={() => {
                                     setLoadng(true)
-                                    navigate(Screens.RealizarPago, {id: actividades, nombre: nombreDeporte, valor: arancelado, fec: fechaArregada, hr: hora})
+                                    startCheckout(id, actividades, hora, fechaArregada, nombreDeporte, parseInt(precioCobro), detalle)
+                                    //navigate(Screens.RealizarPago, {id: actividades, nombre: nombreDeporte, valor: arancelado, fec: fechaArregada, hr: hora})
                                 }}
                             />}
                             <Button
@@ -177,7 +257,7 @@ const TrackModal = ({
     );
 };
 
-export default TrackModal;
+export default ReservaModal;
 
 
 
