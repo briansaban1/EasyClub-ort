@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     },
     mainContainer: {
         width: Dimensions.deviceWidth - 140,
-        marginTop: -10
+        marginTop: 0
     },
     location: {
         width: 35,
@@ -61,8 +61,8 @@ function InvoiceItem({ data, profile, onPress }) {
                 style={styles.location}
             />
             <View style={styles.mainContainer} >
-                <AppText>{data.tipo}</AppText>
-                <BoldText>{data.concepto}</BoldText>
+                
+                <BoldText>PAGO {data.concepto}</BoldText>
                 <AppText>{`Fecha: ${moment(data.fecha).format('DD/MM/YYYY')}`}</AppText>
                 {display &&
                     <View>
@@ -72,7 +72,8 @@ function InvoiceItem({ data, profile, onPress }) {
                             <View style={{marginTop:0, marginLeft:5}} >
                               
                             <Text13>Importe: ${data.valor}</Text13>     
-                            <Text13>Detalle: {data.concepto}</Text13>                            
+                            <Text13>Detalle: {data.concepto}</Text13>    
+                            <Text13>Pago ID: #{data.id_pago}</Text13>                            
                             </View>
                             </View> 
                         </FlexWrapper>

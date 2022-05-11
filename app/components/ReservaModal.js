@@ -122,7 +122,7 @@ console.log(parseInt(precioCobro), 'precio')
             if (payment.status === 'approved'){
                 console.log(payment)
                 setPaymentResult(payment)
-                generarFactura(id, actividades, precioCobro, nombreDeporte)
+                generarFactura(id, actividades, precioCobro, nombreDeporte, payment.id)
                 generarReserva(id, actividades, hora, fechaArregada);
                 
             };
@@ -145,13 +145,14 @@ console.log(parseInt(precioCobro), 'precio')
 
 
 //se carga la factura a la base de datos
-    function generarFactura(id, idActividad, precio, nombreDeporte) {
-console.log(id, idActividad, precio, nombreDeporte, 'factura')
+    function generarFactura(id, idActividad, precio, nombreDeporte, idPago) {
+console.log(id, idActividad, precio, nombreDeporte, idPago, 'factura')
         wservice.cargarFactura({
             id,
             idActividad,
             precio,
-            nombreDeporte
+            nombreDeporte,
+            idPago
            
         }).then(response => {
             if (response.status == 1) {
