@@ -181,6 +181,14 @@ WService.prototype.cargarReserva = function (data) {
 
 };
 
+WService.prototype.cargarFactura = function (data) {
+  console.log(data, 'flag webservice')
+  return NetworkHelper.requestPost(this.makeUrl('generarFactura.php'), {
+    flag: 'factura',
+    ...data
+  });
+
+};
 
 
 
