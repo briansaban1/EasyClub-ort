@@ -83,7 +83,8 @@ export const logoutUser = () => {
 };
 
 
-export const mytoken = (email) => {
+export const mytoken = (id) => {
+  //console.log(id, 'tokeeennn')
 return async (dispatch) => {
   try{
   let fcmToken = await AsyncStorage.getItem('fcmToken');
@@ -92,9 +93,9 @@ return async (dispatch) => {
     if (fcmToken) {
       await AsyncStorage.setItem('fcmToken', fcmToken);
     }
-    userTokenRegister(email, fcmToken)
+    userTokenRegister(id, fcmToken)
   } else {
-    userTokenRegister(email, fcmToken)
+    userTokenRegister(id, fcmToken)
   } 
 } catch (error){
   dispatch({ type: ActionTypes.GET_ACTIVIDADES_FAILED });
@@ -103,27 +104,28 @@ return async (dispatch) => {
 };
 };
 
- userTokenRegister = (email, token) => {
-  
-  fetch('https://easyclub.000webhostapp.com/app/userTokenRegister.php', {
+ userTokenRegister = (id, token) => {
+  //console.log(token, 'tokeeen')
+  fetch('https://easyclubort.000webhostapp.com/app/userTokenRegister.php', {
     method: 'POST',
     header: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       flag: 'userTokenRegister',
-      email: email,
-      token:token
+      id: id,
+      token: token
 
     })
   })
-    .then((response) => response.json())
+    .then((response) => response.json(
+    ))
     .then((responseJson) => {       
-
     })
     .catch((error) => {
      
     });
+   
 };
 
 
