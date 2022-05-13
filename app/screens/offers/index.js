@@ -39,7 +39,7 @@ console.log(promociones, 'flag')
                     
                 }
                 {promociones.map(i => <SubmissionPromociones data={i} profile={profile} onPress={(data) => {
-                   navigate(Screens.Pago, {data})
+                   navigate(Screens.Reservas, {data})
                    
                 }} />)}
                 <View style={{height:30}} />
