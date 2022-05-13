@@ -23,7 +23,7 @@ function HistoryScreen() {
     function handleSearch() {
         if (searchValue) {
             const filteredData = _submissions1.filter(data => {
-                const searchData = data && data.color.toUpperCase()
+                const searchData = data && data.nombre.toUpperCase()
                 const textData = searchValue.toUpperCase()
                 return searchData.indexOf(textData) > -1
             })
