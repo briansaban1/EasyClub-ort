@@ -61,6 +61,7 @@ function MenuButton({ label, source, screen }) {
 
 function SideMenu() {
     const profile = useSelector(store => store.user.profile);
+    console.log(profile.id_TipoUsuario)
     return (
         <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
             <SafeAreaView />
@@ -76,7 +77,8 @@ function SideMenu() {
                 <InfoButton label={'Contacto'} source={require('@assets/phone.png')} screen={Screens.Contact} />
                 <InfoButton label={'Ayuda'} source={require('@assets/info.png')} screen={"Funcionamiento"} />
             </View>
-            <Heading2 style={[styles.subLabel, { marginBottom: 10, marginTop: 5 }]}>{"Mi Cuenta"}</Heading2>
+            {profile.id_TipoUsuario==2 ?<View>
+                <Heading2 style={[styles.subLabel, { marginBottom: 10, marginTop: 5 }]}>{"Mi Cuenta"}</Heading2>
             <Divider />
             
            
@@ -118,7 +120,15 @@ function SideMenu() {
                 source={require('@assets/star.png')}
                 screen={"Puntos"}
             />
+            <Divider /></View> : <View><Heading2 style={[styles.subLabel, { marginBottom: 10, marginTop: 20 }]}>{"Admin "}</Heading2>
             <Divider />
+            <MenuButton
+                label={"Crear Actividad"}
+                source={require('@assets/operation.png')}
+                screen={Screens.CreateActivity}
+            />
+            <Divider />
+            </View>}
             <Space height={20} />
             <Divider />
             <MenuButton
