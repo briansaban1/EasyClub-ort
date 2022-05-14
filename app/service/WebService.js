@@ -205,6 +205,13 @@ WService.prototype.sendChangeEmail = function (data) {
   return NetworkHelper.requestPost(this.makeUrl('sendChangeEmail.php'), data);
 };
 
+WService.prototype.createActivity = function(data) {
+  console.log(data, 'createactivity')
+  return NetworkHelper.requestPost(this.makeUrl('createActivity.php'), {
+    flag: 'createactivity',
+    ...data
+  });
+};
 
 WService.prototype.setDelete = function (id) {
   return NetworkHelper.requestPost(this.makeUrl('deleteNotification.php'), {

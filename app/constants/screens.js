@@ -33,7 +33,7 @@ const Screens = {
    ExitoReserva: "ExitoReserva",
    Home: "Home",
    RealizarPago: "RealizarPago",
-
+   CreateActivity: "CreateActivity",
 };
 
 export default Screens;
