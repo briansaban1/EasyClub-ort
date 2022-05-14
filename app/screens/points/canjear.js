@@ -51,7 +51,9 @@ function ContactScreen() {
 
                         <View style={styles.data_container}>
 
-                            <Text style={styles.profile_text}>Proximamente...</Text>
+                            <Text style={styles.profile_text}>
+                            ¡Muy pronto vas a poder disfrutar de nuevos beneficios!
+                            </Text>
 
 
                         </View>

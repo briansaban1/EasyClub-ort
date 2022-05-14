@@ -32,7 +32,8 @@ function FuncionamientoServicioScreen() {
       
         <Text style={styles.text16}>¿Cómo funciona el sistema?</Text>
         <Text style={styles.text15}>
-                  Utilizando nuestro servicio podés ....
+                  ¡Es muy simple! Solamente debés dirigirte a la sección reservas y seleccionar la actividad que desees realizar en el día y hora de tu preferencia.
+                  
                   </Text>
       </View>
       </View>
@@ -42,16 +43,11 @@ function FuncionamientoServicioScreen() {
       <View style={styles.sub_bg}>
       
         <Text style={styles.text16}>¿Qué actividades se pueden reservar?</Text>
-        <View style={{flexDirection: "row", width:'100%', marginLeft: 5, marginBottom: 7, marginTop: 5,}}>
-        <Text style={styles.text171}><Text style={styles.text161}>Tenis </Text>
-                  </Text>
-                  </View>
-
-        <View style={{flexDirection: "row", width:'100%', marginLeft: 5, marginBottom: 7, marginTop: 5,}}>
-        <Text style={styles.text171}><Text style={styles.text161}>Paddle...</Text>
-                  </Text>
-                  </View>  
-
+        <Text style={styles.text15}>
+       En EasyClub contamos con canchas de tenis, paddle y fútbol. 
+       Además, contamos con bicicletes para spinning, un gimnasio con las últimas máquinas y una piscina climatizada para que puedas disfrutar de la actividad todo el año.
+        </Text>
+      
       </View>
       </View>
       
@@ -60,7 +56,8 @@ function FuncionamientoServicioScreen() {
       
         <Text style={styles.text16}>¿Cuales son los costos?</Text>
         <Text style={styles.text15}>
-        El costo del servicio de envíos varía....
+        Los valores del servicio varian según el tipo de actividad que desees realizar.
+        Generalmente, muchas actividades tienen fabulosos descuentos promocionales para que puedas aprovechar al máximo tu estadía en el centro deportivo.
                   </Text>
       </View>
       </View>

@@ -283,10 +283,11 @@ export const updateRegisterProfile = (profile) => {
 };
 
 export const getUserMenu = (id_usuario) => {
+  console.log(id_usuario)
   return async (dispatch) => {
     const profileData = await AsyncStorage.getItem('profile');
     const profile = JSON.parse(profileData)
-    const resumen = await wservice.getUserMenu(id_usuario)
+    const resumen = await wservice.getUserMenu(profile.id_usuario)
     const payload = { profile, resumen }
     console.log(payload);
     dispatch({ type: ActionTypes.LOGIN_SUCCESS, payload });

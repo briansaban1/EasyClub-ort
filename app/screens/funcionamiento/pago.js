@@ -31,15 +31,12 @@ function PagosScreen() {
       <View style={styles.sub_bg}>
       
                  <Text style={styles.text16}>
-                    Las formas de pago son las siguientes: 
+                    Las opciones de pago disponibles son las siguientes: 
                     </Text>
                     <Text style={styles.text15}>
-                    - MercadoPago.                    
+                    - MercadoPago.               
                     </Text>
 
-                   <Text style={styles.text15}>
-					- ....
-                   </Text>
       </View>
       </View>
 

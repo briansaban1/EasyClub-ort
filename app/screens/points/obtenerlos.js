@@ -42,11 +42,11 @@ function ObtenerPuntosScreen() {
                         <View style={{width: '85%', marginBottom: 25 }}>
                            
                         <View style={{ marginBottom: 20 }}>
-                                    <ErrorPuntos />
+                                  
                                 </View>
 
                             <Text style={styles.text15}>
-                                Próximamente....
+                                ¡Muy pronto vas a poder disfrutar de nuevos beneficios!
                             </Text>
 
 
