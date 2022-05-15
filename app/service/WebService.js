@@ -228,6 +228,11 @@ WService.prototype.cancelarReserva = function (id) {
   });
 };
 
+WService.prototype.getUsuarios = function () {
+  return NetworkHelper.requestPost(this.makeUrl('usuarios.php'), {
+    flag: 'usuarios'
+  });
+};
 
 
 export default WService;

@@ -9,7 +9,8 @@ const INITIAL_STATE = {
     products: [],
     submissions: [], //listado de reservas
     submissions1: [], //historial de reservas
-    activiades: [],
+    actividades: [],
+    usuarios: [],
     horarios: [],
     grafico: [],
     descuento: [],
@@ -19,6 +20,7 @@ const INITIAL_STATE = {
     facturas: [],
     products: [],
     loadingSubmissions: false,
+    loadingUsuarios: false,
     registerProfile: {
         flag: 'signup',
         nombre: null,
@@ -94,7 +96,7 @@ export const UserReducer = (
                     submissions1: action.payload
                 };
 
-                case ActionTypes.GET_ACTIVIDADES_START:
+            case ActionTypes.GET_ACTIVIDADES_START:
                 return {
                     ...state,
                     loadingActividades: true,
@@ -109,6 +111,23 @@ export const UserReducer = (
                     ...state,
                     loadingActividades: false,
                     actividades: action.payload
+                };
+
+            case ActionTypes.GET_USUARIOS_START:
+                return {
+                    ...state,
+                    loadingUsuarios: true,
+                };
+            case ActionTypes.GET_USUARIOS_FAILED:
+                return {
+                    ...state,
+                    loadingUsuarios: false,
+                };
+            case ActionTypes.GET_USUARIOS_SUCCESS:
+                return {
+                    ...state,
+                    loadingUsuarios: false,
+                    usuarios: action.payload
                 };
 
 

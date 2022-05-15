@@ -77,57 +77,66 @@ function SideMenu() {
                 <InfoButton label={'Contacto'} source={require('@assets/phone.png')} screen={Screens.Contact} />
                 <InfoButton label={'Ayuda'} source={require('@assets/info.png')} screen={"Funcionamiento"} />
             </View>
-            {profile.id_TipoUsuario==2 ?<View>
+            {profile.id_TipoUsuario==2 ?
+            <View>
                 <Heading2 style={[styles.subLabel, { marginBottom: 10, marginTop: 5 }]}>{"Mi Cuenta"}</Heading2>
-            <Divider />
-            
-           
-            <MenuButton
-                label={"Mi Billetera"}
-                source={require('@assets/wallet.png')}
-                screen={Screens.Billetera}
-            />
-            <Divider />
-            <MenuButton
-                label={"Reservar Actividades"}
-                source={require('@assets/alert.png')}
-                screen={Screens.Reservas}
-            />
-            <Divider />
-            <MenuButton
-                label={"Facturas"}
-                source={require('@assets/shipping-invoice.png')}
-                screen={Screens.Facturas}
-            />
-            <Divider />
-            <MenuButton
-                label={"¿Cómo llegar?"}
-                source={require('@assets/addresses.png')}
-                screen={Screens.ComoLlegar}
-            />
-            <Divider />
+                <Divider />
+                <MenuButton
+                    label={"Mi Billetera"}
+                    source={require('@assets/wallet.png')}
+                    screen={Screens.Billetera}
+                />
+                <Divider />
+                <MenuButton
+                    label={"Reservar Actividades"}
+                    source={require('@assets/alert.png')}
+                    screen={Screens.Reservas}
+                />
+                <Divider />
+                <MenuButton
+                    label={"Facturas"}
+                    source={require('@assets/shipping-invoice.png')}
+                    screen={Screens.Facturas}
+                />
+                <Divider />
+                <MenuButton
+                    label={"¿Cómo llegar?"}
+                    source={require('@assets/addresses.png')}
+                    screen={Screens.ComoLlegar}
+                />
+                <Divider />
 
-            <Heading2 style={[styles.subLabel, { marginBottom: 10, marginTop: 20 }]}>{"Información "}</Heading2>
-            <Divider />
-            <MenuButton
-                label={"Funcionamiento del Centro"}
-                source={require('@assets/operation.png')}
-                screen={"Funcionamiento"}
-            />
-            <Divider />
-            <MenuButton
-                label={"Membresías y Puntos"}
-                source={require('@assets/star.png')}
-                screen={"Puntos"}
-            />
-            <Divider /></View> : <View><Heading2 style={[styles.subLabel, { marginBottom: 10, marginTop: 20 }]}>{"Admin "}</Heading2>
-            <Divider />
-            <MenuButton
-                label={"Crear Actividad"}
-                source={require('@assets/operation.png')}
-                screen={Screens.CreateActivity}
-            />
-            <Divider />
+                <Heading2 style={[styles.subLabel, { marginBottom: 10, marginTop: 20 }]}>{"Información "}</Heading2>
+                <Divider />
+                <MenuButton
+                    label={"Funcionamiento del Centro"}
+                    source={require('@assets/operation.png')}
+                    screen={"Funcionamiento"}
+                />
+                <Divider />
+                <MenuButton
+                    label={"Membresías y Puntos"}
+                    source={require('@assets/star.png')}
+                    screen={"Puntos"}
+                />
+                <Divider />
+            </View> 
+            : 
+            <View>
+                <Heading2 style={[styles.subLabel, { marginBottom: 10, marginTop: 20 }]}>{"Admin "}</Heading2>
+                <Divider />  
+                <MenuButton
+                    label={"Actividades"}
+                    source={require('@assets/activity.png')}
+                    screen={Screens.CreateActivity}
+                />
+                <Divider />  
+                <MenuButton
+                    label={"Promociones"}
+                    source={require('@assets/offers.png')}
+                    screen={Screens.CreateActivity}
+                />
+                <Divider />          
             </View>}
             <Space height={20} />
             <Divider />

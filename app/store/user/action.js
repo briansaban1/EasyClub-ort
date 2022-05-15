@@ -299,3 +299,16 @@ export const cancelarReserva = (id) => {
     dispatch({ type: ActionTypes.PUT_CANCELAR_RESERVA, payload: id });
   };
 };
+
+export const getUsuarios = () => {
+  return async (dispatch) => {
+    dispatch({ type: ActionTypes.GET_USUARIOS_START });
+      const data = await wservice.getUsuarios()
+
+      if (data.status == 1){
+      dispatch({ type: ActionTypes.GET_USUARIOS_SUCCESS, payload: data.data });
+       } 
+      dispatch({ type: ActionTypes.GET_USUARIOS_FAILED });
+    
+  };
+};
