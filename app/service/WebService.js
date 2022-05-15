@@ -136,7 +136,7 @@ WService.prototype.getSessions = function (id_usuario) {
   });
 };
 
-WService.prototype.getSessions1 = function (id_usuario) {
+WService.prototype.getNotifications = function (id_usuario) {
   return NetworkHelper.requestPost(this.makeUrl('notificaciones.php'), {
     flag: 'notificaciones',
     id_usuario,
