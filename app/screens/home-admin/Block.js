@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
-import { FlexBetweenWrapper, AppText } from '../../components/styled-components';
-import styles from './styles';
+import { View } from 'react-native';
+import { AppText } from '../../components/styled-components';
 import { Dimensions, Colors } from '../../constants';
 
 function Block({ label, value }) {

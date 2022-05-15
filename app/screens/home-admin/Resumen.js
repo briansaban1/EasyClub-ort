@@ -1,47 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import moment from 'moment';
+import React, { useState } from 'react';
 
-import { Alert, Text, View, Dimensions } from 'react-native';
+import { View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { FlexBetweenWrapper, FlexBetweenWrapper1, Heading2, Space, Loader } from '../../components/styled-components';
 import { Colors } from '../../constants';
 import { safeGetOr } from '../../utils/fp';
 import BottomBlock from './BottomBlock';
 import BottomBlockLarge from './BottomBlockLarge';
-import { useNavigation } from '@react-navigation/native';
-import { getGrafico } from '../../store/user/action';
-
-import WService from '../../service/WebService';
-
-import {
-    LineChart,
-    BarChart,
-    PieChart,
-    ProgressChart,
-    ContributionGraph,
-    StackedBarChart
-  } from "react-native-chart-kit";
-
-  const wservice = new WService();
 
 
 function ResumenComponent() {
-    const {navigate} = useNavigation();
-    const dispatch = useDispatch();
   
     const resumen = useSelector(store => store.user.resumen);
-    const grafico = useSelector(store => store.user.grafico);
 
     const [selectedBottom, setSelectedBottom] = useState(0);
-    
 
-    const profile = useSelector(store => store.user.profile)
-    const [data, setData] = useState(grafico);
-    const [loading, setLoading] = useState(true);
-
-
-
-    console.log(data);
 
     return (
         <View >
@@ -83,7 +56,7 @@ function ResumenComponent() {
                     label={'No Realizado'}
                     total={safeGetOr(1, 'cancelado')(resumen)}
                     count={safeGetOr(0, 'cancelado')(resumen)}
-                    description={'Actividades que has\ncancelado'}
+                    description={'Actividades \ncanceladas'}
                 />
                
             </FlexBetweenWrapper1>

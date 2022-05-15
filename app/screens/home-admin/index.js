@@ -8,28 +8,22 @@ import Images from '../../constants/images';
 import { safeGetOr } from '../../utils/fp';
 import Block from './Block';
 import ResumenComponent from './Resumen';
-import Submissions from './Submissions';
+import Reportes from './Reportes';
 
 import styles from './styles';
 import Tab from './Tab';
 import { 
-        getPromociones, 
-        getSubmissions, 
-        getSubmissions1, 
+        getPromociones,
         getActividades,
         getUsuarios,
-        getUserMenu, 
+        getAdminMenu, 
         mytoken 
 } from '../../store/user/action';
 
 
-import Screens from '../../constants/screens';
-
-
-
 function HomeScreen() {
   const dispatch = useDispatch();
-  const { toggleDrawer, navigate } = useNavigation();
+  const { toggleDrawer } = useNavigation();
   const profile = useSelector(store => store.user.profile)
   const actividades = useSelector(store => store.user.actividades)
   const promociones = useSelector(store => store.user.promociones)
@@ -43,8 +37,6 @@ function HomeScreen() {
 
 
   useEffect(() => {
-    dispatch(getSubmissions(profile.id_usuario));
-    dispatch(getSubmissions1(profile.id_usuario));
     dispatch(getActividades());
     dispatch(getPromociones());
     dispatch(getUsuarios());
@@ -63,12 +55,10 @@ function HomeScreen() {
       setRefreshing(true);
       wait(1000).then(() => setRefreshing(false));
 
-      dispatch(getSubmissions(profile.id_usuario));
-      dispatch(getSubmissions1(profile.id_usuario));
       dispatch(getActividades());
       dispatch(getPromociones());
       dispatch(getUsuarios());
-      dispatch(getUserMenu(profile.id_usuario));
+      dispatch(getAdminMenu());
 
     }, []);
     
@@ -105,7 +95,7 @@ function HomeScreen() {
           <View style={{marginTop:Platform.OS == 'android' ? -10 : 20}}></View>
           <FlexBetweenWrapper marginTop={Platform.OS == 'android' ? 0 : 20}>
             <Tab active={selected == 0} label={'Estadísticas'} source={Images.Activity} onPress={() => { setSelected(0) }} left />
-            <Tab active={selected == 1} label={'Gráficos'} source={Images.Shipment} onPress={() => { setSelected(1) }} right />
+            <Tab active={selected == 1} label={'Reportes'} source={Images.Shipment} onPress={() => { setSelected(1) }} right />
           </FlexBetweenWrapper>
           
         </View>
@@ -113,7 +103,7 @@ function HomeScreen() {
         {selected === 0 && <ResumenComponent />}
         {selected === 1 && (
           <SafeAreaView>
-          <Submissions
+          <Reportes
             onSelectData={(data) => {
               setModalData(data);
               setVisibleModal(true);
