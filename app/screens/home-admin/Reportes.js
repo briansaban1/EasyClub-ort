@@ -21,8 +21,8 @@ function Reportes() {
             <ReportBlockLarge
                     active={true}
                     //onPress={() => { setSelectedBottom(4) }}
-                    label={'Totales'}
-                    description={'Actividades Realizadas en el año'}
+                    label={'Nuevos Usuarios'}
+                    description={'Cantidad de nuevos usuarios en este mes'}
                 />
                
             </FlexBetweenWrapper>
