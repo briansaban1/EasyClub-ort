@@ -105,14 +105,10 @@ function SubmissionItem({ data, profile, onPress }) {
                         </FlexWrapper>
                         <BoldText style={{marginTop:10}}>{`ID ${data.id}`}</BoldText>
                         {permisoModifCancel(data.estado) != false && <View style={{flexDirection:'row', justifyContent:'space-between', width:'90%', paddingLeft:10, paddingRight:10}}>
-                        <Button
-                        text={"Modificar"}
-                        buttonStyle={{width:'43%', backgroundColor: Colors.blue300, position: 'relative',  height: 40, }}
-                        onPress={() => {
-                        }}/>
+                        
                         <Button
                         text={"Cancelar"}
-                        buttonStyle={{width:'43%', backgroundColor: Colors.darkblue, position: 'relative', height: 40 }}
+                        buttonStyle={{width:'90%', backgroundColor: Colors.blue300, position: 'relative', height: 40 }}
                         onPress={() => {
                             setVisibleModal(true);
                         }}/>
