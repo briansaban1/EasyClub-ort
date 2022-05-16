@@ -120,12 +120,18 @@ function SideMenu() {
                 source={require('@assets/star.png')}
                 screen={"Puntos"}
             />
-            <Divider /></View> : <View><Heading2 style={[styles.subLabel, { marginBottom: 10, marginTop: 20 }]}>{"Admin "}</Heading2>
+            <Divider /></View> : <View><Heading2 style={[styles.subLabel, { marginBottom: 10, marginTop: 20 }]}>{"Panel de administrador"}</Heading2>
             <Divider />
             <MenuButton
                 label={"Crear Actividad"}
-                source={require('@assets/operation.png')}
+                source={require('@assets/arrow-right.png')}
                 screen={Screens.CreateActivity}
+            />
+            <Divider />
+            <MenuButton
+                label={"Borrar Actividad"}
+                source={require('@assets/close.png')}
+                screen={Screens.DeleteActivity}
             />
             <Divider />
             </View>}

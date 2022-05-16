@@ -34,6 +34,7 @@ const Screens = {
    Home: "Home",
    RealizarPago: "RealizarPago",
    CreateActivity: "CreateActivity",
+   DeleteActivity: "DeleteActivity",
 };
 
 export default Screens;

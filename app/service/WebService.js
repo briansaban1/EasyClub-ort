@@ -199,8 +199,6 @@ WService.prototype.contactus = function (data) {
   });
 };
 
-
-
 WService.prototype.sendChangeEmail = function (data) {
   return NetworkHelper.requestPost(this.makeUrl('sendChangeEmail.php'), data);
 };
@@ -228,6 +226,12 @@ WService.prototype.cancelarReserva = function (id) {
   });
 };
 
-
+WService.prototype.deleteActivity = function(data) {
+  console.log(data, 'deleteActivity')
+  return NetworkHelper.requestPost(this.makeUrl('deleteActivity.php'), {
+    flag: 'deleteActivity',
+    ...data
+  });
+};
 
 export default WService;

@@ -6,8 +6,8 @@ export { default as ImageButton } from './ImageButton'
 export { default as SubmissionItem } from './SubmissionItem'
 export { default as SubmissionReserva } from './SubmissionReserva' 
 export { default as SubmissionWallet } from './SubmissionWallet' 
-export { default as SubmissionPromociones } from './SubmissionPromociones' 
-
+export { default as SubmissionPromociones } from './SubmissionPromociones'
+export { default as SubmissionActividades } from './SubmissionActividades'
 
 
 export { default as SearchInvoice } from './SearchInvoice'
