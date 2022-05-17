@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { Image, StyleSheet, View, LayoutAnimation, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Image, StyleSheet, View, Modal, Text, ScrollView, StatusBar } from 'react-native';
 import styled from 'styled-components';
 import { Colors, Dimensions } from '../constants';
 import { AppText, FlexWrapper } from './styled-components';
 import ImageButton from './ImageButton';
+import LottieView from 'lottie-react-native';
 import WService from '../service/WebService';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux';
 import { getActividades } from '../store/user/action';
 
@@ -19,11 +21,20 @@ const Text13 = styled(AppText)`
 const wservice = new WService();
 
 function SubmissionActividades({ data, profile, onPress }) {
+
     const [display, setDisplay] = useState(false)
 
 const [modalVisible, setModalVisible] = useState(false);
 
+const [idActividad, setIdActividad] = useState(data.id);
+
+console.log(idActividad, 'id')
+
 const dispatch = useDispatch();
+
+useEffect(() => {
+    dispatch(getActividades());
+  }, [])
 
 
 function delAct(data) {
@@ -31,8 +42,12 @@ function delAct(data) {
     wservice.deleteActivity({
         id: data.id
     }).then(res => {
-        setModalVisible(true);
+   
         dispatch(getActividades());
+        console.log(res)
+        setModalVisible(true);
+
+
     }).catch(e => {
         Alert.alert(
             '¡Atención!',
@@ -42,10 +57,11 @@ function delAct(data) {
             ]
         );
         setModalVisible(false);
-        dispatch(getActividades());
     })
-}
+};
+
     return (
+        <ScrollView>
         <View style={styles.container}>
             <Image
                 source={{
@@ -62,10 +78,56 @@ function delAct(data) {
             
             <ImageButton
                 source={require('@assets/trash.png')}
-                imageStyle={{width: 22, height: 22, resizeMode: 'contain'}}
+                imageStyle={{width: 21, height: 21, resizeMode: 'contain'}}
                 onPress={()=>{delAct(data)}}
             />
+
+<Modal
+                    animationType="slide"
+                    transparent={true}
+                    style={styles.modal}
+                    visible={modalVisible}
+                    >
+                    <StatusBar backgroundColor="#00000040"  barStyle="light-content"/>
+
+                    <View style={styles.modal}>
+                        <View style={styles.modalContainer}>
+                            <AppText style={styles.title1}>¡Actividad Eliminada!</AppText>
+                            <View style={styles.hr} />
+
+                          <Text style={{color: Colors.blue400, fontSize: Dimensions.px15, marginTop:12, 
+                                width: '85%', alignItems: 'center', textAlign: 'center',
+                                justifyContent: 'center',}}>
+                                     
+                            </Text>
+                            <View style={styles.flexContainer1}>
+                            <LottieView source={require('@assets/check.json')}
+                    autoPlay={true}
+                    loop={false}
+                    resizeMode="cover" 
+                    style={{ width: 110, height: 110, marginVertical: 5, alignSelf: 'center' }}
+                    />
+
+
+                            </View>
+                            
+
+                            <TouchableOpacity style={styles.button1}
+                                onPress={() => {setModalVisible(!modalVisible)}}
+                                >
+
+                                <AppText style={styles.text1}>Aceptar</AppText>
+                            </TouchableOpacity>
+
+                           
+
+
+                        </View>
+                    </View>
+                </Modal>
         </View>
+                </ScrollView>
+
     )
 }
 
@@ -102,6 +164,57 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         margin: 10
     },
-
-
-})
+modal: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#00000040',
+   
+},
+modalContainer: {
+  width: '70%',
+  minHeight: 270,
+  backgroundColor: 'white',
+  borderRadius: 10,
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+  title1: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: Colors.blue400,
+    marginBottom: 10,
+    
+    marginTop: 20,
+},
+hr: {
+  width: '85%',
+  height: 0.6,
+  backgroundColor: '#e3e3e3'
+},
+flexContainer1: {
+  alignItems: 'center',
+  textAlign: 'center',
+  justifyContent: 'center',
+  marginTop: 0,
+  marginBottom: 13,
+  width: '85%'
+},
+button1: {
+  height: 45,
+  borderRadius: 10,
+  width: Dimensions.deviceWidth - 200,
+  alignSelf: 'center',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: Colors.blue,
+  marginTop: 10,
+  marginBottom: 20
+},
+text1: {
+  color: Colors.white,
+  fontSize: Dimensions.px16,
+  fontWeight: 'bold'
+}
+});
