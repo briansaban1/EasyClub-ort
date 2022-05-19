@@ -98,11 +98,12 @@ const location = {
                 />
                 <View style={{alignItems:'center'}}>
                 <MapView style={{width:'100%', height:'300%', justifyContent:'center', alignItems:'center'}}
+                    zoomEnabled={true}
                     initialRegion={{
                     latitude: origin.latitude,
                     longitude: origin.longitude,
-                    latitudeDelta: 0.09,
-                    longitudeDelta: 0.04
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
                 }}>
                     <Marker 
                     coordinate={origin}
@@ -121,7 +122,7 @@ const location = {
                     <MapViewDirections
                     origin={origin}
                     destination={destination}
-                    apikey={GOOGLE_MAPS_KEY} //hay que ajustar la api 
+                    apikey={'AIzaSyA1PAMaduvc4CHUz8IwM8ZkJ9Z2ynuOL64'} //hay que ajustar la api 
                     strokeColor="blue"
                     strokeWidth={4}
                     />
