@@ -82,12 +82,7 @@ function SideMenu() {
             <Divider />
             
            
-            <MenuButton
-                label={"Mi Billetera"}
-                source={require('@assets/wallet.png')}
-                screen={Screens.Billetera}
-            />
-            <Divider />
+            
             <MenuButton
                 label={"Reservar Actividades"}
                 source={require('@assets/alert.png')}
@@ -101,8 +96,14 @@ function SideMenu() {
             />
             <Divider />
             <MenuButton
+                label={"Mi Billetera"}
+                source={require('@assets/wallet.png')}
+                screen={Screens.Billetera}
+            />
+            <Divider />
+            <MenuButton
                 label={"¿Cómo llegar?"}
-                source={require('@assets/addresses.png')}
+                source={require('@assets/maps.png')}
                 screen={Screens.ComoLlegar}
             />
             <Divider />
