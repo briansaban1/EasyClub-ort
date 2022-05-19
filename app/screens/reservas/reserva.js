@@ -86,7 +86,6 @@ console.log(precioPromocional, precioRegular)
         if (isSelected && date) {
             fadeIn(), slide();
         };
-
     }), [];
 
 
@@ -147,12 +146,13 @@ console.log(precioPromocional, precioRegular)
 
                     hora: item,
                 })));
-
+                setNoHayMas(response.data.pop())
                 //console.log(horarios)
             }
         })
     }, [idActividad])
 
+    const [noHayMas , setNoHayMas] = useState('')
 
     useEffect(() => {
         wservice.getDisponibilidad(idActividad, dia).then(response => {
@@ -169,7 +169,7 @@ console.log(precioPromocional, precioRegular)
                     id_act: item.id_actividad,
                     fechaReserva: item.fechaReserva
                 })));
-
+                console.log(response.data, 'aca')
                 //console.log(disponibilidad, 'flag disp')
             }
         })
@@ -181,9 +181,10 @@ console.log(precioPromocional, precioRegular)
     //se verifica la disponibilidad que hay por dia por hora segun la actividad
     const dispo = (horadata, cantidadporHora, idActividad, dia) => {
         var cant = cantidadporHora;
+      
         for (var i = 0; i < disponibilidad.length; i++) {
             if (horadata == disponibilidad[i].horaOcupada && idActividad == disponibilidad[i].id_act && dia == disponibilidad[i].fechaReserva) {
-
+               
                 cant = cant - (disponibilidad[i].disponible)
                 if (cant <= 0) {
                     cant = '0'
@@ -193,8 +194,22 @@ console.log(precioPromocional, precioRegular)
                 cant;
             };
         };
+    
         return cant
     };
+
+
+const noHayMasDisponible = () =>{
+var noHayy = false
+if((noHayMas < horaActual) && (moment(date).format('YYYY-MM-DD') == diaActual)){
+    noHayy = true
+}else{
+    noHayy = false
+};
+return noHayy
+
+};
+
 
 const horaActual = moment().utcOffset('-03:00').format('HH:MM');
 const diaActual = moment().utcOffset('-03:00').format('YYYY-MM-DD');
@@ -210,7 +225,6 @@ const consultaHora = (hora, dia) => {
         consulta = true
         console.log(consulta, hora, horaActual, dia, diaActual)
       };
-      console.log(consulta)
       return consulta
     };
 
@@ -229,7 +243,7 @@ const consultaHora = (hora, dia) => {
 
                 <View style={{ alignItems: 'center', }}>
                     <TouchableOpacity style={styles.buttonCalendar} onPress={showDatePicker}>
-                        <Text style={styles.textDate}>{date == "" ? "Seleccioná una fecha" : moment(new Date(date)).locale('es-AR').utc().format('dddd, DD MMM YYYY')}</Text>
+                        <Text style={styles.textDate}>{date == "" ? "Seleccioná una fecha" : moment(new Date(date)).utcOffset('-03:00').format('dddd, DD MMM YYYY')}</Text>
                         <Text style={styles.textDate}>{inicio}</Text>
 
                     </TouchableOpacity>
@@ -262,17 +276,12 @@ const consultaHora = (hora, dia) => {
 
                     <View style={{ height: '50%', width: '100%', alignItems: 'center' }}>
 
-                        {horarios.length == 0 &&
-                            <Image
-                                source={Images.submissionEmpty}
-                                style={AppStyles.submissionEmpty}
-                            />
-                        }
+                        
                         {!loading && horarios.map(i =>
                             <TouchableOpacity 
                                 style={{}}
                                 disabled={(dispo(i.hora, cantidadporHora, idActividad, moment(date).format('YYYY-MM-DD')) <= 0) ? true : false}
-                               
+                                //key={{i}}
                                 onPress={() => {
                                     addTime(i.hora);
                                     setModalData(i.hora, date, idActividad, nombre);
@@ -303,8 +312,23 @@ const consultaHora = (hora, dia) => {
                                     </View>}
                                 </FlexWrapper>
                             </TouchableOpacity>
+                            
+                            )}
 
-                        )}
+                       {horarios.length == 0 || noHayMasDisponible() &&
+                            <View>
+                            <Image
+                                source={Images.submissionEmpty}
+                                style={AppStyles.submissionEmpty}
+                            />
+                            <AppText style={{alignItems: 'center', justifyContent: 'center', textAlign:'center', fontSize: 16, fontWeight: '500', width:'60%', marginTop:10}}>
+                               {'No hay actividades disponibles para el día\n de hoy'}
+                            </AppText>
+                            </View>
+                        }
+
+
+
                         {loading && <Loader color={Colors.darkblue} style={{ flex: 1 }} />}
                     </View>
                 </View>

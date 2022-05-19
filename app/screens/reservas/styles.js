@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     paddingLeft: 5,
     alignSelf: 'center',
-    paddingBottom: 5
+    paddingBottom: 5,
   },
   label: {
     color: Colors.blue400,
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     width: '90%',
     height: 65,
     borderStyle: 'dotted',
-    backgroundColor: '#fff'
+    //backgroundColor: '#fff'
   },
   noSelected: {
     borderColor: '#A8B3C8',

@@ -1,15 +1,16 @@
 export const faqs = [
     {
-        question:"¿Pregunta frecuente 1?",
-        answer:"Respuesta...."
+        question:"¿Qué actividades puedo reservar?",
+        answer:"En EasyClub contamos con una amplia lista de actividades las cuales vas a poder reservar."
     },
     {
-        question:"¿Pregunta frecuente 2?",
-        answer:"Respuesta...."    },
+        question:"¿Cuáles son los medios de pago?",
+        answer:"Por el momento únicamente trabajamos con mercadopago. Próximamente ofreceremos otros métodos de pago."    
+    },
     {
-        question:"¿Pregunta frecuente 3?",
-        answer:"Respuesta...."
-        },
+        question:"¿Cuáles son los horarios?",
+        answer:"En cada actividad vas a poder visualizar el horario disponible para que puedas generar la reserva."
+    },
    
 ]
 

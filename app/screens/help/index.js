@@ -6,7 +6,7 @@ import { AppText } from '../../components/styled-components';
 import { Colors, Dimensions } from '../../constants';
 import { openTermsOfService } from '../../utils';
 
-const notes = "Hacia fines del 1990 se creó EasyClub, un centro deportivo ...."
+const notes = "Hacia fines de 1980 se creó EasyClub, un centro deportivo en el cual se ofrecen diversas actividades para sus socios."
 
 function HelpScreen() {
 
@@ -17,7 +17,7 @@ function HelpScreen() {
             />
             <AppText style={styles.notes}>
                 {notes}
-                {"\n"}
+                {" Para más información podés leer nuestros: \n"}
                 <AppText
                     color={Colors.blue}
                     style={{ fontSize: Dimensions.px15 }}

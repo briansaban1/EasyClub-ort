@@ -134,7 +134,7 @@ WService.prototype.getSessions = function (id_usuario) {
   });
 };
 
-WService.prototype.getSessions1 = function (id_usuario) {
+WService.prototype.getNotifications = function (id_usuario) {
   return NetworkHelper.requestPost(this.makeUrl('notificaciones.php'), {
     flag: 'notificaciones',
     id_usuario,
@@ -197,8 +197,6 @@ WService.prototype.contactus = function (data) {
   });
 };
 
-
-
 WService.prototype.sendChangeEmail = function (data) {
   return NetworkHelper.requestPost(this.makeUrl('sendChangeEmail.php'), data);
 };
@@ -235,6 +233,14 @@ WService.prototype.getUsuarios = function () {
 WService.prototype.getAdminMenu = function () {
   return NetworkHelper.requestPost(this.makeUrl('admin_menu.php'), {
     flag: 'admin_menu'
+  });
+};
+
+WService.prototype.deleteActivity = function(data) {
+  console.log(data, 'deleteActivity')
+  return NetworkHelper.requestPost(this.makeUrl('deleteActivity.php'), {
+    flag: 'deleteActivity',
+    ...data
   });
 };
 

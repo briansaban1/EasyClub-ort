@@ -89,7 +89,15 @@ text1: {
   color: Colors.white,
   fontSize: Dimensions.px16,
   fontWeight: 'bold'
-}
+},
+text2: {
+  color: Colors.blue400,
+  fontSize: Dimensions.px15,
+  paddingVertical: 10,
+  marginBottom:5,
+  paddingHorizontal: 30,
+
+},
 });
 
 export default styles;
