@@ -86,6 +86,14 @@ text1: {
     color: Colors.white,
     fontSize: Dimensions.px16,
     fontWeight: 'bold'
+},
+texto:{
+   color: Colors.blue400,
+   fontSize: Dimensions.px15,
+   fontWeight: 'bold'
+},
+iconos:{
+    paddingRight:20
 }
 
 });

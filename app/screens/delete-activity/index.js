@@ -97,13 +97,14 @@ console.log(actividades, 'flag')
                     style={styles.location}
                 />
                 <View style={styles.mainContainer} >
-                    <Text>ID: {i.id} - {i.nombre}</Text>
+                    <Text style={styles.texto}>ID: {i.id} - {i.nombre}</Text>
 
 
                 </View>
 
                 <ImageButton
-                    source={require('@assets/trash.png')}
+                     style={styles.iconos}
+                    source={require('@assets/eliminarAct.png')}
                     imageStyle={{ width: 21, height: 21, resizeMode: 'contain' }}
                     onPress={() => { eliminarActividad(i.id) }}
                 />
