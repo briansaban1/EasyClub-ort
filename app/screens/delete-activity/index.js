@@ -5,7 +5,7 @@ import styles from './styles';
 import { useSelector, useDispatch } from 'react-redux';
 import WService from '../../service/WebService';
 import { AppText, FlexWrapper } from '../../components/styled-components';
-import { Colors, Dimensions } from '../../constants';
+import { Colors, Dimensions, Screens } from '../../constants';
 import LottieView from 'lottie-react-native';
 import ImageButton from '../../components/ImageButton';
 
@@ -101,6 +101,14 @@ console.log(actividades, 'flag')
 
 
                 </View>
+
+                <ImageButton
+                     style={styles.iconos}
+                    source={require('@assets/edit.png')}
+                    imageStyle={{ width: 21, height: 21, resizeMode: 'contain' }}
+                    onPress={() => { navigator(Screens.EditActivity) }}
+                    //falta implementacion
+                />
 
                 <ImageButton
                      style={styles.iconos}
