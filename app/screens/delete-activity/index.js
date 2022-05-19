@@ -1,46 +1,71 @@
 import React, { useState, useEffect } from 'react';
-import { Image, ScrollView, View, RefreshControl } from 'react-native';
+import { Image, ScrollView, View, Text, Modal, StatusBar, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Header, SearchInput, SubmissionActividades, ErrorActividades } from '../../components';
-import { AppStyles, Images } from '../../constants';
 import styles from './styles';
-import { useNavigation } from '@react-navigation/native';
-import Screens from '../../constants/screens';
 import { useSelector, useDispatch } from 'react-redux';
-import { getActividades } from '../../store/user/action';
+import WService from '../../service/WebService';
+import { AppText, FlexWrapper } from '../../components/styled-components';
+import { Colors, Dimensions } from '../../constants';
+import LottieView from 'lottie-react-native';
+import ImageButton from '../../components/ImageButton';
 
+
+const wservice = new WService();
 
 
 function DeleteActivityScreen() {
 
 const profile = useSelector(store => store.user.profile)
 
-const _actividades = useSelector(store => store.user.actividades)
-const [actividades, setactividades] = useState(_actividades)
+//const _actividades = useSelector(store => store.user.actividades)
+const [actividades, setActividades] = useState([' '])
+const [_actividades, setActiv] = useState(actividades)
 
-const [visibleModal, setVisibleModal] = useState(false);
-const [modalData, setModalData] = useState({});
-const { navigate } = useNavigation();
-const dispatch = useDispatch();
+const [modalVisible, setModalVisible] = useState(false);
 
 
 useEffect(() => {
-    dispatch(getActividades());
-  }, [])
+        wservice.getActividades().then(response => {
+            if (response.status == 1) {
 
-  const wait = (timeout) => {
-    return new Promise(resolve => setTimeout(resolve, timeout));
-  }
-  
-    const [refreshing, setRefreshing] = React.useState(false);
-  
-    const onRefresh = React.useCallback(() => {
-      setRefreshing(true);
-      wait(1000).then(() => setRefreshing(false));
+                setActividades(response.data.map(item => ({
+                    id: item.id,
+                    imagen: item.imagen,
+                    nombre: item.nombre,
+                    
+                })));
+                //setNoHayMas(response.data.pop())
+                //console.log(horarios)
+            }
+        })
+    })
 
-      dispatch(getActividades());
-    
+console.log(actividades)
 
-    }, []);
+
+function eliminarActividad(ids) {
+        console.log(ids)
+    wservice.deleteActivity({
+        id: ids
+    }).then(res => {
+      if (res.status == 1){
+       
+        setModalVisible(true)
+    }
+
+    }).catch(e => {
+        Alert.alert(
+            '¡Atención!',
+            'Por favor aguardá un momento a que procesemos la información',
+            [
+                { text: 'OK', onPress: () => console.warn('NO Pressed'), style: 'ok' }
+            ]
+        );
+        setModalVisible(false);
+    })
+};
+
+
 
 
 
@@ -48,13 +73,7 @@ console.log(actividades, 'flag')
 
     return (
         <>
-     <ScrollView  style={styles.container} 
-      refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-          />
-        }>
+     <ScrollView  style={styles.container} >
                 <Header
                     title={"Eliminar actividad"}
                     description={'Seleccioná el ícono de la derecha para borrar una actividad.'}
@@ -64,14 +83,85 @@ console.log(actividades, 'flag')
 
                 {_actividades.length == 0 &&
                 
-                    <ErrorActividades/>
+                    <ErrorActividades/> 
                     
                 }
-                {actividades.map(i => <SubmissionActividades data={i} profile={profile} onPress={(data) => {
-                  {data}
-                   
-                }} />)}
-                <View style={{height:30}} />
+                {actividades.map(i => 
+                    
+              <View style={styles.containerData}>
+                <Image
+                    source={{
+                        uri: i.imagen,
+                    }}
+                    imageStyle={{ resizeMode: 'stretch' }}
+                    style={styles.location}
+                />
+                <View style={styles.mainContainer} >
+                    <Text>ID: {i.id} - {i.nombre}</Text>
+
+
+                </View>
+
+                <ImageButton
+                    source={require('@assets/trash.png')}
+                    imageStyle={{ width: 21, height: 21, resizeMode: 'contain' }}
+                    onPress={() => { eliminarActividad(i.id) }}
+                />
+
+
+                
+            </View>
+                    
+                    )}
+                <View style={{height:30}} /> 
+
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    style={styles.modal}
+                    visible={modalVisible}
+                >
+                    <StatusBar backgroundColor="#00000040" barStyle="light-content" />
+
+                    <View style={styles.modal}>
+                        <View style={styles.modalContainer}>
+                            <AppText style={styles.title1}>¡Actividad Eliminada!</AppText>
+                            <View style={styles.hr} />
+
+                            <Text style={{
+                                color: Colors.blue400, fontSize: Dimensions.px15, marginTop: 12,
+                                width: '85%', alignItems: 'center', textAlign: 'center',
+                                justifyContent: 'center',
+                            }}>
+
+                            </Text>
+                            <View style={styles.flexContainer1}>
+                                <LottieView source={require('@assets/check.json')}
+                                    autoPlay={true}
+                                    loop={false}
+                                    resizeMode="cover"
+                                    style={{ width: 110, height: 110, marginVertical: 5, alignSelf: 'center' }}
+                                />
+
+
+                            </View>
+
+
+                            <TouchableOpacity style={styles.button1}
+
+                                onPress={() => { setModalVisible(false) }}
+                            >
+
+                                <AppText style={styles.text1}>Aceptar</AppText>
+                            </TouchableOpacity>
+
+
+
+
+                        </View>
+                    </View>
+                </Modal>
+
             </ScrollView>
         </>
     );

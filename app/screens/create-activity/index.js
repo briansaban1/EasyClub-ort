@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StatusBar, Modal, Text, Alert, Image } from 'react-native';
+import { ScrollView, StatusBar, Modal, Text, Alert, Image, TouchableOpacity } from 'react-native';
 import { Header, Button, AppInput, DropDownGrande } from '../../components';
 import { Colors, Dimensions } from '../../constants';
 import CheckBox from 'react-native-check-box'
@@ -10,7 +10,6 @@ import { View } from 'react-native';
 import { useState } from 'react';
 import WService from '../../service/WebService';
 import LottieView from 'lottie-react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux';
 import { getActividades } from '../../store/user/action';
 
@@ -62,6 +61,7 @@ function CreateActivityScreen() {
             filetype: [DocumentPickerUtil.allFiles()],
         }, (error, res) => {
             if (res != null) {
+                console.log(res)
                 fileUploadApi(res)
                 setFileName(res.fileName)
             }
@@ -77,6 +77,7 @@ function CreateActivityScreen() {
             .then(response => response.json())
             .then(response => {
                 setLoading(false)
+                console.log(response, 'error aca')
                 if (response.status == "true") {
                     setFile(response.url)
 
@@ -136,6 +137,56 @@ function CreateActivityScreen() {
 
     return (
         <ScrollView style={styles.container}>
+
+<Modal
+                    animationType="slide"
+                    transparent={true}
+                    style={styles.modal}
+                    visible={modalVisible}
+                >
+                    <StatusBar backgroundColor="#00000040" barStyle="light-content" />
+
+                    <View style={styles.modal}>
+                        <View style={styles.modalContainer}>
+                            <AppText style={styles.title1}>¡Datos recibidos!</AppText>
+                            <View style={styles.hr} />
+
+                            <Text style={{
+                                color: Colors.blue400, fontSize: Dimensions.px15, marginTop: 12,
+                                width: '85%', alignItems: 'center', textAlign: 'center',
+                                justifyContent: 'center',
+                            }}>
+
+                            </Text>
+                            <View style={styles.flexContainer1}>
+                                <LottieView source={require('@assets/check.json')}
+                                    autoPlay={true}
+                                    loop={false}
+                                    resizeMode="cover"
+                                    style={{ width: 110, height: 110, marginVertical: 5, alignSelf: 'center' }}
+                                />
+
+
+                            </View>
+
+
+                            <TouchableOpacity style={styles.button1}
+                               onPress={() => {setModalVisible(false)}}
+                                //onPress={() => { setModalVisible(false) }}
+                            >
+
+                                <AppText style={styles.text1}>Aceptar</AppText>
+                            </TouchableOpacity>
+
+
+
+
+                        </View>
+                    </View>
+                </Modal>
+
+
+
             <View>
                 <Header
                     title={"Actividad"}
@@ -146,7 +197,7 @@ function CreateActivityScreen() {
                 <AppInput
                     label={'Nombre de la actividad'}
                     onChangeText={setName}
-                    value={name.toUpperCase()}
+                    value={name}
                 />
 
                 <AppInput
@@ -249,51 +300,7 @@ function CreateActivityScreen() {
                     onPress={() => { crearActividad() }}
                 />
                 <View style={{ marginTop: 40 }}></View>
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    style={styles.modal}
-                    visible={modalVisible}
-                >
-                    <StatusBar backgroundColor="#00000040" barStyle="light-content" />
-
-                    <View style={styles.modal}>
-                        <View style={styles.modalContainer}>
-                            <AppText style={styles.title1}>¡Datos recibidos!</AppText>
-                            <View style={styles.hr} />
-
-                            <Text style={{
-                                color: Colors.blue400, fontSize: Dimensions.px15, marginTop: 12,
-                                width: '85%', alignItems: 'center', textAlign: 'center',
-                                justifyContent: 'center',
-                            }}>
-
-                            </Text>
-                            <View style={styles.flexContainer1}>
-                                <LottieView source={require('@assets/check.json')}
-                                    autoPlay={true}
-                                    loop={false}
-                                    resizeMode="cover"
-                                    style={{ width: 110, height: 110, marginVertical: 5, alignSelf: 'center' }}
-                                />
-
-
-                            </View>
-
-
-                            <TouchableOpacity style={styles.button1}
-                                onPress={() => setModalVisible(!modalVisible)}
-                            >
-
-                                <AppText style={styles.text1}>Aceptar</AppText>
-                            </TouchableOpacity>
-
-
-
-
-                        </View>
-                    </View>
-                </Modal>
+                
             </View>
         </ScrollView>
     );
