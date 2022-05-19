@@ -46,6 +46,7 @@ function CreateActivityScreen() {
     const [fileName, setFileName] = useState(null)
     const [file, setFile] = useState('')
 
+    const webFile = `https://easyclubort.000webhostapp.com/app/${file}`
 
 
     //horarios en base de datos es date, ver compatibilidad
@@ -105,7 +106,7 @@ function CreateActivityScreen() {
             tipo: tipo,
             detail: detail,
             interval: interval,
-            image: file
+            image: webFile
         }).then(res => {
             setLoading(false)
             setName('');
