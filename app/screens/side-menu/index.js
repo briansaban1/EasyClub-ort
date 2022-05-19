@@ -130,7 +130,7 @@ function SideMenu() {
             <Divider />
             <MenuButton
                 label={"Borrar Actividad"}
-                source={require('@assets/close.png')}
+                source={require('@assets/eliminarAct.png')}
                 screen={Screens.DeleteActivity}
             />
             <Divider />
