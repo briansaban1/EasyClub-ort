@@ -31,8 +31,6 @@ WService.prototype.getUserMenu = function (id_usuario) {
   });
 };
 
-
-
 WService.prototype.getSubmissions = function (id_usuario) {
   return NetworkHelper.requestPost(this.makeUrl('listadoReservas.php'), {
     flag: 'listadoReservas',
@@ -223,6 +221,18 @@ WService.prototype.cancelarReserva = function (id) {
   return NetworkHelper.requestPost(this.makeUrl('cancelarReserva.php'), {
     flag: 'cancelarReserva',
     id: id.id
+  });
+};
+
+WService.prototype.getUsuarios = function () {
+  return NetworkHelper.requestPost(this.makeUrl('usuarios.php'), {
+    flag: 'usuarios'
+  });
+};
+
+WService.prototype.getAdminMenu = function () {
+  return NetworkHelper.requestPost(this.makeUrl('admin_menu.php'), {
+    flag: 'admin_menu'
   });
 };
 

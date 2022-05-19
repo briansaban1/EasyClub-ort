@@ -16,7 +16,7 @@ export const loginUser = ({ username, password }, rememberMe = false) => {
     const response = await wservice.login(username, password)
     console.log('login-[response]', response)
     if (response.status == 1) {
-      const resumen = await wservice.getUserMenu(response.data.id_usuario)
+      const resumen = response.data.id_TipoUsuario == 2 ? await wservice.getUserMenu(response.data.id_usuario) : await wservice.getAdminMenu()
       console.log(resumen)
       if (rememberMe) {
         await AsyncStorage.setItem('profile', JSON.stringify(response.data));
@@ -57,7 +57,7 @@ export const autoLogin = () => {
     const profileData = await AsyncStorage.getItem('profile');
     if (profileData) {
       const profile = JSON.parse(profileData)
-      const resumen = await wservice.getUserMenu(profile.id_usuario)
+      const resumen = profile.id_TipoUsuario == 2 ? await wservice.getUserMenu(profile.id_usuario) : await wservice.getAdminMenu()
       const payload = { profile, resumen }
       dispatch({ type: ActionTypes.LOGIN_SUCCESS, payload });
       reset('MainApp')
@@ -297,5 +297,28 @@ export const getUserMenu = (id_usuario) => {
 export const cancelarReserva = (id) => {
   return async (dispatch) => {
     dispatch({ type: ActionTypes.PUT_CANCELAR_RESERVA, payload: id });
+  };
+};
+
+export const getUsuarios = () => {
+  return async (dispatch) => {
+    dispatch({ type: ActionTypes.GET_USUARIOS_START });
+      const data = await wservice.getUsuarios()
+
+      if (data.status == 1){
+      dispatch({ type: ActionTypes.GET_USUARIOS_SUCCESS, payload: data.data });
+       } 
+      dispatch({ type: ActionTypes.GET_USUARIOS_FAILED });
+    
+  };
+};
+
+export const getAdminMenu = () => {
+  return async (dispatch) => {
+    const profileData = await AsyncStorage.getItem('profile');
+    const profile = JSON.parse(profileData)
+    const resumen = await wservice.getAdminMenu()
+    const payload = { profile, resumen }
+    dispatch({ type: ActionTypes.LOGIN_SUCCESS, payload });
   };
 };
