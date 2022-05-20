@@ -94,8 +94,8 @@ function HomeScreen() {
           </FlexBetweenWrapper>
           <View style={{marginTop:Platform.OS == 'android' ? -10 : 20}}></View>
           <FlexBetweenWrapper marginTop={Platform.OS == 'android' ? 0 : 20}>
-            <Tab active={selected == 0} label={'Estadísticas'} source={Images.Activity} onPress={() => { setSelected(0) }} left />
-            <Tab active={selected == 1} label={'Reportes'} source={Images.Shipment} onPress={() => { setSelected(1) }} right />
+            <Tab active={selected == 0} label={'Estadísticas'} source={Images.Analytics} onPress={() => { setSelected(0) }} left />
+            <Tab active={selected == 1} label={'Reportes'} source={Images.Reports} onPress={() => { setSelected(1) }} right />
           </FlexBetweenWrapper>
           
         </View>

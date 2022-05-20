@@ -5,7 +5,9 @@ const Images = {
   Back: require('@assets/back.png'),
   Next: require('@assets/next.png'),
   Activity: require('@assets/activity.png'),
-  Shipment: require('@assets/shipment.png'),
+  Reservation: require('@assets/reservation.png'),
+  Reports: require('@assets/reports.png'),
+  Analytics:require('@assets/analytics.png'),
   Check: (checked) => checked ? require('@assets/check.png') : require('@assets/uncheck.png'),
   ShowPassword: (show) => show ? require('@assets/opened-eye.png') : require('@assets/closed-eye.png'),
   Tabs: {
