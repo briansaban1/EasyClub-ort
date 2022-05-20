@@ -8,19 +8,17 @@ import { Colors } from '../../constants';
 function ReportBlockLarge({ active, onPress, label, description }) {
     return (
         <TouchableOpacity
-            style={[styles.bottomBlockLarge, active && { backgroundColor: Colors.darkblue }]}
-            
-            activeOpacity={0.8}
-        >
+            style={[styles.bottomBlockLarge, active && { backgroundColor: Colors.white }]} activeOpacity={0.8}>
             <AppText style={{
-                fontSize: 24,
-                marginBottom: 10,
-                color:active?Colors.white:Colors.lightblue
+                fontSize: 20,
+                fontWeight: 'bold',
+                marginBottom: 5,
+                color: active ? Colors.darkblue : Colors.lightblue
             }}>{label}</AppText>
-            <AppText style={{ fontSize: 13, color:active?Colors.white:Colors.lightblue }}>{description}</AppText>
+            <AppText style={{ fontSize: 13, color: active ? Colors.blue400 : Colors.lightblue }}>{description}</AppText>
             <Button
                 text={"Generar Reporte"}
-                buttonStyle={{width:'53%', backgroundColor: Colors.lightblue, position: 'relative', height: 30  }}
+                buttonStyle={{ width:'55%', backgroundColor: Colors.blue300, position: 'relative', height: 45 }}
                 onPress={onPress}
             />
         </TouchableOpacity>

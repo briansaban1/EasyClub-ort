@@ -67,10 +67,12 @@ const styles =
     },
     bottomBlockLarge: {
       width: '100%',
-      height: 130,
+      height: 140,
       marginBottom: 10,
       borderRadius: 10,
       padding: 10,
+      paddingLeft:15,
+      paddingRight:15,
       backgroundColor: Colors.darkblue,
     },
     bottomBlockHr: {
