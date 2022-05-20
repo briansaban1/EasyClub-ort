@@ -123,17 +123,17 @@ function SideMenu() {
             </View> 
             : 
             <View>
-                <Heading2 style={[styles.subLabel, { marginBottom: 10, marginTop: 20 }]}>{"Admin "}</Heading2>
+                <Heading2 style={[styles.subLabel, { marginBottom: 10, marginTop: 20 }]}>{"Panel Administrador "}</Heading2>
                 <Divider />  
                 <MenuButton
                     label={"Actividades"}
-                    source={require('@assets/activity.png')}
-                    screen={Screens.CreateActivity}
+                    source={require('@assets/activity-bold.png')}
+                    screen={Screens.DeleteActivity}
                 />
                 <Divider />  
                 <MenuButton
                     label={"Promociones"}
-                    source={require('@assets/offers.png')}
+                    source={require('@assets/offers-bold.png')}
                     screen={Screens.CreateActivity}
                 />
                 <Divider />          
