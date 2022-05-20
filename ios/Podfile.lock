@@ -400,6 +400,8 @@ PODS:
     - React-Core
   - react-native-document-picker (2.3.0):
     - React
+  - react-native-fetch-blob (0.10.6):
+    - React-Core
   - react-native-location (2.5.0):
     - React
   - react-native-mail (3.0.7):
@@ -549,6 +551,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-config (from `../node_modules/react-native-config`)
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
+  - react-native-fetch-blob (from `../node_modules/react-native-fetch-blob`)
   - react-native-location (from `../node_modules/react-native-location`)
   - react-native-mail (from `../node_modules/react-native-mail`)
   - react-native-maps (from `../node_modules/react-native-maps`)
@@ -641,6 +644,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-config"
   react-native-document-picker:
     :path: "../node_modules/react-native-document-picker"
+  react-native-fetch-blob:
+    :path: "../node_modules/react-native-fetch-blob"
   react-native-location:
     :path: "../node_modules/react-native-location"
   react-native-mail:
@@ -737,6 +742,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 58aef7155bc9a9683f5b60b35eccea8722a4f53a
   react-native-config: 6502b1879f97ed5ac570a029961fc35ea606cd14
   react-native-document-picker: 8508bfda34be6c24a2cbecbe515b15108658c183
+  react-native-fetch-blob: 0cbdf9764c75d9438c162427395f4bc35a857d5a
   react-native-location: 5a40ec1cc6abf2f6d94df979f98ec76c3a415681
   react-native-mail: 021d8ee60e374609f5689ef354dc8e36839a9ba6
   react-native-maps: 0316ed017dbb64b33b227751fa810e2454fcfa39
@@ -765,6 +771,6 @@ SPEC CHECKSUMS:
   RNVectorIcons: 368d6d8b8301224e5ffb6254191f4f8876c2be0d
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
 
-PODFILE CHECKSUM: 44ada92533e383ea7b4edfbc97f1e92b5dc2d5fa
+PODFILE CHECKSUM: 4acbc8fa05108baf9b13a6cde12b1e935854b4ed
 
 COCOAPODS: 1.10.1

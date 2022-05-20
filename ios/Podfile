@@ -14,6 +14,7 @@ target 'Easyclub' do
   # Pods for Tododeusa
   pod 'Firebase/Messaging'
   pod 'MercadoPagoSDK', :build_type => :dynamic_framework
+  pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
 
   pod 'react-native-document-picker', :path => '../node_modules/react-native-document-picker'
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec', :modular_headers => false
