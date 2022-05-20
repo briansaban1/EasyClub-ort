@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StatusBar, Modal, Text, Alert, Image, TouchableOpacity } from 'react-native';
-import { Header, Button, AppInput, DropDownGrande } from '../../components';
+import { Header, Button, AppInput, DropDownGrande, DropDown } from '../../components';
 import { Colors, Dimensions } from '../../constants';
 import CheckBox from 'react-native-check-box'
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
@@ -12,6 +12,8 @@ import WService from '../../service/WebService';
 import LottieView from 'lottie-react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { getActividades } from '../../store/user/action';
+import DateTimePicker from 'react-native-modal-datetime-picker';
+import moment, { min } from 'moment';
 
 
 
@@ -54,6 +56,45 @@ function CreateActivityScreen() {
     const [regularVal, setRegularVal] = useState('')
     const [tipo, setTipo] = useState('')
     const [detail, setDetail] = useState('')
+
+    const [horaInicio, setHoraInicio] = useState(moment());
+    const [horaFin, setHoraFin] = useState(moment());
+    const [isDatePickerVisibleInicio, setDatePickerVisibilityInicio] = useState(false);
+    const [isDatePickerVisibleFin, setDatePickerVisibilityFin] = useState(false);
+
+
+
+    const showDatePickerInicio = () => {
+        setDatePickerVisibilityInicio(true);
+    };
+
+    const hideDatePickerInicio = () => {
+        setDatePickerVisibilityInicio(false);
+    };
+
+    const handleConfirmInicio = (horaInicio) => {
+        setHoraInicio(horaInicio)
+        hideDatePickerInicio();
+    };
+
+
+    const showDatePickerFin = () => {
+        setDatePickerVisibilityFin(true);
+    };
+
+    const hideDatePickerFin = () => {
+        setDatePickerVisibilityFin(false);
+    };
+
+    const handleConfirmFin = (horaFin) => {
+        setHoraFin(horaFin)
+        hideDatePickerFin();
+    };
+
+    console.log(moment((horaInicio)).format('HH:mm'), moment((horaFin)).format('HH:mm'), 'horaInicioooooo1')
+
+
+
 
     const dispatch = useDispatch();
 
@@ -106,7 +147,9 @@ function CreateActivityScreen() {
             tipo: tipo,
             detail: detail,
             interval: interval,
-            image: webFile
+            image: webFile,
+            horaIni: moment((horaInicio)).format('HH:mm'),
+            horafn: moment((horaFin)).format('HH:mm')
         }).then(res => {
             setLoading(false)
             setName('');
@@ -114,6 +157,8 @@ function CreateActivityScreen() {
             setDuty('');
             setInterval('');
             setFileName('');
+            setHoraInicio('');
+            setHoraFin('');
             setModalVisible(true);
             dispatch(getActividades());
 
@@ -132,59 +177,59 @@ function CreateActivityScreen() {
 
     }
 
-    const allow = name != "" && quantity != "" && interval != "" && file != "";
+    const allow = name != "" && quantity != "" && interval != "" && file != "" && horaInicio != "" && horaFin != "";
 
 
 
     return (
         <ScrollView style={styles.container}>
 
-<Modal
-                    animationType="slide"
-                    transparent={true}
-                    style={styles.modal}
-                    visible={modalVisible}
-                >
-                    <StatusBar backgroundColor="#00000040" barStyle="light-content" />
+            <Modal
+                animationType="slide"
+                transparent={true}
+                style={styles.modal}
+                visible={modalVisible}
+            >
+                <StatusBar backgroundColor="#00000040" barStyle="light-content" />
 
-                    <View style={styles.modal}>
-                        <View style={styles.modalContainer}>
-                            <AppText style={styles.title1}>¡Datos recibidos!</AppText>
-                            <View style={styles.hr} />
+                <View style={styles.modal}>
+                    <View style={styles.modalContainer}>
+                        <AppText style={styles.title1}>¡Datos recibidos!</AppText>
+                        <View style={styles.hr} />
 
-                            <Text style={{
-                                color: Colors.blue400, fontSize: Dimensions.px15, marginTop: 12,
-                                width: '85%', alignItems: 'center', textAlign: 'center',
-                                justifyContent: 'center',
-                            }}>
+                        <Text style={{
+                            color: Colors.blue400, fontSize: Dimensions.px15, marginTop: 12,
+                            width: '85%', alignItems: 'center', textAlign: 'center',
+                            justifyContent: 'center',
+                        }}>
 
-                            </Text>
-                            <View style={styles.flexContainer1}>
-                                <LottieView source={require('@assets/check.json')}
-                                    autoPlay={true}
-                                    loop={false}
-                                    resizeMode="cover"
-                                    style={{ width: 110, height: 110, marginVertical: 5, alignSelf: 'center' }}
-                                />
-
-
-                            </View>
-
-
-                            <TouchableOpacity style={styles.button1}
-                               onPress={() => {setModalVisible(false)}}
-                                //onPress={() => { setModalVisible(false) }}
-                            >
-
-                                <AppText style={styles.text1}>Aceptar</AppText>
-                            </TouchableOpacity>
-
-
+                        </Text>
+                        <View style={styles.flexContainer1}>
+                            <LottieView source={require('@assets/check.json')}
+                                autoPlay={true}
+                                loop={false}
+                                resizeMode="cover"
+                                style={{ width: 110, height: 110, marginVertical: 5, alignSelf: 'center' }}
+                            />
 
 
                         </View>
+
+
+                        <TouchableOpacity style={styles.button1}
+                            onPress={() => { setModalVisible(false) }}
+                        //onPress={() => { setModalVisible(false) }}
+                        >
+
+                            <AppText style={styles.text1}>Aceptar</AppText>
+                        </TouchableOpacity>
+
+
+
+
                     </View>
-                </Modal>
+                </View>
+            </Modal>
 
 
 
@@ -202,11 +247,53 @@ function CreateActivityScreen() {
                 />
 
                 <AppInput
-                    label={'Disponibilidad (por hora)'}
+                    label={'Cantidad de lugares por hora'}
                     onChangeText={setQuantity}
                     value={quantity}
                 />
-                <View style={{ width: '54%' }}>
+
+                <FlexWrapper>
+                    <View style={{ flexDirection: 'row', width: '85%', marginTop: 10 }}>
+                        <View style={{ width: '50%', }}>
+                            <Text style={styles.text3}>Hora Inicio</Text>
+
+                            <TouchableOpacity style={styles.buttonCalendar} onPress={showDatePickerInicio}>
+                                <Text style={styles.textDate}>{horaInicio == "" ? "HH:MM" : moment(new Date(horaInicio)).utcOffset('-03:00').format('hh:mm A')}</Text>
+
+                            </TouchableOpacity>
+
+                            <DateTimePicker
+                                isVisible={isDatePickerVisibleInicio}
+                                mode="time"
+                                format="hh:mm A"
+                                onConfirm={handleConfirmInicio}
+                                onCancel={hideDatePickerInicio}
+                                minuteInterval={30}
+                            />
+                        </View>
+                        <View style={{ width: '50%', }}>
+                            <Text style={styles.text3}>Hora Fin</Text>
+
+                            <TouchableOpacity style={styles.buttonCalendar} onPress={showDatePickerFin}>
+                                <Text style={styles.textDate}>{horaFin == "" ? "HH:MM" : moment(new Date(horaFin)).utcOffset('-03:00').format('hh:mm A')}</Text>
+
+                            </TouchableOpacity>
+
+                            <DateTimePicker
+                                isVisible={isDatePickerVisibleFin}
+                                mode="time"
+                                format="hh:mm A"
+                                onConfirm={handleConfirmFin}
+                                onCancel={hideDatePickerFin}
+                                minuteInterval={30}
+                            />
+                        </View>
+
+                    </View>
+                </FlexWrapper>
+
+
+                <View style={{ width: '85%' }}>
                     <DropDownGrande
                         label={"Intervalo (en minutos)"}
                         options={['10', '20', '30', '40', '50', '60']}
@@ -250,21 +337,21 @@ function CreateActivityScreen() {
                     </FlexWrapper>
                 </View>
 
-                <FlexWrapper style={{marginTop:15}}>
+                <FlexWrapper style={{ marginTop: 15 }}>
                     <CheckBox
                         onClick={() => {
                             setDuty(!duty)
                         }}
                         isChecked={duty}
-                        style={{ marginRight: 10}}
+                        style={{ marginRight: 10 }}
                     />
                     <AppText >{'¿La actividad es arancelada?'}</AppText>
                 </FlexWrapper>
 
 
-                {duty == 1 && <View style={{marginTop:15}}>
-                    
-                <AppInput
+                {duty == 1 && <View style={{ marginTop: 15 }}>
+
+                    <AppInput
                         label={'Precio Regular ($)'}
                         onChangeText={setRegularVal}
                         value={regularVal}
@@ -274,23 +361,23 @@ function CreateActivityScreen() {
                         onChangeText={setPromotionalVal}
                         value={promotionalVal}
                     />
-             <View style={{ width: '54%' }}>
-                    <DropDownGrande
-                        label={"Tipo de promoción"}
-                        options={['DIARIO']}
-                        value={tipo}
-                        onSelect={(idx, value) => setTipo(value)}
-                    />
-                </View>
-                <View style={{ width: '54%' }}>
-                    <DropDownGrande
-                        label={"Detalle del Abono"}
-                        options={['ABONO DIARIO']}
-                        value={detail}
-                        onSelect={(idx, value) => setDetail(value)}
-                    />
-                </View>
-        
+                    <View style={{ width: '54%' }}>
+                        <DropDownGrande
+                            label={"Tipo de promoción"}
+                            options={['DIARIO']}
+                            value={tipo}
+                            onSelect={(idx, value) => setTipo(value)}
+                        />
+                    </View>
+                    <View style={{ width: '54%' }}>
+                        <DropDownGrande
+                            label={"Detalle del Abono"}
+                            options={['ABONO DIARIO']}
+                            value={detail}
+                            onSelect={(idx, value) => setDetail(value)}
+                        />
+                    </View>
+
                 </View>}
 
                 <Space height={30} />
@@ -301,7 +388,7 @@ function CreateActivityScreen() {
                     onPress={() => { crearActividad() }}
                 />
                 <View style={{ marginTop: 40 }}></View>
-                
+
             </View>
         </ScrollView>
     );
