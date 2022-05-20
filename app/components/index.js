@@ -9,6 +9,9 @@ export { default as SubmissionWallet } from './SubmissionWallet'
 export { default as SubmissionPromociones } from './SubmissionPromociones'
 export { default as SubmissionActividades } from './SubmissionActividades'
 
+export { default as HeaderActivAdmin } from './HeaderActivAdmin'
+
+
 
 export { default as SearchInvoice } from './SearchInvoice'
 export { default as Error } from './Error' 
