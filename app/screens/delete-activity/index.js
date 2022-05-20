@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Image, ScrollView, View, Text, Modal, StatusBar, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { Header, SearchInput, SubmissionActividades, ErrorActividades } from '../../components';
+import { Header, SearchInput, SubmissionActividades, ErrorActividades, HeaderActivAdmin } from '../../components';
 import styles from './styles';
 import { useSelector, useDispatch } from 'react-redux';
 import WService from '../../service/WebService';
@@ -74,10 +74,12 @@ console.log(actividades, 'flag')
     return (
         <>
      <ScrollView  style={styles.container} >
-                <Header
-                    title={"Eliminar actividad"}
-                    description={'Seleccioná el ícono de la derecha para borrar una actividad.'}
+              
+           <HeaderActivAdmin
+                    title={"Actividades"}
+                    description={"Listado de Actividades"}
                 />
+
                 
                 <View style={{height:20}} />
 
