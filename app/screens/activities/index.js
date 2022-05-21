@@ -7,13 +7,14 @@ import WService from '../../service/WebService';
 import { AppText, FlexWrapper } from '../../components/styled-components';
 import { Colors, Dimensions, Screens } from '../../constants';
 import LottieView from 'lottie-react-native';
+import { useNavigation } from '@react-navigation/native';
 import ImageButton from '../../components/ImageButton';
 
 
 const wservice = new WService();
 
 
-function DeleteActivityScreen() {
+function ActivitiesScreen() {
 
 const profile = useSelector(store => store.user.profile)
 
@@ -38,7 +39,7 @@ useEffect(() => {
                 //console.log(horarios)
             }
         })
-    })
+    }, [])
 
 console.log(actividades)
 
@@ -65,7 +66,7 @@ function eliminarActividad(ids) {
     })
 };
 
-
+const { navigate } = useNavigation();
 
 
 
@@ -88,18 +89,18 @@ console.log(actividades, 'flag')
                     <ErrorActividades/> 
                     
                 }
-                {actividades.map(i => 
+                {actividades.map(actividad => 
                     
               <View style={styles.containerData}>
                 <Image
                     source={{
-                        uri: i.imagen,
+                        uri: actividad.imagen,
                     }}
                     imageStyle={{ resizeMode: 'stretch' }}
                     style={styles.location}
                 />
                 <View style={styles.mainContainer} >
-                    <Text style={styles.texto}>ID: {i.id} - {i.nombre}</Text>
+                    <Text style={styles.texto}>ID: {actividad.id} - {actividad.nombre}</Text>
 
 
                 </View>
@@ -108,7 +109,7 @@ console.log(actividades, 'flag')
                      style={styles.iconos}
                     source={require('@assets/edit.png')}
                     imageStyle={{ width: 21, height: 21, resizeMode: 'contain' }}
-                    onPress={() => { navigator(Screens.EditActivity) }}
+                    onPress={() => { navigate(Screens.ModifyActivity, {data: actividad.id}) }}
                     //falta implementacion
                 />
 
@@ -116,7 +117,7 @@ console.log(actividades, 'flag')
                      style={styles.iconos}
                     source={require('@assets/eliminarAct.png')}
                     imageStyle={{ width: 21, height: 21, resizeMode: 'contain' }}
-                    onPress={() => { eliminarActividad(i.id) }}
+                    onPress={() => { eliminarActividad(actividad.id) }}
                 />
 
 
@@ -178,4 +179,4 @@ console.log(actividades, 'flag')
     );
 }
 
-export default DeleteActivityScreen;
+export default ActivitiesScreen;

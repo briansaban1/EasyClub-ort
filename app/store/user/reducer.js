@@ -10,6 +10,7 @@ const INITIAL_STATE = {
     submissions: [], //listado de reservas
     submissions1: [], //historial de reservas
     actividades: [],
+    actividad: {},
     usuarios: [],
     horarios: [],
     grafico: [],
@@ -112,6 +113,23 @@ export const UserReducer = (
                     loadingActividades: false,
                     actividades: action.payload
                 };
+
+                case ActionTypes.GET_ACTIVIDAD_START:
+                    return {
+                        ...state,
+                        loadingActividades: true,
+                    };
+                case ActionTypes.GET_ACTIVIDAD_FAILED:
+                    return {
+                        ...state,
+                        loadingActividades: false,
+                    };
+                case ActionTypes.GET_ACTIVIDAD_SUCCESS:
+                    return {
+                        ...state,
+                        loadingActividades: false,
+                        actividad: action.payload
+                    };
 
             case ActionTypes.GET_USUARIOS_START:
                 return {

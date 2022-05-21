@@ -129,7 +129,7 @@ function SideMenu() {
                 <MenuButton
                     label={"Actividades"}
                     source={require('@assets/activity-bold.png')}
-                    screen={Screens.DeleteActivity}
+                    screen={Screens.Activities}
                 />
                 <Divider />  
                 <MenuButton

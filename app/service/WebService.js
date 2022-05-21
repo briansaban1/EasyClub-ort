@@ -52,6 +52,13 @@ WService.prototype.getActividades = function () {
   });
 };
 
+WService.prototype.getActividad = function (activityId) {
+  return NetworkHelper.requestPost(this.makeUrl('getActivity.php'), {
+    flag: 'getActividad',
+    activityId: activityId,
+  });
+};
+
 WService.prototype.getPromociones = function () {
   return NetworkHelper.requestPost(this.makeUrl('promociones.php'), {
     flag: 'promociones'
@@ -205,6 +212,14 @@ WService.prototype.createActivity = function(data) {
   console.log(data, 'createactivity')
   return NetworkHelper.requestPost(this.makeUrl('createActivity.php'), {
     flag: 'createactivity',
+    ...data
+  });
+};
+
+WService.prototype.modifyActivity = function(data) {
+  console.log(data, 'modifyActivity')
+  return NetworkHelper.requestPost(this.makeUrl('modifyActivity.php'), {
+    flag: 'modifyActivity',
     ...data
   });
 };
