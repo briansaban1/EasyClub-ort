@@ -1,40 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import RNFetchBlob from 'react-native-fetch-blob';
 import { FlexBetweenWrapper, Space } from '../../components/styled-components';
 
 import ReportBlockLarge from './ReportBlockLarge';
-
+import { 
+  getReporteGanancias
+} from '../../store/user/action';
 
 function Reportes() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+      dispatch(getReporteGanancias());    
+  }, [])
 
-    function downloadFile(url,fileName) {
-        const { config, fs } = RNFetchBlob;
-        const downloads = fs.dirs.DownloadDir;
-        return config({
-          // add this option that makes response data to be stored as a file,
-          // this is much more performant.
-          fileCache : true,
-          addAndroidDownloads : {
-            useDownloadManager : true,
-            notification : false,
-            path:  downloads + '/' + fileName + '.csv',
-          }
-        })
-        .fetch('GET', url);
-      }
-
+    const ganancias = useSelector(store => store.user.ganancias)
+    ganancias.map(d => console.log(d, 'mireee---------------------------------'));
     const generarReporte = ()  => {
         const { config } = RNFetchBlob;
-        const values = [
-            ['build', '2017-11-05T05:40:35.515Z'],
-            ['deploy', '2017-11-05T05:42:04.810Z']
-          ];
-          console.log('--------------------------------------------------------------')
-          // construct csvString
-          const headerString = 'event,timestamp\n';
-          const rowString = values.map(d => `${d[0]},${d[1]}\n`).join('');
+          // construct csvString"tx_username": "briansaban", "valor": "300"}
+          const headerString = 'Actividad,Fecha,Usuario,Valor\n';
+          const rowString = ganancias.map(d => !d?.total ? `${d.concepto},${d.fecha},${d.tx_username},${d.valor} \n` : `Total: ${d.total} \n`).join('');
           const csvString = `${headerString}${rowString}`;
           
           // write the current list of answers to a local csv file

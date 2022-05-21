@@ -19,6 +19,7 @@ const INITIAL_STATE = {
     wallet: [],
     facturas: [],
     products: [],
+    ganancias: [],
     loadingSubmissions: false,
     loadingUsuarios: false,
     registerProfile: {
@@ -274,8 +275,13 @@ export const UserReducer = (
                 ...state,
                 registerProfile: action.payload
             };
+        case ActionTypes.REPORTE_SUCCESS:
+            return {
+                ...state,
+                ganancias: action.payload
+            };
         case ActionTypes.LOG_OUT:
-            return INITIAL_STATE
+            return INITIAL_STATE       
         default:
             return state;
     }

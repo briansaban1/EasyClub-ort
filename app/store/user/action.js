@@ -322,3 +322,10 @@ export const getAdminMenu = () => {
     dispatch({ type: ActionTypes.LOGIN_SUCCESS, payload });
   };
 };
+
+export const getReporteGanancias = () => {
+  return async (dispatch) => {
+    const ganancias = await wservice.getReporteGanancias()
+    dispatch({ type: ActionTypes.REPORTE_SUCCESS, payload: ganancias.data });
+  };
+};

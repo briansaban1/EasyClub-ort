@@ -244,4 +244,10 @@ WService.prototype.deleteActivity = function(data) {
   });
 };
 
+WService.prototype.getReporteGanancias = function () {
+  return NetworkHelper.requestPost(this.makeUrl('reporteGanancias.php'), {
+    flag: 'reporte_ganancias'
+  });
+};
+
 export default WService;
