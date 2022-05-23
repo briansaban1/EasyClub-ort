@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { View } from 'react-native';
+import { Platform, ToastAndroid, View, Alert, } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import RNFetchBlob from 'react-native-fetch-blob';
 import { FlexBetweenWrapper, Space } from '../../components/styled-components';
@@ -26,7 +26,7 @@ function Reportes() {
           const csvString = `${headerString}${rowString}`;
           
           // write the current list of answers to a local csv file
-          const pathToWrite = `${RNFetchBlob.fs.dirs.DownloadDir}/data.csv`;
+          const pathToWrite = Platform.OS == 'ios' ? `${RNFetchBlob.fs.dirs.DocumentDir}/data.csv` :  `${RNFetchBlob.fs.dirs.DownloadDir}/data.csv`;
           console.log('pathToWrite', pathToWrite);
           // pathToWrite /storage/emulated/0/Download/data.csv
           
@@ -43,14 +43,26 @@ function Reportes() {
           
           RNFetchBlob.fs
             .writeFile(pathToWrite, csvString, 'utf8')
-            .then(() => {
-                RNFetchBlob.android.addCompleteDownload({
+            .then((res) => {
+
+              if(Platform.OS === 'ios'){
+                RNFetchBlob.ios.previewDocument({
+                  path: pathToWrite,
+                  fileCache: true,
+                  notification: true
+                });
+
+              }else{
+
+                RNFetchBlob.android.addCompleteDownload({ 
                     title: 'data.csv',
                     description: 'Download complete',
                     mime: 'application/csv',
                     path: pathToWrite,
                     showNotification: true,
                   });
+                }
+
               console.log(`wrote file ${pathToWrite}`);
               // wrote file /storage/emulated/0/Download/data.csv
             })
