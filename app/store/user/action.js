@@ -183,10 +183,10 @@ export const getHorarios = (actividad) => {
 };
 
 
-export const getGrafico = (email) => {
+export const getGrafico = () => {
   return async (dispatch) => {
     dispatch({ type: ActionTypes.GET_GRAFICO_START });
-      const data = await wservice.getGrafico(email)
+      const data = await wservice.getGrafico()
       console.log(data)
       if (data.status == 1){
       dispatch({ type: ActionTypes.GET_GRAFICO_SUCCESS, payload: data.data });

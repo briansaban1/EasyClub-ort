@@ -250,4 +250,10 @@ WService.prototype.getReporteGanancias = function () {
   });
 };
 
+WService.prototype.getGrafico = function () {
+  return NetworkHelper.requestPost(this.makeUrl('grafico.php'), {
+    flag: 'getGrafico'
+  });
+};
+
 export default WService;
