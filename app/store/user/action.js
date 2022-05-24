@@ -48,6 +48,7 @@ export const registerUser = (profile) => {
       await AsyncStorage.removeItem('profile');
       reset('Exito');
     }
+    console.log(response0)
   };
 };
 
@@ -129,10 +130,10 @@ return async (dispatch) => {
 };
 
 
-export const getSubmissions = (email) => {
+export const getSubmissions = (id) => {
   return async (dispatch) => {
     dispatch({ type: ActionTypes.GET_SUBMISSIONS_START });
-      const data = await wservice.getSubmissions(email)
+      const data = await wservice.getSubmissions(id)
       console.log(data)
       if (data.status == 1){
         
