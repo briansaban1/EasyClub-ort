@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
-import { Modal, StyleSheet, View, Image, StatusBar, Text } from 'react-native';
+import { Modal, StyleSheet, View, Image, StatusBar, Text, Alert } from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
 import { Colors, Dimensions } from '../constants';
 import Images from '../constants/images';
@@ -120,9 +120,9 @@ console.log(parseInt(precioCobro), 'precio')
             console.log(payment)
     
             if (payment.status === 'approved'){
-                console.log(payment)
-                setPaymentResult(payment)
-                generarFactura(id, actividades, precioCobro, nombreDeporte, payment.id)
+                console.log(payment);
+                setPaymentResult(payment);
+                generarFactura(id, actividades, precioCobro, nombreDeporte, payment.id);
                 generarReserva(id, actividades, hora, fechaArregada);
                 
             };
@@ -146,22 +146,22 @@ console.log(parseInt(precioCobro), 'precio')
 
 //se carga la factura a la base de datos
     function generarFactura(id, idActividad, precio, nombreDeporte, idPago) {
-console.log(id, idActividad, precio, nombreDeporte, idPago, 'factura')
+     console.log(id, idActividad, precio, nombreDeporte, idPago, 'factura')
         wservice.cargarFactura({
             id,
             idActividad,
             precio,
             nombreDeporte,
             idPago
-           
         }).then(response => {
+            
             if (response.status == 1) {
-               
-                console.log(response.status)
+                console.log(response.status, response.msg, 'STATUS FACTURA')
                 setLoadng(false)
                 setPrecioCobro('')
                 setDetalle('')
             }
+            console.log(response.msg, response.status, 'mensaje factura')
         })
     };
 
