@@ -11,7 +11,6 @@ import { useState } from 'react';
 import WService from '../../service/WebService';
 import LottieView from 'lottie-react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { getActividad } from '../../store/user/action';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import moment, { min } from 'moment';
 
@@ -38,10 +37,6 @@ const createFormData = (photo, body) => {
 
 
 function ModifyActivityScreen(data) {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getActividad(data.route.params.data));
-    }, [])
     const actividad = useSelector(store => store.user.actividad)
     const [name, setName] = useState('')
     const [quantity, setQuantity] = useState('')
@@ -61,8 +56,8 @@ function ModifyActivityScreen(data) {
     const [tipo, setTipo] = useState('')
     const [detail, setDetail] = useState('')
 
-    const [horaInicio, setHoraInicio] = useState(moment());
-    const [horaFin, setHoraFin] = useState(moment());
+    const [horaInicio, setHoraInicio] = useState(null);
+    const [horaFin, setHoraFin] = useState(null);
     const [isDatePickerVisibleInicio, setDatePickerVisibilityInicio] = useState(false);
     const [isDatePickerVisibleFin, setDatePickerVisibilityFin] = useState(false);
 
@@ -79,13 +74,14 @@ function ModifyActivityScreen(data) {
             setRegularVal(actividad[0].valorRegular)
             setTipo(actividad[0].tipo)
             setDetail(actividad[0].detalle)
-            setHoraInicio(moment(actividad[0].inicio).format('HH:mm'))
-            setHoraFin(moment(actividad[0].fin).format('HH:mm'))
+            setHoraInicio(moment(new Date().setHours((actividad[0].inicio).substring(0,2), (actividad[0].inicio).substring(3,5))).utcOffset('-03:00').format('HH:mm'))
+            setHoraFin(moment(new Date().setHours((actividad[0].inicio).substring(0,2), (actividad[0].inicio).substring(3,5))).utcOffset('-03:00').format('HH:mm'))
         }
     }, [actividad])
 
     const showDatePickerInicio = () => {
         setDatePickerVisibilityInicio(true);
+        console.log("NOADSFNAFS PRESION PRESION")
     };
 
     const hideDatePickerInicio = () => {
@@ -111,7 +107,7 @@ function ModifyActivityScreen(data) {
         hideDatePickerFin();
     };
 
-    console.log(moment((horaInicio)).format('HH:mm'), moment((horaFin)).format('HH:mm'), 'horaInicioooooo1')
+    console.log(horaInicio, 'horaInicioooooo1')
 
     function chooseAttachmentFile() {
         DocumentPicker.show({
@@ -272,7 +268,7 @@ function ModifyActivityScreen(data) {
                             <Text style={styles.text3}>Hora Inicio</Text>
 
                             <TouchableOpacity style={styles.buttonCalendar} onPress={showDatePickerInicio}>
-                                <Text style={styles.textDate}>{horaInicio == "" ? "HH:MM" : moment(new Date(horaInicio)).utcOffset('-03:00').format('hh:mm A')}</Text>
+                                <Text style={styles.textDate}>{!horaInicio? "HH:MM" : horaInicio}</Text>
 
                             </TouchableOpacity>
 
@@ -289,7 +285,7 @@ function ModifyActivityScreen(data) {
                             <Text style={styles.text3}>Hora Fin</Text>
 
                             <TouchableOpacity style={styles.buttonCalendar} onPress={showDatePickerFin}>
-                                <Text style={styles.textDate}>{horaFin == "" ? "HH:MM" : moment(new Date(horaFin)).utcOffset('-03:00').format('hh:mm A')}</Text>
+                                <Text style={styles.textDate}>{!horaFin? "HH:MM" : horaFin}</Text>
 
                             </TouchableOpacity>
 

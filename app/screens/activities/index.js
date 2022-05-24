@@ -5,6 +5,7 @@ import styles from './styles';
 import { useSelector, useDispatch } from 'react-redux';
 import WService from '../../service/WebService';
 import { AppText, FlexWrapper } from '../../components/styled-components';
+import { getActividad } from '../../store/user/action';
 import { Colors, Dimensions, Screens } from '../../constants';
 import LottieView from 'lottie-react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -67,7 +68,7 @@ function eliminarActividad(ids) {
 };
 
 const { navigate } = useNavigation();
-
+const dispatch = useDispatch();
 
 
 console.log(actividades, 'flag')
@@ -109,7 +110,7 @@ console.log(actividades, 'flag')
                      style={styles.iconos}
                     source={require('@assets/edit.png')}
                     imageStyle={{ width: 21, height: 21, resizeMode: 'contain' }}
-                    onPress={() => { navigate(Screens.ModifyActivity, {data: actividad.id}) }}
+                    onPress={() => { dispatch(getActividad(actividad.id)); navigate(Screens.ModifyActivity, {data: actividad.id}) }}
                     //falta implementacion
                 />
 
