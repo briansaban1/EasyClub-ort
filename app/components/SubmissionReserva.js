@@ -65,7 +65,8 @@ function arancel(arancel){
     
     function valor(regular, promocion){
         var precio = <BoldText>{regular}</BoldText>
-        if(regular > promocion){
+        if(regular > promocion && !promocion == ""){
+            console.log(promocion, 'promo')
             precio = <BoldText>{promocion}</BoldText>
         }else{
             precio = <BoldText>{regular}</BoldText>

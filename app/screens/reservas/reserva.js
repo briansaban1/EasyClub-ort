@@ -29,7 +29,7 @@ function ReservaHoraFechaScreen(data) {
     const precioRegular = data.route.params.data.valorRegular;
     const precioPromocional = data.route.params.data.valorPromocional;
 
-console.log(precioPromocional, precioRegular)
+console.log(precioPromocional, precioRegular, 'valores')
 
     const profile = useSelector(store => store.user.profile)
 
@@ -120,9 +120,11 @@ console.log(precioPromocional, precioRegular)
     const [loading, setLoading] = useState(true);
 
 
-    function valor(precioRegular, precioPromocional){
-        if(precioRegular > precioPromocional){
+    function valor(precioPromocional, precioRegular ){
+        console.log(precioPromocional, precioRegular, 'valoresss')
+        if(precioRegular > precioPromocional && !precioPromocional ==""){
             precio = precioPromocional
+            
         }else{
             precio = precioRegular
         };
