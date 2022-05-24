@@ -48,7 +48,7 @@ function CreateActivityScreen() {
     const [fileName, setFileName] = useState(null)
     const [file, setFile] = useState('')
 
-    const webFile = `https://easyclubort.000webhostapp.com/app/${file}`
+    const webFile = `https://easyclub.online/app/${file}`
 
 
     //horarios en base de datos es date, ver compatibilidad
@@ -112,7 +112,7 @@ function CreateActivityScreen() {
 
     function fileUploadApi(photo) {
         setLoading(true)
-        fetch("https://easyclubort.000webhostapp.com/app/FileUpload.php", {
+        fetch("https://easyclub.online/app/FileUpload.php", {
             method: "POST",
             body: createFormData(photo, { userId: "123" })
         })

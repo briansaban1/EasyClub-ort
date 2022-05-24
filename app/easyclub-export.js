@@ -1,6 +1,6 @@
 
 const easyclubMobile = {
-  API_URL: "https://easyclubort.000webhostapp.com/app/"
+  API_URL: "https://easyclub.online/app/"
 };
 
 export default easyclubMobile;

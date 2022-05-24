@@ -14,7 +14,7 @@ export const localMessage = (
     });
 
 export const openTermsOfService = () => {
-    const url = "https://easyclubort.000webhostapp.com//politicas/"
+    const url = "https://easyclub.online/politicas/"
     Linking.openURL(url)
 }
 

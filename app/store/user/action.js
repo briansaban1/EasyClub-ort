@@ -107,7 +107,7 @@ return async (dispatch) => {
 
  userTokenRegister = (id, token) => {
   //console.log(token, 'tokeeen')
-  fetch('https://easyclubort.000webhostapp.com/app/userTokenRegister.php', {
+  fetch('https://easyclub.online/app/userTokenRegister.php', {
     method: 'POST',
     header: {
       'Content-Type': 'application/json',

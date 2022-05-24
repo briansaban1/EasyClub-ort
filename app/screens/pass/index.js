@@ -71,7 +71,7 @@ function ChangePassScreen() {
     setLoading(true)
     if (email == emailconfirm) {
 
-      fetch('https://easyclub.000webhostapp.com/app/recoverypassword.php', {
+      fetch('https://easyclub.online/app/recoverypassword.php', {
         method: 'POST',
         header: {
           'Content-Type': 'application/json',
