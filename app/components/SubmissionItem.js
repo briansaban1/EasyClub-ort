@@ -74,7 +74,6 @@ function SubmissionItem({ data, profile, onPress }) {
         }
 
 
-
     return (
         
         <View style={styles.container}>
@@ -88,7 +87,7 @@ function SubmissionItem({ data, profile, onPress }) {
             />
             <View style={styles.mainContainer} >
                 <BoldText>Actividad: {data.nombre}</BoldText>
-                <AppText>Reserva: {moment(data.fechaReserva).format('DD/MM/YYYY')} | {(data.horaReserva)}</AppText>
+                <AppText>Reserva: {moment(data.fechaReserva).format('DD/MM/YYYY')} | {(moment(data.horaReserva, 'HH:mm:ss').format('HH:mm A'))}</AppText>
                 
                 {visible(data.cancha, data.modalidad) &&
                     <View>
