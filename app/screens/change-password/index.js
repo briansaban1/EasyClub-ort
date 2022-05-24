@@ -16,7 +16,7 @@ const wservice = new WService();
 function ChangePasswordScreen() {
     const profile = useSelector(store => store.user.profile)
     const [credential, setCredential] = useState({
-        id: "",
+        username: "",
         password: ""
     })
     const [currentPassword, setCurrentPassword] = useState('')
@@ -39,11 +39,11 @@ function ChangePasswordScreen() {
 
     function handleChangePassword() {
         setLoading(true);
-        wservice.changePassword(safeGetOr('', 'id_usuario')(profile), newPass)
+        wservice.changePassword(profile.id_usuario, newPass)
             .then(async (response) => {
                 console.log({ response })
                 if (response.status == 1) {
-                    const newCredential = { id: credential.id, password: newPass };
+                    const newCredential = { username: credential.username, password: newPass };
                     setCredential(newCredential);
                     await AsyncStorage.setItem('credential', JSON.stringify(newCredential))
                 }
@@ -59,6 +59,9 @@ function ChangePasswordScreen() {
                 setModalVisible(false);
             })
     }
+
+    console.log(currentPassword, newPass, newRePass, credential.password, 'datos' )
+
     const allow = credential.password == currentPassword && newPass == newRePass && newRePass.length > 4
     return (
         <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 35 }} showsVerticalScrollIndicator={false}>
