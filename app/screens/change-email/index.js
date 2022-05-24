@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StatusBar, Modal, Text } from 'react-native';
+import { ScrollView, StatusBar, Modal, Text, TouchableOpacity } from 'react-native';
 import { Header, Button, AppInput } from '../../components';
 import { Colors, Dimensions } from '../../constants';
 
@@ -9,7 +9,6 @@ import { View } from 'react-native';
 import { useState } from 'react';
 import WService from '../../service/WebService';
 import LottieView from 'lottie-react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const wservice = new WService();
