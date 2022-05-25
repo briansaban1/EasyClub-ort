@@ -137,7 +137,13 @@ function SideMenu() {
                     source={require('@assets/offers-bold.png')}
                     screen={Screens.CreateActivity}
                 />
-                <Divider />          
+                <Divider /> 
+                <MenuButton
+                    label={"Socios"}
+                    source={require('@assets/user-admin.png')}
+                    screen={Screens.Socios}
+                />
+                <Divider />         
             </View>}
             <Space height={20} />
             <Divider />
