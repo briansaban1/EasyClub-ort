@@ -170,6 +170,17 @@ export const getActividades = () => {
   };
 };
 
+export const getActividad = (actividadId) => {
+  return async (dispatch) => {
+    dispatch({ type: ActionTypes.GET_ACTIVIDADES_START });
+      const data = await wservice.getActividad(actividadId)
+      if (data.status == 1){
+      dispatch({ type: ActionTypes.GET_ACTIVIDADES_SUCCESS, payload: data.data });
+       } 
+      dispatch({ type: ActionTypes.GET_ACTIVIDADES_FAILED });
+  };
+};
+
 export const getHorarios = (actividad) => {
   return async (dispatch) => {
     dispatch({ type: ActionTypes.GET_HORARIOS_START });
