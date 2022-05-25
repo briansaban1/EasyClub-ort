@@ -36,7 +36,7 @@ const createFormData = (photo, body) => {
 };
 
 
-function CreateActivityScreen(data) {
+function ModifyActivityScreen(data) {
 
 console.log(data.route.params.data.inicio, data.route.params.data.fin ,'aca')
 
@@ -444,4 +444,4 @@ const [ids, setIds] = useState('')
     );
 }
 
-export default CreateActivityScreen;
+export default ModifyActivityScreen;
