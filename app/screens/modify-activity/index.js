@@ -251,7 +251,7 @@ const [ids, setIds] = useState('')
             <View>
                 <Header
                     title={"Actividad"}
-                    description={"Crea una nueva actividad"}
+                    description={"Actualización de la actividad"}
                 />
                 <Space />
                 <Space />
