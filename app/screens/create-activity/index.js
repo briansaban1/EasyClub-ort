@@ -11,7 +11,7 @@ import { useState } from 'react';
 import WService from '../../service/WebService';
 import LottieView from 'lottie-react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { getActividades } from '../../store/user/action';
+import { getActividades, getActividad } from '../../store/user/action';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import moment, { min } from 'moment';
 
@@ -217,7 +217,7 @@ function CreateActivityScreen() {
 
 
                         <TouchableOpacity style={styles.button1}
-                            onPress={() => { setModalVisible(false) }}
+                            onPress={() => { setModalVisible(false); dispatch(getActividad()) }}
                         //onPress={() => { setModalVisible(false) }}
                         >
 
