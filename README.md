@@ -1,6 +1,6 @@
 <p align="center">
   <a href="">
-    <img width="150px" style="border-radius:20px;" src="android/app/src/main/res/mipmap-hdpi/ic_launcher.png">
+    <img width="150px" style="border-radius:20px;" src="https://easyclub.online/images/alta-calidad-2564082.png">
   </a>
   <h1 align="center">EasyClub</h1>
 </p>
