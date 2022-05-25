@@ -52,6 +52,13 @@ WService.prototype.getActividades = function () {
   });
 };
 
+WService.prototype.getActividad = function (activityId) {
+  return NetworkHelper.requestPost(this.makeUrl('getActivity.php'), {
+    flag: 'getActividad',
+    activityId: activityId,
+  });
+};
+
 WService.prototype.getPromociones = function () {
   return NetworkHelper.requestPost(this.makeUrl('promociones.php'), {
     flag: 'promociones'
@@ -243,6 +250,15 @@ WService.prototype.deleteActivity = function(data) {
     ...data
   });
 };
+
+WService.prototype.updateActivity = function(data) {
+  console.log(data, 'updateActivity')
+  return NetworkHelper.requestPost(this.makeUrl('updateActivity.php'), {
+    flag: 'updateActivity',
+    ...data
+  });
+};
+
 
 WService.prototype.getReporteGanancias = function () {
   return NetworkHelper.requestPost(this.makeUrl('reporteGanancias.php'), {
