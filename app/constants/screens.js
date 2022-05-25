@@ -35,6 +35,7 @@ const Screens = {
    RealizarPago: "RealizarPago",
    CreateActivity: "CreateActivity",
    DeleteActivity: "DeleteActivity",
+   ModifyActivity: "ModifyActivity",
 };
 
 export default Screens;

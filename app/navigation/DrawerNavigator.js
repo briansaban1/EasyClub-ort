@@ -40,7 +40,9 @@ import Funcionamiento1 from "../screens/funcionamiento/funcionamiento";
 import Pago from "../screens/funcionamiento/pago";
 
 import CreateActivity from "../screens/create-activity";
-import DeleteActivity from "../screens/delete-activity";
+import DeleteActivity from "../screens/delete-activity"; 
+import ModifyActivity from "../screens/modify-activity";
+
 
 import DrawerContent from '../screens/side-menu'
 import Dimension from '../constants/dimensions';
@@ -93,6 +95,7 @@ function App() {
 
             <Drawer.Screen name="CreateActivity" component={CreateActivity} />
             <Drawer.Screen name="DeleteActivity" component={DeleteActivity} />
+            <Drawer.Screen name="ModifyActivity" component={ModifyActivity} />
 
 
         </Drawer.Navigator>
