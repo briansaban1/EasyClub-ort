@@ -43,6 +43,8 @@ import CreateActivity from "../screens/create-activity";
 import DeleteActivity from "../screens/delete-activity"; 
 import ModifyActivity from "../screens/modify-activity";
 
+import Socios from "../screens/socio";
+import ModifySocio from "../screens/socio/modify-socio";
 
 import DrawerContent from '../screens/side-menu'
 import Dimension from '../constants/dimensions';
@@ -96,6 +98,12 @@ function App() {
             <Drawer.Screen name="CreateActivity" component={CreateActivity} />
             <Drawer.Screen name="DeleteActivity" component={DeleteActivity} />
             <Drawer.Screen name="ModifyActivity" component={ModifyActivity} />
+
+            <Drawer.Screen name="Socios" component={Socios} />
+            <Drawer.Screen name="ModifySocio" component={ModifySocio} />
+
+            
+
 
 
         </Drawer.Navigator>

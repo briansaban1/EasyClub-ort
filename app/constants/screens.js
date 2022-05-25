@@ -36,6 +36,9 @@ const Screens = {
    CreateActivity: "CreateActivity",
    DeleteActivity: "DeleteActivity",
    ModifyActivity: "ModifyActivity",
+   Socios: "Socios",
+   ModifySocio: "ModifySocio",
+   
 };
 
 export default Screens;
