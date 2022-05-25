@@ -59,6 +59,51 @@ WService.prototype.getActividad = function (activityId) {
   });
 };
 
+
+
+
+
+WService.prototype.getSocios = function () {
+  
+  return NetworkHelper.requestPost(this.makeUrl('socios.php'), {
+    flag: 'socio'
+  });
+};
+
+WService.prototype.getSocio = function (id) {
+  console.log(id)
+  return NetworkHelper.requestPost(this.makeUrl('getSocio.php'), {
+    flag: 'socio',
+    socioId: id,
+  });
+};
+
+WService.prototype.updateSocio = function(data) {
+  console.log(data, 'updateSocio')
+  return NetworkHelper.requestPost(this.makeUrl('updateSocio.php'), {
+    flag: 'updateSocio',
+    ...data
+  });
+};
+
+WService.prototype.deleteSocio = function(id) {
+  console.log(id.id, 'deleteSocio webservice')
+  return NetworkHelper.requestPost(this.makeUrl('deleteSocio.php'), {
+    flag: 'deleteSocio',
+    idUsuario: id.id
+  });
+};
+
+WService.prototype.activarSocio = function(id) {
+  console.log(id.id, 'activarSocio webservice')
+  return NetworkHelper.requestPost(this.makeUrl('activarSocio.php'), {
+    flag: 'activarSocio',
+    idUsuario: id.id
+  });
+};
+
+
+
 WService.prototype.getPromociones = function () {
   return NetworkHelper.requestPost(this.makeUrl('promociones.php'), {
     flag: 'promociones'

@@ -10,6 +10,7 @@ const INITIAL_STATE = {
     submissions: [], //listado de reservas
     submissions1: [], //historial de reservas
     actividades: [],
+    socios: [],
     usuarios: [],
     horarios: [],
     grafico: [],
@@ -113,6 +114,32 @@ export const UserReducer = (
                     loadingActividades: false,
                     actividades: action.payload
                 };
+
+
+
+
+
+
+
+                case ActionTypes.GET_SOCIOS_START:
+                    return {
+                        ...state,
+                        loadingSocios: true,
+                    };
+                case ActionTypes.GET_SOCIOS_FAILED:
+                    return {
+                        ...state,
+                        loadingSocios: false,
+                    };
+                case ActionTypes.GET_SOCIOS_SUCCESS:
+                    return {
+                        ...state,
+                        loadingSocios: false,
+                        socios: action.payload
+                    };
+
+
+
 
             case ActionTypes.GET_USUARIOS_START:
                 return {
