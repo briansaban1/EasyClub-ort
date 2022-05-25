@@ -15,7 +15,7 @@ export const loginUser = ({ username, password }, rememberMe = false) => {
     dispatch({ type: ActionTypes.LOGIN_START });
     const response = await wservice.login(username, password)
     console.log('login-[response]', response)
-    if (response.status == 1) {
+    if (response.status == 1 && response.data.id_TipoUsuario != 3) {
       const resumen = response.data.id_TipoUsuario == 2 ? await wservice.getUserMenu(response.data.id_usuario) : await wservice.getAdminMenu()
       console.log(resumen)
       if (rememberMe) {
@@ -180,6 +180,40 @@ export const getActividad = (actividadId) => {
       dispatch({ type: ActionTypes.GET_ACTIVIDADES_FAILED });
   };
 };
+
+
+
+
+
+
+export const getSocios = () => {
+  return async (dispatch) => {
+    dispatch({ type: ActionTypes.GET_SOCIOS_START });
+      const data = await wservice.getSocios()      
+      console.log(data, "ACAAAA")
+      if (data.status == 1){
+      dispatch({ type: ActionTypes.GET_SOCIOS_SUCCESS, payload: data.data });
+       } 
+      dispatch({ type: ActionTypes.GET_SOCIOS_FAILED });
+    
+  };
+};
+
+export const getSocio = (socioId) => {
+  return async (dispatch) => {
+    dispatch({ type: ActionTypes.GET_SOCIOS_START });
+      const data = await wservice.getSocio(socioId)
+      console.log(data)
+      if (data.status == 1){
+      dispatch({ type: ActionTypes.GET_SOCIOS_SUCCESS, payload: data.data });
+       } 
+      dispatch({ type: ActionTypes.GET_SOCIOS_FAILED });
+  };
+};
+
+
+
+
 
 export const getHorarios = (actividad) => {
   return async (dispatch) => {
