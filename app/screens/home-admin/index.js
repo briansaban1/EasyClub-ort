@@ -15,10 +15,11 @@ import Tab from './Tab';
 import { 
         getPromociones,
         getActividades,
+        getSocios,
         getUsuarios,
         getAdminMenu, 
-        mytoken 
-} from '../../store/user/action';
+        mytoken
+      } from '../../store/user/action';
 
 
 function HomeScreen() {
@@ -26,6 +27,7 @@ function HomeScreen() {
   const { toggleDrawer } = useNavigation();
   const profile = useSelector(store => store.user.profile)
   const actividades = useSelector(store => store.user.actividades)
+  const socios = useSelector(store => store.user.socios)
   const promociones = useSelector(store => store.user.promociones)
   const usuarios = useSelector(store => store.user.usuarios)
   
@@ -38,6 +40,7 @@ function HomeScreen() {
 
   useEffect(() => {
     dispatch(getActividades());
+    dispatch(getSocios());
     dispatch(getPromociones());
     dispatch(getUsuarios());
     dispatch(mytoken(profile.id_usuario));
@@ -57,6 +60,7 @@ function HomeScreen() {
 
       dispatch(getActividades());
       dispatch(getPromociones());
+      dispatch(getSocios());
       dispatch(getUsuarios());
       dispatch(getAdminMenu());
 
