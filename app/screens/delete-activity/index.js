@@ -8,6 +8,8 @@ import { AppText, FlexWrapper } from '../../components/styled-components';
 import { Colors, Dimensions, Screens } from '../../constants';
 import LottieView from 'lottie-react-native';
 import ImageButton from '../../components/ImageButton';
+import { getActividad, getActividades } from '../../store/user/action';
+import { useNavigation } from '@react-navigation/native';
 
 
 const wservice = new WService();
@@ -18,27 +20,23 @@ function DeleteActivityScreen() {
 const profile = useSelector(store => store.user.profile)
 
 //const _actividades = useSelector(store => store.user.actividades)
-const [actividades, setActividades] = useState([' '])
-const [_actividades, setActiv] = useState(actividades)
+const _actividades = useSelector(store => store.user.actividades)
+const [actividades, setActividades] = useState(_actividades)
 
 const [modalVisible, setModalVisible] = useState(false);
 
+const { navigate } = useNavigation();
+const dispatch = useDispatch();
 
 useEffect(() => {
-        wservice.getActividades().then(response => {
-            if (response.status == 1) {
+    dispatch(getActividad())
+    
+},[dispatch])
 
-                setActividades(response.data.map(item => ({
-                    id: item.id,
-                    imagen: item.imagen,
-                    nombre: item.nombre,
-                    
-                })));
-                //setNoHayMas(response.data.pop())
-                //console.log(horarios)
-            }
-        })
-    })
+useEffect(() => {
+        setActividades(_actividades)
+        
+})
 
 console.log(actividades)
 
@@ -48,9 +46,12 @@ function eliminarActividad(ids) {
     wservice.deleteActivity({
         id: ids
     }).then(res => {
+       
       if (res.status == 1){
        
-        setModalVisible(true)
+        setModalVisible(true);
+        dispatch(getActividad());
+
     }
 
     }).catch(e => {
@@ -64,7 +65,6 @@ function eliminarActividad(ids) {
         setModalVisible(false);
     })
 };
-
 
 
 
@@ -108,7 +108,9 @@ console.log(actividades, 'flag')
                      style={styles.iconos}
                     source={require('@assets/edit.png')}
                     imageStyle={{ width: 21, height: 21, resizeMode: 'contain' }}
-                    onPress={() => { navigator(Screens.EditActivity) }}
+                    
+                    onPress={() => {dispatch(getActividades(i.id)); navigate(Screens.ModifyActivity, {data: i}) }}
+                    
                     //falta implementacion
                 />
 
@@ -116,7 +118,7 @@ console.log(actividades, 'flag')
                      style={styles.iconos}
                     source={require('@assets/eliminarAct.png')}
                     imageStyle={{ width: 21, height: 21, resizeMode: 'contain' }}
-                    onPress={() => { eliminarActividad(i.id) }}
+                    onPress={() => { eliminarActividad(i.id); dispatch(getActividades(i.id)); }}
                 />
 
 
@@ -160,7 +162,7 @@ console.log(actividades, 'flag')
 
                             <TouchableOpacity style={styles.button1}
 
-                                onPress={() => { setModalVisible(false) }}
+                                onPress={() => { setModalVisible(false); dispatch(getActividad()) }}
                             >
 
                                 <AppText style={styles.text1}>Aceptar</AppText>
