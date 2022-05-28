@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, StatusBar, Modal, Text, Alert, Image, TouchableOpacity, } from 'react-native';
-import { Header, Button, AppInput, DropDownGrande, DropDown } from '../../../components';
-import { Colors, Dimensions } from '../../../constants';
+import { Header, Button, AppInput, DropDownGrande, DropDown } from '../../../../components';
+import { Colors, Dimensions } from '../../../../constants';
 import styles from './styles';
-import { AppText, CenterText, FlexWrapper, Space } from '../../../components/styled-components';
+import { AppText, CenterText, FlexWrapper, Space } from '../../../../components/styled-components';
 import { View } from 'react-native';
-import WService from '../../../service/WebService';
+import WService from '../../../../service/WebService';
 import LottieView from 'lottie-react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { getActividades, getHorarios, getSocios } from '../../../store/user/action';
-import { isValidEmail } from '../../../utils';
+import { getActividades, getHorarios, getSocios } from '../../../../store/user/action';
+import { isValidEmail } from '../../../../utils';
 
 
 

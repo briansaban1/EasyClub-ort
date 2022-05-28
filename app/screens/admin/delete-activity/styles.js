@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Colors, Dimensions } from '../../constants';
+import { Colors, Dimensions } from '../../../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,17 +21,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white
 },
 mainContainer: {
-    width: Dimensions.deviceWidth - 200,
-    marginLeft:7
+    width: Dimensions.deviceWidth - 210,
 },
 location: {
     width: 40,
     height: 40,
-    marginHorizontal: 10
-},
-location1: {
-    width: 30,
-    height: 30,
     marginHorizontal: 10
 },
 icon: {
@@ -100,19 +94,7 @@ texto:{
 },
 iconos:{
     paddingRight:20
-},
-textoDatos:{
-    color: Colors.blue400,
-    fontSize: Dimensions.px14,
-    fontWeight: 'normal'
- },
- textoDatosBaja:{
-    color: Colors.red,
-    fontSize: Dimensions.px14,
-    fontWeight: 'bold',
-    alignItems: 'center',
-    justifyContent: 'center',
- }
+}
 
 });
 

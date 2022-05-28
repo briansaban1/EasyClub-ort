@@ -2,7 +2,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Home from '../screens/home';
-import HomeAdmin from '../screens/home-admin';
+import HomeAdmin from '../screens/admin/home-admin';
 import Offers from '../screens/offers'
 import Points from '../screens/points'
 import Options from '../screens/options'

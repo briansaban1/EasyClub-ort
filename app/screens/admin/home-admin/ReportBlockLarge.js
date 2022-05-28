@@ -1,9 +1,9 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { AppText } from '../../components/styled-components';
-import Button from '../../components/Button';
+import { AppText } from '../../../components/styled-components';
+import Button from '../../../components/Button';
 import styles from './styles';
-import { Colors } from '../../constants';
+import { Colors } from '../../../constants';
 
 function ReportBlockLarge({ active, onPress, label, description }) {
     return (

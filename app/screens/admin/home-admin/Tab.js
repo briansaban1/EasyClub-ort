@@ -1,8 +1,8 @@
 import React from 'react';
 import { TouchableOpacity, Text, View, Image } from 'react-native';
-import { FlexBetweenWrapper, AppText } from '../../components/styled-components';
+import { FlexBetweenWrapper, AppText } from '../../../components/styled-components';
 import styles from './styles';
-import { Dimensions, Colors } from '../../constants';
+import { Dimensions, Colors } from '../../../constants';
 
 function Tab({ label, source, active, onPress, left = true, right = false, }) {
     return (

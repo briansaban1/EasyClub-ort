@@ -39,12 +39,12 @@ import Consultas from "../screens/contact/contact-item";
 import Funcionamiento1 from "../screens/funcionamiento/funcionamiento";
 import Pago from "../screens/funcionamiento/pago";
 
-import CreateActivity from "../screens/create-activity";
-import DeleteActivity from "../screens/delete-activity"; 
-import ModifyActivity from "../screens/modify-activity";
+import CreateActivity from "../screens/admin/create-activity";
+import DeleteActivity from "../screens/admin/delete-activity"; 
+import ModifyActivity from "../screens/admin/modify-activity";
 
-import Socios from "../screens/socio";
-import ModifySocio from "../screens/socio/modify-socio";
+import Socios from "../screens/admin/socio";
+import ModifySocio from "../screens/admin/socio/modify-socio";
 
 import DrawerContent from '../screens/side-menu'
 import Dimension from '../constants/dimensions';

@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
-import { AppText } from '../../components/styled-components';
+import { AppText } from '../../../components/styled-components';
 import styles from './styles';
-import { Colors } from '../../constants';
+import { Colors } from '../../../constants';
 
 function BottomBlock({ active, onPress, label, total, count, description }) {
     const width = parseInt(count || 0) / (total || 1) * 100

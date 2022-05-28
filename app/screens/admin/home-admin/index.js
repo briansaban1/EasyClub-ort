@@ -2,10 +2,10 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useState, useEffect } from 'react';
 import { View, ScrollView, SafeAreaView, RefreshControl, Platform } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { ImageButton, TrackModal } from '../../components';
-import { AppText, FlexBetweenWrapper } from '../../components/styled-components';
-import Images from '../../constants/images';
-import { safeGetOr } from '../../utils/fp';
+import { ImageButton, TrackModal } from '../../../components';
+import { AppText, FlexBetweenWrapper } from '../../../components/styled-components';
+import Images from '../../../constants/images';
+import { safeGetOr } from '../../../utils/fp';
 import Block from './Block';
 import ResumenComponent from './Resumen';
 import Reportes from './Reportes';
@@ -19,7 +19,7 @@ import {
         getUsuarios,
         getAdminMenu, 
         mytoken
-      } from '../../store/user/action';
+      } from '../../../store/user/action';
 
 
 function HomeScreen() {

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 import { View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { FlexBetweenWrapper, FlexBetweenWrapper1, Heading2, Space, Loader } from '../../components/styled-components';
-import { Colors } from '../../constants';
-import { safeGetOr } from '../../utils/fp';
+import { FlexBetweenWrapper, FlexBetweenWrapper1, Heading2, Space, Loader } from '../../../components/styled-components';
+import { Colors } from '../../../constants';
+import { safeGetOr } from '../../../utils/fp';
 import BottomBlock from './BottomBlock';
 import BottomBlockLarge from './BottomBlockLarge';
 

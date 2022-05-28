@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
-import { AppText } from '../../components/styled-components';
-import { Dimensions, Colors } from '../../constants';
+import { AppText } from '../../../components/styled-components';
+import { Dimensions, Colors } from '../../../constants';
 
 function Block({ label, value }) {
     return (

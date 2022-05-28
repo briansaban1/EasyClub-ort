@@ -3,12 +3,12 @@ import React, { useEffect } from 'react';
 import { Platform, ToastAndroid, View, Alert, } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import RNFetchBlob from 'react-native-fetch-blob';
-import { FlexBetweenWrapper, Space } from '../../components/styled-components';
+import { FlexBetweenWrapper, Space } from '../../../components/styled-components';
 
 import ReportBlockLarge from './ReportBlockLarge';
 import { 
   getReporteGanancias
-} from '../../store/user/action';
+} from '../../../store/user/action';
 
 function Reportes() {
   const dispatch = useDispatch()

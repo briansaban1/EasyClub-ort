@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Image, ScrollView, View, Text, Modal, StatusBar, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { Header, SearchInput, SubmissionActividades, ErrorActividades } from '../../components';
+import { Header, SearchInput, SubmissionActividades, ErrorActividades } from '../../../components';
 import styles from './styles';
 import { useSelector, useDispatch } from 'react-redux';
-import WService from '../../service/WebService';
-import { AppText, FlexWrapper, CenterView } from '../../components/styled-components';
-import { Colors, Dimensions, Screens } from '../../constants';
+import WService from '../../../service/WebService';
+import { AppText, FlexWrapper, CenterView } from '../../../components/styled-components';
+import { Colors, Dimensions, Screens } from '../../../constants';
 import LottieView from 'lottie-react-native';
-import ImageButton from '../../components/ImageButton';
-import { getSocio, getSocios } from '../../store/user/action';
+import ImageButton from '../../../components/ImageButton';
+import { getSocio, getSocios } from '../../../store/user/action';
 import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
 

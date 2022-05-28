@@ -1,17 +1,17 @@
 import React from 'react';
 import { ScrollView, StatusBar, Modal, Text, Alert, Image, TouchableOpacity } from 'react-native';
-import { Header, Button, AppInput, DropDownGrande, DropDown } from '../../components';
-import { Colors, Dimensions } from '../../constants';
+import { Header, Button, AppInput, DropDownGrande, DropDown } from '../../../components';
+import { Colors, Dimensions } from '../../../constants';
 import CheckBox from 'react-native-check-box'
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 import styles from './styles';
-import { AppText, CenterText, FlexWrapper, Space } from '../../components/styled-components';
+import { AppText, CenterText, FlexWrapper, Space } from '../../../components/styled-components';
 import { View } from 'react-native';
 import { useState } from 'react';
-import WService from '../../service/WebService';
+import WService from '../../../service/WebService';
 import LottieView from 'lottie-react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { getActividades, getActividad } from '../../store/user/action';
+import { getActividades, getActividad } from '../../../store/user/action';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import moment, { min } from 'moment';
 
