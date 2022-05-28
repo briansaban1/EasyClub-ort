@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, ScrollView, View, Text } from 'react-native';
-import { useSelector } from 'react-redux';
-import { Header, SearchInput, SubmissionPromociones, ErrorPromociones } from '../../components';
-import { AppStyles, Images } from '../../constants';
+import { useSelector, useDispatch } from 'react-redux';
+import { getPromociones } from '../../store/user/action';
+import { Header, SubmissionPromociones, ErrorPromociones } from '../../components';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
 import Screens from '../../constants/screens';
@@ -10,7 +10,10 @@ import Screens from '../../constants/screens';
 
 
 function PromocionesScreen() {
-
+const dispatch = useDispatch();
+useEffect(() => {
+dispatch(getPromociones())
+}, [])
 const profile = useSelector(store => store.user.profile)
 
 const _promociones = useSelector(store => store.user.promociones)
@@ -21,7 +24,7 @@ const [modalData, setModalData] = useState({});
 const { navigate } = useNavigation();
 
 
-console.log(promociones, 'flag')
+console.log(promociones, 'IJOASFBNIAUSFJN FLAGH GLAH PROMOCIONES ---------------------------------------------------', "color: #bada55")
 
     return (
         <>
@@ -39,7 +42,7 @@ console.log(promociones, 'flag')
                     
                 }
                 {promociones.map(i => <SubmissionPromociones data={i} profile={profile} onPress={(data) => {
-                   navigate(Screens.Reservas, {data})
+                   navigate(Screens.GenerarReservaPromocion, {data})
                    
                 }} />)}
                 <View style={{height:30}} />
