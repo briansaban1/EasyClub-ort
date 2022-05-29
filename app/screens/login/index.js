@@ -12,6 +12,18 @@ import { reset } from '../../navigation/RootNavigation'
 import { useNavigation } from '@react-navigation/native';
 import Screens from '../../constants/screens';
 import { openTermsOfService } from '../../utils';
+import { LoginButton, AccessToken, Profile, GraphRequest,GraphRequestManager } from 'react-native-fbsdk-next';
+
+function initUser(token) {
+  fetch('https://graph.facebook.com/v2.5/me?fields=first_name,last_name&access_token=' + token)
+  .then((response) => response.json())
+  .then(data => {
+    console.log(data)
+    console.log(data.first_name)
+    useNavigation(Screens.CreateActivity)
+  })
+}
+
 
 function LoginScreen() {
   const dispatch = useDispatch();
@@ -92,10 +104,26 @@ function LoginScreen() {
         text={'Iniciar Sesión'}
         onPress={login}
       />
-
-     
-
-
+      <LoginButton
+          onLoginFinished={
+            (error, result) => {
+              console.log('HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+              if (error) {
+                console.log("login has error: " + result.error);
+              } else if (result.isCancelled) {
+                console.log("login is cancelled.");
+              } else {
+                AccessToken.getCurrentAccessToken().then(
+                  (data) => {
+                    console.log(data.accessToken.toString())
+                    const { accessToken } = data
+                    initUser(accessToken)
+                  }
+                )
+              }
+            }
+          }
+          onLogoutFinished={() => console.log("logout.")}/>
       <Button
         buttonStyle={styles.createAcc}
         textColor={Colors.darkblue}

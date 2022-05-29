@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">EasyClub</string>
+    <string name="facebook_app_id">533692031665559</string>
+    <string name="facebook_client_token">fd380e9bfe99eaeb23d919b3844c9899</string>
 </resources>
