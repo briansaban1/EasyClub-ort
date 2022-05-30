@@ -5,7 +5,6 @@ import { Header, SearchInvoice, SubmissionItem, ErrorInvoice } from '../../compo
 import styles from './styles';
 import MapView, {Marker, Polyline, PROVIDER_DEFAULT} from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
-import {GOOGLE_MAPS_KEY} from '@env'
 import RNLocation from 'react-native-location';
 
 const street = require('../../assets/street.png')
