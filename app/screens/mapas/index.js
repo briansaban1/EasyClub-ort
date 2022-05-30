@@ -3,7 +3,7 @@ import { Alert, Image, ScrollView, TextInput, View, SafeAreaView } from 'react-n
 import { useSelector, useDispatch } from 'react-redux';
 import { Header, SearchInvoice, SubmissionItem, ErrorInvoice } from '../../components';
 import styles from './styles';
-import MapView, {Marker, Polyline} from 'react-native-maps';
+import MapView, {Marker, Polyline, PROVIDER_DEFAULT} from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_MAPS_KEY} from '@env'
 import RNLocation from 'react-native-location';
@@ -99,6 +99,7 @@ const location = {
                 <View style={{alignItems:'center'}}>
                 <MapView style={{width:'100%', height:'300%', justifyContent:'center', alignItems:'center'}}
                     zoomEnabled={true}
+                    provider={PROVIDER_DEFAULT}
                     initialRegion={{
                     latitude: origin.latitude,
                     longitude: origin.longitude,
