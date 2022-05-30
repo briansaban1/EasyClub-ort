@@ -17,6 +17,7 @@ import Billetera from '../screens/wallet'
 
 import GenerarReserva from '../screens/reservas/reserva' 
 import ExitoReserva from '../screens/reservas/exitoReserva'
+import GenerarReservaPromocion from '../screens/reservaPromocion' 
 
 import RealizarPago from '../screens/pago'
 
@@ -92,6 +93,7 @@ function App() {
             <Drawer.Screen name="Pago" component={Pago} />
 
             <Drawer.Screen name="GenerarReserva" component={GenerarReserva} />
+            <Drawer.Screen name="GenerarReservaPromocion" component={GenerarReservaPromocion} />
             <Drawer.Screen name="ComoLlegar" component={ComoLlegar} />
             <Drawer.Screen name="ExitoReserva" component={ExitoReserva} />
 

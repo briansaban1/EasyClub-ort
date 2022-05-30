@@ -29,6 +29,7 @@ const Screens = {
    Billetera: "Billetera",
    Reservas: "Reservas",
    GenerarReserva:"GenerarReserva",
+   GenerarReservaPromocion: "GenerarReservaPromocion",
    ComoLlegar: "ComoLlegar",
    ExitoReserva: "ExitoReserva",
    Home: "Home",
