@@ -70,20 +70,22 @@ function ChangePassScreen() {
   function recuPass() {
     setLoading(true)
     if (email == emailconfirm) {
-
+      console.log(email, 'email')
       fetch('https://easyclub.online/app/recoverypassword.php', {
         method: 'POST',
         header: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          flag: 'recoverypassword',
-          email: email
+          flag: 'pass',
+          emailss: email
         })
       })
         .then((response) => response.json())
         .then((responseJson) => {
+          console.log(responseJson.status, responseJson.msg, 'estados')
           if (responseJson.status == 1) {
+            
             Alert.alert(
               '¡Atención!',
               'Si el email ingresado se encuentra registrado, recibirás un correo con tu nueva contraseña',
@@ -99,7 +101,7 @@ function ChangePassScreen() {
           } else {
             Alert.alert(
               '¡Atención!',
-              'Si el email ingresado se encuentra registrado, recibirás un correo con tu nueva contraseña',
+              'Por favor revisá los datos ingresados',
               [
 
                 { text: 'OK', onPress: () => console.warn('NO Pressed'), style: 'ok' }
