@@ -188,18 +188,21 @@ function ModifySocioScreen(data) {
                     label={'Cod. Postal'}
                     onChangeText={setPostal}
                     value={postal}
+                    keyboardType="numeric"
                 />
 
                 <AppInput
                     label={'Teléfono'}
                     onChangeText={setTelefono}
                     value={telefono}
+                    keyboardType="numeric"
                 />
 
                 <AppInput
                     label={'WhatsApp'}
                     onChangeText={setWhatsapp}
                     value={whatsapp}
+                    keyboardType="numeric"
                 />
 
 

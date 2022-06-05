@@ -44,9 +44,11 @@ function UserDataScreen() {
           label={'Teléfono'}
           onChangeText={(text) => updateProfile({ telefono: text.trim().replace(/[^0-9]/g, '') })}
           value={telefono}
+          keyboardType="numeric"
         />
         <AppInput
           label={'WhatsApp (opcional)'}
+          keyboardType="numeric"
           onChangeText={(text) => 
             updateProfile({ whatsapp: text.trim().replace(/[^0-9]/g, '')})
             

@@ -54,6 +54,7 @@ function SignUpDeliveryScreen() {
                     label={'Código Postal'}
                     onChangeText={(text) => updateProfile({ cod: text.trim().replace(/[^0-9]/g, '') })}
                     value={cod}
+                    keyboardType="numeric"
                 />
 
                 <Button
