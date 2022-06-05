@@ -60,12 +60,14 @@ function LoginScreen() {
         onChangeText={setUsername}
         value={username}
         containerStyle={{ marginTop: 40 }}
+        autoCapitalize={'none'}
       />
       <AppInput
         password
         label={'Contraseña'}
         onChangeText={setPassword}
         value={password}
+        autoCapitalize={'none'}
       />
       
       <FlexBetweenWrapper paddingHorizontal={30}>

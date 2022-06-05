@@ -142,6 +142,7 @@ function ChangePassScreen() {
 
       <AppInput
         label={'Ingresá tu Email'}
+        autoCapitalize={'none'}
         onChangeText={(text) => {
           setEmail(text)
           if (isValidEmail(text)) {
@@ -157,6 +158,7 @@ function ChangePassScreen() {
       />
       <AppInput
         label={'Confirmá tu Email'}
+        autoCapitalize={'none'}
         onChangeText={(text) => {
           setEmailConfirm(text)
           if (isValidEmail(text)) {

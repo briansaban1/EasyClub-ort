@@ -77,17 +77,20 @@ function ChangeEmailScreen() {
             <Space />
             <AppInput
                 label={'Email actual'}
+                autoCapitalize={'none'}
                 onChangeText={setEmail}
                 value={email}
                
             />
             <AppInput
                 label={'Nuevo Email'}
+                autoCapitalize={'none'}
                 onChangeText={setNewEmail}
                 value={newEmail}
             />
             <AppInput
                 label={'Confirmá tu nuevo Email'}
+                autoCapitalize={'none'}
                 onChangeText={setConfNewEmail}
                 value={confnewEmail}
             />

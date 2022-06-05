@@ -76,18 +76,21 @@ function ChangePasswordScreen() {
             <AppInput
                 password
                 label={'Contraseña actual'}
+                autoCapitalize={'none'}
                 onChangeText={setCurrentPassword}
                 value={currentPassword}
             />
             <AppInput
                 password
                 label={'Nueva contraseña'}
+                autoCapitalize={'none'}
                 onChangeText={setNewPass}
                 value={newPass}
             />
             <AppInput
                 password
                 label={'Repetir Contraseña'}
+                autoCapitalize={'none'}
                 onChangeText={setNewRePass}
                 value={newRePass}
             />

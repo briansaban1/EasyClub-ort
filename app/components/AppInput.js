@@ -58,7 +58,7 @@ function AppInput({ label, containerStyle = {}, password = false, errorMessage, 
                 <TextInput
                 
                     {...props}
-                    autoCapitalize={'none'}
+                    //autoCapitalize={'none'}
                     autoCompleteType={'off'}
                     autoCorrect={false}
                     secureTextEntry={password && !showPassword}
