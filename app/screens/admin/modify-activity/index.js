@@ -258,11 +258,13 @@ const [ids, setIds] = useState('')
                     label={'Nombre de la actividad'}
                     onChangeText={setName}
                     value={name}
+                    autoCapitalize={'characters'}
                 />
 
                 <AppInput
                     label={'Cantidad de lugares por hora'}
                     onChangeText={setQuantity}
+                    keyboardType="numeric"
                     value={quantity}
                 />
 
@@ -403,11 +405,13 @@ const [ids, setIds] = useState('')
                     <AppInput
                         label={'Precio Regular ($)'}
                         onChangeText={setRegularVal}
+                        keyboardType="numeric"
                         value={regularVal}
                     />
                     <AppInput
                         label={'Precio Promocional ($)'}
                         onChangeText={setPromotionalVal}
+                        keyboardType="numeric"
                         value={promotionalVal}
                     />
                     <View style={{ width: '54%' }}>
