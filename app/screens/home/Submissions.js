@@ -20,7 +20,7 @@ function Submissions({onSelectData}) {
 
     useEffect(() => {
         handleSearch();
-    }, [searchValue])
+    }, [searchValue, _submissions])
 
     function handleSearch() {
         if (searchValue) {

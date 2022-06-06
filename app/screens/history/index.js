@@ -18,7 +18,8 @@ function HistoryScreen() {
 
     useEffect(() => {
         handleSearch();
-    }, [searchValue])
+       
+    }, [searchValue, _submissions1])
 
     function handleSearch() {
         if (searchValue) {
