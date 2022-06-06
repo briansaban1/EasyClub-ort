@@ -88,13 +88,32 @@ text1: {
     fontWeight: 'bold'
 },
 texto:{
-   color: Colors.blue400,
-   fontSize: Dimensions.px15,
-   fontWeight: 'bold'
+    color: Colors.blue400,
+    fontSize: Dimensions.px15,
+    fontWeight: 'bold'
 },
 iconos:{
     paddingRight:20
-}
+},
+textoDatos:{
+    color: Colors.blue400,
+    fontSize: Dimensions.px14,
+    fontWeight: 'normal'
+ },
+ textoDatoArencelado:{
+    color: Colors.red,
+    fontSize: Dimensions.px14,
+    fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center',
+ },
+ textoDatoNoArencelado:{
+    color: Colors.blue,
+    fontSize: Dimensions.px14,
+    fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center',
+ },
 
 });
 
