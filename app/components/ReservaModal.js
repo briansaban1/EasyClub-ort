@@ -90,8 +90,49 @@ const ReservaModal = ({
                 setHoraDataAMPM('')
                 setImg('')
                 setPrecioCobro('')
+            }else{
+                Alert.alert(
+                    '¡Atención!',
+                    'Ya has realizado una reserva en este horario, por favor selecioná otro.',
+                    [
+                        { text: 'OK', onPress: () => console.warn('NO Pressed'), style: 'ok' }
+                    ]
+                );
+                setLoadng(false)
             }
         })
+    };
+
+
+    function verificar(id, actividades, hora, fechaArregada, nombreDeporte, precioCobro){
+        console.log(id, actividades, hora, fechaArregada, nombreDeporte, precioCobro,'Datos en pago')
+
+        wservice.verificarReserva({
+            id,
+            actividades,
+            hora,
+            //se pasa la fecha en otro formato para que lo tome la api
+            fechaphp: moment(fechas).format('YYYY-MM-DD'),
+        }).then(response => {
+            console.log(response.msg)
+        if (response.status == 1) {
+                console.log(id, actividades, hora, fechaArregada, nombreDeporte, precioCobro, detalle)
+                startCheckout(id, actividades, hora, fechaArregada, nombreDeporte, precioCobro, detalle)
+
+
+        }else{
+            Alert.alert(
+                '¡Atención!',
+                'Ya has realizado una reserva en este horario, por favor selecioná otro.',
+                [
+                    { text: 'OK', onPress: () => console.warn('NO Pressed'), style: 'ok' }
+                ]
+            );
+            setLoadng(false)
+        }
+    })
+
+
     };
 
 
@@ -236,7 +277,7 @@ console.log(parseInt(precioCobro), 'precio')
                                 buttonStyle={{ width: '47%', backgroundColor: '#36E26F' }}
                                 onPress={() => {
                                     setLoadng(true)
-                                    startCheckout(id, actividades, hora, fechaArregada, nombreDeporte, parseInt(precioCobro), detalle)
+                                    verificar(id, actividades, hora, fechaArregada, nombreDeporte, parseInt(precioCobro), detalle)
                                     //navigate(Screens.RealizarPago, {id: actividades, nombre: nombreDeporte, valor: arancelado, fec: fechaArregada, hr: hora})
                                 }}
                             />}
