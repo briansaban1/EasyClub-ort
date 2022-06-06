@@ -10,7 +10,7 @@ import LottieView from 'lottie-react-native';
 import ImageButton from '../../../components/ImageButton';
 import { getActividad, getActividades } from '../../../store/user/action';
 import { useNavigation } from '@react-navigation/native';
-
+import moment from 'moment';
 
 const wservice = new WService();
 
@@ -68,7 +68,6 @@ function eliminarActividad(ids) {
 
 
 
-
 console.log(actividades, 'flag')
 
     return (
@@ -99,9 +98,10 @@ console.log(actividades, 'flag')
                     style={styles.location}
                 />
                 <View style={styles.mainContainer} >
-                    <Text style={styles.texto}>ID: {i.id} - {i.nombre}</Text>
-
-
+                    <Text style={styles.texto}>{i.nombre}</Text>
+                    <Text style={styles.textoDatos}>{(moment(i.inicio, 'HH:mm:ss').format('HH:mm A'))} - {(moment(i.fin, 'HH:mm:ss').format('HH:mm A'))}</Text>
+                    {i.arancelado == 1 && <View style={{justifyContent:'center', marginTop:3}}><Text style={styles.textoDatoArencelado}>ARANCELADO</Text></View>}
+                    {i.arancelado == 0 && <View style={{justifyContent:'center', marginTop:3}}><Text style={styles.textoDatoNoArencelado}>NO ARANCELADO</Text></View>}
                 </View>
 
                 <ImageButton
