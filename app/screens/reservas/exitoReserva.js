@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { safeGetOr } from '../../utils/fp';
 import { Colors, Dimensions, Images, AppStyles } from '../../constants';
 import { useNavigation } from '@react-navigation/native';
+import { reset } from '../../navigation/RootNavigation';
 
 import LottieView from 'lottie-react-native';
 
@@ -62,7 +63,9 @@ function ExitoScreen() {
                         text={"Aceptar"}
                         //buttonStyle={{width:'47%'}}
                         onPress={() => {
-                            navigate(Screens.Home)
+                            {
+                            reset('MainApp')
+                           }
                         }}
                     />
 
