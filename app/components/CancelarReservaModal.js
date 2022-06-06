@@ -43,8 +43,8 @@ const CancelarReservaModal = (
                 console.log(response.status)
                 
                 dispatch(getSubmissions(profile.id_usuario));
-                id.onClose()
-                navigate(Screens.Reservas)
+                id.onClose();
+                navigate(Screens.Reservas);
             }
         })
     }
@@ -79,15 +79,18 @@ const CancelarReservaModal = (
                         text={"Confirmar"}
                         loading={false}
                         buttonStyle={{width:'47%', backgroundColor:'#36E26F'}}
-                        onPress={() => {
+                        onPress={() => {{
                             cancelarReserva(id);
+                            dispatch(getSubmissions(profile.id_usuario));
+                            id.onClose();
+                            navigate(Screens.Reservas);}
                         }}
                     />
                     <Button
                         text={"Cancelar"}
                         buttonStyle={{width:'47%'}}
                         onPress={() => {
-                            id.onClose()
+                            id.onClose();
                         }}
                     />
                     </View>
@@ -97,6 +100,11 @@ const CancelarReservaModal = (
             </View>
 
         </Modal>
+
+
+
+
+
     );
 };
 
