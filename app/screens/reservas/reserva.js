@@ -175,8 +175,7 @@ console.log(precioPromocional, precioRegular, 'valores')
                 //console.log(disponibilidad, 'flag disp')
             }
         })
-    }, [idActividad])
-
+    }, [idActividad, dia])
 
 
 
