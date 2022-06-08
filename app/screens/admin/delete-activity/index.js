@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Image, ScrollView, View, Text, Modal, StatusBar, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { Header, SearchInput, SubmissionActividades, ErrorActividades, HeaderActivAdmin } from '../../../components';
+import { Image, ScrollView, View, Text, Modal, StatusBar, TouchableOpacity, Alert } from 'react-native';
+import { ErrorActividades, HeaderActivAdmin } from '../../../components';
 import styles from './styles';
 import { useSelector, useDispatch } from 'react-redux';
 import WService from '../../../service/WebService';
-import { AppText, FlexWrapper } from '../../../components/styled-components';
+import { AppText } from '../../../components/styled-components';
 import { Colors, Dimensions, Screens } from '../../../constants';
 import LottieView from 'lottie-react-native';
 import ImageButton from '../../../components/ImageButton';
@@ -17,16 +17,15 @@ const wservice = new WService();
 
 function DeleteActivityScreen() {
 
-const profile = useSelector(store => store.user.profile)
+    const dispatch = useDispatch();
+    const { navigate } = useNavigation();
 
+const profile = useSelector(store => store.user.profile)
 //const _actividades = useSelector(store => store.user.actividades)
 const _actividades = useSelector(store => store.user.actividades)
 const [actividades, setActividades] = useState(_actividades)
-
 const [modalVisible, setModalVisible] = useState(false);
 
-const { navigate } = useNavigation();
-const dispatch = useDispatch();
 
 useEffect(() => {
     dispatch(getActividad())
@@ -84,7 +83,7 @@ console.log(actividades, 'flag')
 
                 {_actividades.length == 0 &&
                 
-                    <ErrorActividades/> 
+                    <View></View>
                     
                 }
                 {actividades.map(i => 
