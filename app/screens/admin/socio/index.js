@@ -58,7 +58,8 @@ const Container = styled(CenterView)`
 
     console.log(_socios, 'listado')
 
-
+//se pasa por parametro el id del socio a la api para cambiar el tipo de usuario a nivel 3
+//para que no pueda volver a ingresar. Si el status retorna 1 se llama al metodo para actualizar el listado de socios.
     function eliminarSocio(idUsuario) {
         console.log(idUsuario, 'id usuario')
         wservice.deleteSocio({
@@ -82,7 +83,8 @@ const Container = styled(CenterView)`
     };
 
 
-
+//se pasa por parametro el id del socio a la api para cambiar el tipo de usuario a nivel 2
+//para que se vuelva a activar. Si el status retorna 1 se llama al metodo para actualizar el listado de socios.
     function activarSocio(idUsuario) {
         console.log(idUsuario, 'id usuario activar')
         wservice.activarSocio({

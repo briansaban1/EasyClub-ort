@@ -65,7 +65,11 @@ const ReservaModal = ({
 
     const [loading, setLoadng] = useState(false)
 
-    //se carga la reserva a la base de datos
+
+    //se carga la reserva a la base de datos segun los datos recibidos por parametro.
+    //la api se encargara de verificar que no haya una reserva identica y retornara status
+    //diferente a 1 en caso que haya una reserva igual
+
     function generarReserva(id, idActividad, hora, fechaphp) {
 
         wservice.cargarReserva({
@@ -103,6 +107,9 @@ const ReservaModal = ({
         })
     };
 
+//se envia a la api el id de usuario, id de actividad y la fecha y hora seleccionada y se verifica
+//que el mismo usuario no tenga otra reserva identica. Si el status es igual a 1 se procede a
+//llamar al metodo para procesar el pago
 
     function verificar(id, actividades, hora, fechaArregada, nombreDeporte, precioCobro){
         console.log(id, actividades, hora, fechaArregada, nombreDeporte, precioCobro,'Datos en pago')
@@ -117,8 +124,8 @@ const ReservaModal = ({
             console.log(response.msg)
         if (response.status == 1) {
                 console.log(id, actividades, hora, fechaArregada, nombreDeporte, precioCobro, detalle)
+                //se inicia el proceso de pago
                 startCheckout(id, actividades, hora, fechaArregada, nombreDeporte, precioCobro, detalle)
-
 
         }else{
             Alert.alert(
@@ -139,6 +146,9 @@ const ReservaModal = ({
 
     const [paymentResult, setPaymentResult] = useState(null);
 console.log(parseInt(precioCobro), 'precio')
+
+//se reciben los datos necesarios por parametro para iniciar el proceso de pago con la libreria de
+//mercadopago. En caso del status sea 'approved' se ejecutaran los metodos para generar la factura y reservar la actividad
 
     const startCheckout = async (id, actividades, hora, fechaArregada, nombreDeporte, precioCobro) => {
         console.log(id, actividades, hora, fechaArregada, nombreDeporte, precioCobro,'Datos en pago')
@@ -163,7 +173,9 @@ console.log(parseInt(precioCobro), 'precio')
             if (payment.status === 'approved'){
                 console.log(payment);
                 setPaymentResult(payment);
+                //se genera la factura
                 generarFactura(id, actividades, precioCobro, nombreDeporte, payment.id);
+                //se genera la reserva
                 generarReserva(id, actividades, hora, fechaArregada);
                 
             };
@@ -185,7 +197,7 @@ console.log(parseInt(precioCobro), 'precio')
 
 
 
-//se carga la factura a la base de datos
+//se carga la factura a la base de datos segun los datos recibidos por parametro 
     function generarFactura(id, idActividad, precio, nombreDeporte, idPago) {
      console.log(id, idActividad, precio, nombreDeporte, idPago, 'factura')
         wservice.cargarFactura({

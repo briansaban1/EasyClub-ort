@@ -17,6 +17,7 @@ import moment, { min } from 'moment';
 
 const wservice = new WService();
 
+//se da el formato a la imagen para luego poder cargarla al servidor
 const createFormData = (photo, body) => {
     const data = new FormData();
 
@@ -67,6 +68,7 @@ const [ids, setIds] = useState('')
     const [isDatePickerVisibleInicio, setDatePickerVisibilityInicio] = useState(false);
     const [isDatePickerVisibleFin, setDatePickerVisibilityFin] = useState(false);
 
+    //se setean los datos recibidos por parametro
     useEffect(()=>{
         setName(data.route.params.data.nombre)
         setQuantity(data.route.params.data.cantidad)
@@ -117,17 +119,22 @@ const [ids, setIds] = useState('')
 
     const dispatch = useDispatch();
 
+    //seleccion de imagen desde los archivos del telefono
     function chooseAttachmentFile() {
         DocumentPicker.show({
             filetype: [DocumentPickerUtil.allFiles()],
         }, (error, res) => {
             if (res != null) {
                 console.log(res)
+                //se carga la imagen al servidor
                 fileUploadApi(res)
+                //se setea el nombre del archivo
                 setFileName(res.fileName)
             }
         });
     };
+
+//se carga la imagen al servidor
 
     function fileUploadApi(photo) {
         setLoading(true)
@@ -154,6 +161,9 @@ const [ids, setIds] = useState('')
     };
 
     console.log(webFile,'<- webfile', file, '<- file') 
+
+    //se actualiza la actividad pasando por parametro los datos ingresados a la api
+    //y si esta todo ok se llama al metodo para actualizar el listado de actividades con los últimos cambios
 
     function actualizarActividad() {
         const dutyValue = duty == false ? 0 : 1

@@ -53,7 +53,7 @@ function SubmissionReserva({ data, profile, onPress }) {
     const [display, setDisplay] = useState(false)
 
 
-
+//si la actividad es arancelada se mostrara el mensaje 
 function arancel(arancel){
     if(arancel == 1){
     const arancelado = <BoldText>ARANCELADO</BoldText>
@@ -62,7 +62,7 @@ function arancel(arancel){
      };
     };
 
-    
+    //se verifica si la actividad tiene promocion o no, y se muestra el valor correspondiente
     function valor(regular, promocion){
         var precio = <BoldText>{regular}</BoldText>
         if(regular > promocion && !promocion == ""){

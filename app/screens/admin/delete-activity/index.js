@@ -39,7 +39,8 @@ useEffect(() => {
 
 console.log(actividades)
 
-
+//se pasa por parametro el id de la actividad para que la api la elimine de la lista
+// y en caso de retornar status 1 se hace un refresh a las actividades.
 function eliminarActividad(ids) {
         console.log(ids)
     wservice.deleteActivity({
