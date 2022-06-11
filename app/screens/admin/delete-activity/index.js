@@ -29,31 +29,25 @@ const { navigate } = useNavigation();
 const dispatch = useDispatch();
 
 useEffect(() => {
-    dispatch(getActividad())
-    
+    dispatch(getActividad())  
 },[dispatch])
 
 useEffect(() => {
         setActividades(_actividades)
-        
 })
 
 console.log(actividades)
 
 
 function eliminarActividad(ids) {
-        console.log(ids)
+    console.log(ids)
     wservice.deleteActivity({
         id: ids
-    }).then(res => {
-       
+    }).then(res => {  
       if (res.status == 1){
-       
         setModalVisible(true);
         dispatch(getActividad());
-
     }
-
     }).catch(e => {
         Alert.alert(
             '¡Atención!',
@@ -105,13 +99,10 @@ console.log(actividades, 'flag')
                 </View>
 
                 <ImageButton
-                     style={styles.iconos}
+                    style={styles.iconos}
                     source={require('@assets/edit.png')}
                     imageStyle={{ width: 21, height: 21, resizeMode: 'contain' }}
-                    
                     onPress={() => {dispatch(getActividades(i.id)); navigate(Screens.ModifyActivity, {data: i}) }}
-                    
-                    //falta implementacion
                 />
 
                 <ImageButton
@@ -167,10 +158,6 @@ console.log(actividades, 'flag')
 
                                 <AppText style={styles.text1}>Aceptar</AppText>
                             </TouchableOpacity>
-
-
-
-
                         </View>
                     </View>
                 </Modal>

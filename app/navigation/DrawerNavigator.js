@@ -44,6 +44,8 @@ import CreateActivity from "../screens/admin/create-activity";
 import DeleteActivity from "../screens/admin/delete-activity"; 
 import ModifyActivity from "../screens/admin/modify-activity";
 
+import Promociones from "../screens/admin/promociones";
+
 import Socios from "../screens/admin/socio";
 import ModifySocio from "../screens/admin/socio/modify-socio";
 
@@ -100,6 +102,8 @@ function App() {
             <Drawer.Screen name="CreateActivity" component={CreateActivity} />
             <Drawer.Screen name="DeleteActivity" component={DeleteActivity} />
             <Drawer.Screen name="ModifyActivity" component={ModifyActivity} />
+            
+            <Drawer.Screen name="Promociones" component={Promociones} />
 
             <Drawer.Screen name="Socios" component={Socios} />
             <Drawer.Screen name="ModifySocio" component={ModifySocio} />

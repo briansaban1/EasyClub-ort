@@ -135,7 +135,7 @@ function SideMenu() {
                 <MenuButton
                     label={"Promociones"}
                     source={require('@assets/offers-bold.png')}
-                    screen={Screens.CreateActivity}
+                    screen={Screens.Promociones}
                 />
                 <Divider /> 
                 <MenuButton

@@ -2,11 +2,11 @@ import { StyleSheet } from 'react-native';
 import { Colors, Dimensions } from '../../../constants';
 
 const styles = StyleSheet.create({
-  container: {
+  containerGeneral: {
     backgroundColor: Colors.background,
     flex: 1
   },
-  containerData: {
+  container: {
     borderColor: '#70707040',
     width: Dimensions.deviceWidth - 60,
     marginBottom: 5,
@@ -21,18 +21,20 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white
 },
 mainContainer: {
-    width: Dimensions.deviceWidth - 210,
+    width: Dimensions.deviceWidth - 170,
 },
 location: {
     width: 40,
     height: 40,
     marginHorizontal: 10
 },
-icon: {
-    width: 15,
-    height: 15,
-    resizeMode: 'contain',
-    margin: 10
+iconModify: {
+    right: 35,
+    position: "absolute",
+},
+iconDelete: {
+    right: 6,
+    position: "absolute",
 },
 modal: {
     width: '100%',
@@ -86,14 +88,6 @@ text1: {
     fontSize: Dimensions.px16,
     fontWeight: 'bold'
 },
-texto:{
-   color: Colors.blue400,
-   fontSize: Dimensions.px15,
-   fontWeight: 'bold'
-},
-iconos:{
-    paddingRight:20
-}
 
 });
 

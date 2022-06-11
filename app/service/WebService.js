@@ -296,6 +296,14 @@ WService.prototype.deleteActivity = function(data) {
   });
 };
 
+WService.prototype.deletePromocion = function(data) {
+  console.log(data, 'deletePromocion')
+  return NetworkHelper.requestPost(this.makeUrl('deletePromocion.php'), {
+    flag: 'deletePromocion',
+    ...data
+  });
+};
+
 WService.prototype.updateActivity = function(data) {
   console.log(data, 'updateActivity')
   return NetworkHelper.requestPost(this.makeUrl('updateActivity.php'), {

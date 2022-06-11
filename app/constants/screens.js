@@ -39,7 +39,7 @@ const Screens = {
    ModifyActivity: "ModifyActivity",
    Socios: "Socios",
    ModifySocio: "ModifySocio",
-   
+   Promociones: "Promociones"
 };
 
 export default Screens;
