@@ -25,7 +25,7 @@ function ChangePasswordScreen() {
     const [loading, setLoading] = useState('')
     const [modalVisible, setModalVisible] = useState(false);
 
-
+//se obtiene la clave actual
     async function getCurrentPassword() {
         const credential = await AsyncStorage.getItem('credential')
         if (credential) {
@@ -36,6 +36,10 @@ function ChangePasswordScreen() {
     useEffect(() => {
         getCurrentPassword();
     }, [])
+
+
+//se pasa por parametro el id del usuario y la nueva clave en caso que las claves actuales coincidan
+//con las ingresadas. En caso que el status sea 1 se vuelven a setear las nuevas credenciales del usuario.
 
     function handleChangePassword() {
         setLoading(true);
@@ -76,18 +80,21 @@ function ChangePasswordScreen() {
             <AppInput
                 password
                 label={'Contraseña actual'}
+                autoCapitalize={'none'}
                 onChangeText={setCurrentPassword}
                 value={currentPassword}
             />
             <AppInput
                 password
                 label={'Nueva contraseña'}
+                autoCapitalize={'none'}
                 onChangeText={setNewPass}
                 value={newPass}
             />
             <AppInput
                 password
                 label={'Repetir Contraseña'}
+                autoCapitalize={'none'}
                 onChangeText={setNewRePass}
                 value={newRePass}
             />

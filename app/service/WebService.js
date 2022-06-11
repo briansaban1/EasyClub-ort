@@ -220,6 +220,15 @@ WService.prototype.getDisponibilidad = function (actividad, dia) {
   });
 };
 
+WService.prototype.verificarReserva = function (data) {
+  console.log(data, 'flag webservice verificar')
+  return NetworkHelper.requestPost(this.makeUrl('verificarReserva.php'), {
+    flag: 'verificar',
+    ...data
+  });
+
+};
+
 
 WService.prototype.cargarReserva = function (data) {
   console.log(data, 'flag webservice')

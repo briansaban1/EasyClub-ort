@@ -1,32 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { Image, ScrollView, View, Text, Modal, StatusBar, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { Header, SearchInput, SubmissionActividades, ErrorActividades, HeaderActivAdmin } from '../../../components';
+import { Image, ScrollView, View, Text, Modal, StatusBar, TouchableOpacity, Alert } from 'react-native';
+import { ErrorActividades, HeaderActivAdmin } from '../../../components';
 import styles from './styles';
 import { useSelector, useDispatch } from 'react-redux';
 import WService from '../../../service/WebService';
-import { AppText, FlexWrapper } from '../../../components/styled-components';
+import { AppText } from '../../../components/styled-components';
 import { Colors, Dimensions, Screens } from '../../../constants';
 import LottieView from 'lottie-react-native';
 import ImageButton from '../../../components/ImageButton';
 import { getActividad, getActividades } from '../../../store/user/action';
 import { useNavigation } from '@react-navigation/native';
-
+import moment from 'moment';
 
 const wservice = new WService();
 
 
 function DeleteActivityScreen() {
 
-const profile = useSelector(store => store.user.profile)
+    const dispatch = useDispatch();
+    const { navigate } = useNavigation();
 
+const profile = useSelector(store => store.user.profile)
 //const _actividades = useSelector(store => store.user.actividades)
 const _actividades = useSelector(store => store.user.actividades)
 const [actividades, setActividades] = useState(_actividades)
-
 const [modalVisible, setModalVisible] = useState(false);
 
-const { navigate } = useNavigation();
-const dispatch = useDispatch();
 
 useEffect(() => {
     dispatch(getActividad())  
@@ -38,7 +37,8 @@ useEffect(() => {
 
 console.log(actividades)
 
-
+//se pasa por parametro el id de la actividad para que la api la elimine de la lista
+// y en caso de retornar status 1 se hace un refresh a las actividades.
 function eliminarActividad(ids) {
     console.log(ids)
     wservice.deleteActivity({
@@ -62,7 +62,6 @@ function eliminarActividad(ids) {
 
 
 
-
 console.log(actividades, 'flag')
 
     return (
@@ -79,7 +78,7 @@ console.log(actividades, 'flag')
 
                 {_actividades.length == 0 &&
                 
-                    <ErrorActividades/> 
+                    <View></View>
                     
                 }
                 {actividades.map(i => 
@@ -93,9 +92,10 @@ console.log(actividades, 'flag')
                     style={styles.location}
                 />
                 <View style={styles.mainContainer} >
-                    <Text style={styles.texto}>ID: {i.id} - {i.nombre}</Text>
-
-
+                    <Text style={styles.texto}>{i.nombre}</Text>
+                    <Text style={styles.textoDatos}>{(moment(i.inicio, 'HH:mm:ss').format('HH:mm A'))} - {(moment(i.fin, 'HH:mm:ss').format('HH:mm A'))}</Text>
+                    {i.arancelado == 1 && <View style={{justifyContent:'center', marginTop:3}}><Text style={styles.textoDatoArencelado}>ARANCELADO</Text></View>}
+                    {i.arancelado == 0 && <View style={{justifyContent:'center', marginTop:3}}><Text style={styles.textoDatoNoArencelado}>NO ARANCELADO</Text></View>}
                 </View>
 
                 <ImageButton

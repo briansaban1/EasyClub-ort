@@ -18,8 +18,10 @@ function HistoryScreen() {
 
     useEffect(() => {
         handleSearch();
-    }, [searchValue])
+       
+    }, [searchValue, _submissions1])
 
+    //se realiza la busqueda en la lista por el nombre de la actividad
     function handleSearch() {
         if (searchValue) {
             const filteredData = _submissions1.filter(data => {

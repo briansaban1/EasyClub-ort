@@ -109,6 +109,7 @@ function NewUserScreen() {
         <Header title={"Nuevo Usuario"} description={'Creá tu cuenta ahora.'} />
         <AppInput
           label={'Nombre de Usuario'}
+          autoCapitalize={'none'}
           onChangeText={(text) => {
             
             setUsername(text.trim())
@@ -127,6 +128,7 @@ function NewUserScreen() {
         />
         <AppInput
           label={'E-mail'}
+          autoCapitalize={'none'}
           onChangeText={(text) => {
             setEmail(text.trim())
             if (isValidEmail(text)) {
@@ -144,6 +146,7 @@ function NewUserScreen() {
         <AppInput
           password
           label={'Contraseña'}
+          autoCapitalize={'none'}
           //onChangeText={(text) => updateProfile({ password: text })}
           onChangeText={(text) => {
             setPassword(text.trim())
@@ -161,6 +164,7 @@ function NewUserScreen() {
         />
         <AppInput
           password
+          autoCapitalize={'none'}
           label={'Repetir Contraseña'}
           onChangeText={(text) => {setConfirmPassword(text.trim())}}
           value={confirmPassword}

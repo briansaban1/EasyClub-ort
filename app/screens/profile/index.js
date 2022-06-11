@@ -115,16 +115,19 @@ function ProfileScreen() {
                     label={'Cod. Postal'}
                     onChangeText={(tx_cod) => { setProfile({ ...profile, tx_cod }) }}
                     value={safeGetOr('', 'tx_cod')(profile)}
+                    keyboardType="numeric"
                 />
                 <AppInput
                     label={'Teléfono'}
                     onChangeText={(tx_telefono) => { setProfile({ ...profile, tx_telefono }) }}
                     value={safeGetOr('', 'tx_telefono')(profile)}
+                    keyboardType="numeric"
                 />
                 <AppInput
                     label={'WhatsApp'}
                     onChangeText={(tx_whatsapp) => { setProfile({ ...profile, tx_whatsapp }) }}
                     value={safeGetOr('', 'tx_whatsapp')(profile)}
+                    keyboardType="numeric"
                 />
                 <Button
                     disabled={loading}

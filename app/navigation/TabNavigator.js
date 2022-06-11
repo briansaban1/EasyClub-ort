@@ -13,6 +13,7 @@ const Tab = createBottomTabNavigator();
 
 function TabNavigator({route}) {
   const profile = useSelector(store => store.user.profile);
+  console.log(profile.id_TipoUsuario, 'user')
   return (
     profile.id_TipoUsuario==1 ?  
     <Tab.Navigator
@@ -26,7 +27,8 @@ function TabNavigator({route}) {
           justifyContent: 'flex-start',
           flex: 1,
           borderTopColor:'#fff',
-          display: profile.id_TipoUsuario==1 ? 'none' : 'flex'
+          position:'absolute'
+          //display: profile.id_TipoUsuario==1 ? 'none' : 'flex'
         },
       }}
       backBehavior={'history'}>
@@ -46,7 +48,10 @@ function TabNavigator({route}) {
           alignItems: 'center',
           justifyContent: 'flex-start',
           flex: 1,
-          borderTopColor:'#fff'
+          borderTopColor:'#fff',
+          zIndex:999
+          //position:'absolute',
+          //display: profile.id_TipoUsuario==1 ? 'none' : 'flex'
         },
       }}
       backBehavior={'history'}>

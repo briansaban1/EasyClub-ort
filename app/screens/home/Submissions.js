@@ -20,8 +20,9 @@ function Submissions({onSelectData}) {
 
     useEffect(() => {
         handleSearch();
-    }, [searchValue])
+    }, [searchValue, _submissions])
 
+    //se realiza la busqueda en la lista segun el nombre de la actividad
     function handleSearch() {
         if (searchValue) {
             const filteredData = _submissions.filter(data => {

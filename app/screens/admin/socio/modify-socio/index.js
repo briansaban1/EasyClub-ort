@@ -41,10 +41,9 @@ function ModifySocioScreen(data) {
 
 
     const [loading, setLoading] = useState('')
-
     const [modalVisible, setModalVisible] = useState(false);
 
-
+    //se setean los datos recibidos por parametro
     useEffect(() => {
         setNombre(data.route.params.data.tx_nombre)
         setApellido(data.route.params.data.tx_apellido)
@@ -61,7 +60,7 @@ function ModifySocioScreen(data) {
 
     }, [data])
 
-
+//se valida que el mail ingresado sea valido y no se encuentre en la base de datos
     function checkAttribute(type, value) {
         wservice.checkExistingUser(`tx_${type}`, value)
             .then(response => {
@@ -80,8 +79,8 @@ function ModifySocioScreen(data) {
     }
 
 
-
-
+ //se actualiza los datos del socio pasando por parametro los datos ingresados a la api
+ //y si esta todo ok se llama al metodo para actualizar el listado de los socios con los últimos cambios 
 
     function actualizarSocio() {
         wservice.updateSocio({
@@ -188,18 +187,21 @@ function ModifySocioScreen(data) {
                     label={'Cod. Postal'}
                     onChangeText={setPostal}
                     value={postal}
+                    keyboardType="numeric"
                 />
 
                 <AppInput
                     label={'Teléfono'}
                     onChangeText={setTelefono}
                     value={telefono}
+                    keyboardType="numeric"
                 />
 
                 <AppInput
                     label={'WhatsApp'}
                     onChangeText={setWhatsapp}
                     value={whatsapp}
+                    keyboardType="numeric"
                 />
 
 

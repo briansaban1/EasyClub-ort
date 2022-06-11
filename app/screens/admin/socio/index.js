@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Image, ScrollView, View, Text, Modal, StatusBar, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { Header, SearchInput, SubmissionActividades, ErrorActividades } from '../../../components';
+import { ScrollView, View, Text, Modal, StatusBar, TouchableOpacity, Alert, FlatList} from 'react-native';
+import { Header, ErrorActividades } from '../../../components';
 import styles from './styles';
 import { useSelector, useDispatch } from 'react-redux';
 import WService from '../../../service/WebService';
-import { AppText, FlexWrapper, CenterView } from '../../../components/styled-components';
+import { AppText, CenterView } from '../../../components/styled-components';
 import { Colors, Dimensions, Screens } from '../../../constants';
 import LottieView from 'lottie-react-native';
 import ImageButton from '../../../components/ImageButton';
 import { getSocio, getSocios } from '../../../store/user/action';
 import { useNavigation } from '@react-navigation/native';
-import styled from 'styled-components/native';
+import styled from 'styled-components';
 
 
 const wservice = new WService();
 
 
-function SocioScreen() {
+function SocioScreen({}) {
+
+    const { navigate } = useNavigation();
+    const dispatch = useDispatch();
 
     const profile = useSelector(store => store.user.profile)
-
-
     const _socios = useSelector(store => store.user.socios)
     const [socios, setSocios] = useState(_socios)
 
@@ -30,10 +31,9 @@ function SocioScreen() {
     const [modal2Visible, setModal2Visible] = useState(false);
 
 
-    const { navigate } = useNavigation();
-    const dispatch = useDispatch();
 
-    const Container = styled(CenterView)`
+
+const Container = styled(CenterView)`
   height: 47px;
   width:47px;
   border-radius: 47px;
@@ -58,7 +58,8 @@ function SocioScreen() {
 
     console.log(_socios, 'listado')
 
-
+//se pasa por parametro el id del socio a la api para cambiar el tipo de usuario a nivel 3
+//para que no pueda volver a ingresar. Si el status retorna 1 se llama al metodo para actualizar el listado de socios.
     function eliminarSocio(idUsuario) {
         console.log(idUsuario, 'id usuario')
         wservice.deleteSocio({
@@ -82,7 +83,8 @@ function SocioScreen() {
     };
 
 
-
+//se pasa por parametro el id del socio a la api para cambiar el tipo de usuario a nivel 2
+//para que se vuelva a activar. Si el status retorna 1 se llama al metodo para actualizar el listado de socios.
     function activarSocio(idUsuario) {
         console.log(idUsuario, 'id usuario activar')
         wservice.activarSocio({
@@ -135,19 +137,14 @@ function SocioScreen() {
 
                 <Header
                     title={"Socios"}
-                    description={"Listado de Socios"}
-                />
-                {/* <SearchInput
-                    onChangeText={setSearchValue}
-                    value={searchValue}
-                /> */}
+                    description={"Listado de Socios"}/>
 
                 <View style={{ height: 20 }} />
 
                 {_socios.length == 0 &&
 
-                    <ErrorActividades />
-
+                    //<ErrorActividades />
+                    <View></View>
                 }
                 {socios.map(i =>
 

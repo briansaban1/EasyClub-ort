@@ -18,6 +18,9 @@ function Reportes() {
 
     const ganancias = useSelector(store => store.user.ganancias)
     ganancias.map(d => console.log(d, 'mireee---------------------------------'));
+
+
+    //se genera un archivo csv con los datos proporcionados 
     const generarReporte = ()  => {
         const { config } = RNFetchBlob;
           // construct csvString"tx_username": "briansaban", "valor": "300"}

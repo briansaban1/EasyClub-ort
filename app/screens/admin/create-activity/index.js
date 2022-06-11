@@ -19,6 +19,7 @@ import moment, { min } from 'moment';
 
 const wservice = new WService();
 
+//se da el formato a la imagen para luego poder cargarla al servidor
 const createFormData = (photo, body) => {
     const data = new FormData();
 
@@ -98,18 +99,22 @@ function CreateActivityScreen() {
 
     const dispatch = useDispatch();
 
+    //seleccion de imagen desde el menu del telefono
     function chooseAttachmentFile() {
         DocumentPicker.show({
             filetype: [DocumentPickerUtil.allFiles()],
         }, (error, res) => {
             if (res != null) {
                 console.log(res)
+                //se carga la imagen al servidor
                 fileUploadApi(res)
+                //se setea el nombre del archivo
                 setFileName(res.fileName)
             }
         });
     };
 
+    //se carga la imagen al servidor
     function fileUploadApi(photo) {
         setLoading(true)
         fetch("https://easyclub.online/app/FileUpload.php", {
@@ -134,7 +139,7 @@ function CreateActivityScreen() {
             });
     };
 
-
+//se carga la actividad pasando por parametro los datos ingresados en los campos a la api, y si la respuesta esta ok se vuelven a 0 las const
     function crearActividad() {
         const dutyValue = duty == false ? 0 : 1
         console.log(dutyValue)
@@ -244,11 +249,13 @@ function CreateActivityScreen() {
                     label={'Nombre de la actividad'}
                     onChangeText={setName}
                     value={name}
+                    autoCapitalize={'characters'}
                 />
 
                 <AppInput
                     label={'Cantidad de lugares por hora'}
                     onChangeText={setQuantity}
+                    keyboardType="numeric"
                     value={quantity}
                 />
 
@@ -354,11 +361,13 @@ function CreateActivityScreen() {
                     <AppInput
                         label={'Precio Regular ($)'}
                         onChangeText={setRegularVal}
+                        keyboardType="numeric"
                         value={regularVal}
                     />
                     <AppInput
                         label={'Precio Promocional ($)'}
                         onChangeText={setPromotionalVal}
+                        keyboardType="numeric"
                         value={promotionalVal}
                     />
                     <View style={{ width: '54%' }}>

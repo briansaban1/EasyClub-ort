@@ -36,6 +36,7 @@ function ChangePassScreen() {
   })
   const profile = useSelector(store => store.user.registerProfile);
 
+  //se verifica que sea un mail valido
   function checkAttribute(type, value) {
     wservice.checkExistingUser(`tx_${type}`, value)
       .then(response => {
@@ -66,6 +67,7 @@ function ChangePassScreen() {
     errors
   })
 
+//si los datos ingresados son correctos, se envia los datos a la api para que valide los datos y envie un correo con la nueva clave.
 
   function recuPass() {
     setLoading(true)
@@ -142,6 +144,7 @@ function ChangePassScreen() {
 
       <AppInput
         label={'Ingresá tu Email'}
+        autoCapitalize={'none'}
         onChangeText={(text) => {
           setEmail(text)
           if (isValidEmail(text)) {
@@ -157,6 +160,7 @@ function ChangePassScreen() {
       />
       <AppInput
         label={'Confirmá tu Email'}
+        autoCapitalize={'none'}
         onChangeText={(text) => {
           setEmailConfirm(text)
           if (isValidEmail(text)) {

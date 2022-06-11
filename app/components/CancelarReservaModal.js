@@ -31,7 +31,7 @@ const CancelarReservaModal = (
 
 
 
-//se carga la reserva a la base de datos
+//se pasa el id de la reserva a la api y se coloca la reserva como estado 'cancelada' en la base de datos
     function cancelarReserva ({id}) {
         console.log(id, profile.id_usuario, 'FLAG-1!')        
         
@@ -39,12 +39,12 @@ const CancelarReservaModal = (
             id
         }).then(response => {
             if (response.status == 1) {
-                //si la cancelacion es exitosa se redirecciona a la ventana de exito
+                //si la cancelacion es exitosa, se redirecciona a la ventana de exito
                 console.log(response.status)
-                
+                //se actualiza el listado de reservas
                 dispatch(getSubmissions(profile.id_usuario));
-                id.onClose()
-                navigate(Screens.Reservas)
+                id.onClose();
+                navigate(Screens.Reservas);
             }
         })
     }
@@ -79,15 +79,18 @@ const CancelarReservaModal = (
                         text={"Confirmar"}
                         loading={false}
                         buttonStyle={{width:'47%', backgroundColor:'#36E26F'}}
-                        onPress={() => {
+                        onPress={() => {{
                             cancelarReserva(id);
+                            dispatch(getSubmissions(profile.id_usuario));
+                            id.onClose();
+                            navigate(Screens.Reservas);}
                         }}
                     />
                     <Button
                         text={"Cancelar"}
                         buttonStyle={{width:'47%'}}
                         onPress={() => {
-                            id.onClose()
+                            id.onClose();
                         }}
                     />
                     </View>
@@ -97,6 +100,11 @@ const CancelarReservaModal = (
             </View>
 
         </Modal>
+
+
+
+
+
     );
 };
 

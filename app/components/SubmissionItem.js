@@ -68,7 +68,7 @@ function SubmissionItem({ data, profile, onPress }) {
 
 
         function permisoModifCancel(estado){
-            if(estado == 'Realizado'){
+            if(estado == 'Realizado' || estado == 'Cancelado'){
                return habilitado
             };
         }

@@ -21,6 +21,8 @@ function ChangeEmailScreen() {
     const [loading, setLoading] = useState('')
 
    
+//se crea el formato del correo junto con los datos ingresados y se envian por mail.
+//En caso que la respuesta este ok se setean los datos en ''.
 
     function sendmail() {
         setLoading(true)
@@ -77,17 +79,20 @@ function ChangeEmailScreen() {
             <Space />
             <AppInput
                 label={'Email actual'}
+                autoCapitalize={'none'}
                 onChangeText={setEmail}
                 value={email}
                
             />
             <AppInput
                 label={'Nuevo Email'}
+                autoCapitalize={'none'}
                 onChangeText={setNewEmail}
                 value={newEmail}
             />
             <AppInput
                 label={'Confirmá tu nuevo Email'}
+                autoCapitalize={'none'}
                 onChangeText={setConfNewEmail}
                 value={confnewEmail}
             />

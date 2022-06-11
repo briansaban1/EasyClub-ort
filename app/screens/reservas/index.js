@@ -25,6 +25,7 @@ useEffect(() => {
     handleSearch();
 }, [searchValue])
 
+//se realiza una busqueda por el nombre de la actividad
 function handleSearch() {
     if (searchValue) {
         const filteredData = _actividades.filter(data => {

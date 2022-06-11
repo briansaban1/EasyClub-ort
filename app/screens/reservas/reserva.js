@@ -119,7 +119,7 @@ console.log(precioPromocional, precioRegular, 'valores')
 
     const [loading, setLoading] = useState(true);
 
-
+//se compara en caso de que la actividad tenga promocion o no, y en caso afirmativo se obtiene el valor mas bajo
     function valor(precioPromocional, precioRegular ){
         console.log(precioPromocional, precioRegular, 'valoresss')
         if(precioRegular > precioPromocional && !precioPromocional ==""){
@@ -136,6 +136,7 @@ console.log(precioPromocional, precioRegular, 'valores')
     //console.log(dia, 'dia')
 
     //se pasa por parametro a la API el tipo de actividad y devuelta la lista de horas
+    
     useEffect(() => {
         wservice.getHorarios(idActividad, dia).then(response => {
             //console.log(idActividad, dia, response.data, 'flag')
@@ -148,14 +149,16 @@ console.log(precioPromocional, precioRegular, 'valores')
 
                     hora: item,
                 })));
+                //se obtiene la ultima hora disponible
                 setNoHayMas(response.data.pop())
-                //console.log(horarios)
             }
         })
     }, [idActividad])
 
     const [noHayMas , setNoHayMas] = useState('')
 
+    //se pasa por parametro el id de la actividad y el dia para verificar los horarios que estan ocupados segun la actividad y el dia
+    //en caso que el status sea 1 se setea en un array las reservas no disponibles
     useEffect(() => {
         wservice.getDisponibilidad(idActividad, dia).then(response => {
 
@@ -175,12 +178,13 @@ console.log(precioPromocional, precioRegular, 'valores')
                 //console.log(disponibilidad, 'flag disp')
             }
         })
-    }, [idActividad])
+    }, [idActividad, dia])
 
 
 
+    //se recorre la disponibilidad que hay por fecha y por hora segun la actividad y la fehca,
+    //y se resta sobre la cantidad disponible total que tiene cargada la actividad
 
-    //se verifica la disponibilidad que hay por dia por hora segun la actividad
     const dispo = (horadata, cantidadporHora, idActividad, dia) => {
         var cant = cantidadporHora;
       
@@ -200,7 +204,8 @@ console.log(precioPromocional, precioRegular, 'valores')
         return cant
     };
 
-
+//si la hora de finalizacion de la actividad es mayor a la actual y la fecha actual es igual al dia obtenido
+//se verifica si hay o no disponibilidad 
 const noHayMasDisponible = () =>{
 var noHayy = false
 if((noHayMas < horaActual) && (moment(date).format('YYYY-MM-DD') == diaActual)){
@@ -216,7 +221,7 @@ return noHayy
 const horaActual = moment().utcOffset('-03:00').format('HH:MM');
 const diaActual = moment().utcOffset('-03:00').format('YYYY-MM-DD');
 
-//se recibe por parametro la hora por cada intervalo y se compara con el dia y fecha actual.
+//se recibe por parametro la hora por cada intervalo y la fecha seleccionada, y se compara con la hora y fecha actual.
 //Para listar solamente los horarios disponibles a partir de la hora actual.
 const consultaHora = (hora, dia) => {
     var consulta = true

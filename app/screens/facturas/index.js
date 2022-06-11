@@ -25,6 +25,7 @@ function FacturasScreen() {
         handleSearch();
     }, [searchValue])
 
+//se realiza la busqueda en la lista segun el id de la factura    
     function handleSearch() {
         if (searchValue) {
             const filteredData = _facturas.filter(data => {

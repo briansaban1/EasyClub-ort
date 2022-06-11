@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 
 
 
-function SearchInput({ placeholder = "Buscador de Invoice", ...props }) {
+function SearchInput({ placeholder = "Buscador de Facturas", ...props }) {
 
 
 

@@ -43,9 +43,9 @@ function DeleteAccountScreen() {
     function handleDeleteAccount() {
         setLoading(true);
 
-//falta realizar el DELETE en cascada desde la API
+//se coloca el usuario en tipo 3 para que no pueda acceder y se cierra la sesion.
 
-        wservice.deleteAccount(safeGetOr('', 'id_usuario')(profile), (currentPassword))
+        wservice.deleteAccount(profile.id_usuario, currentPassword)
             .then(async (response) => {
                 console.log({})
                 console.log(response.status, response )
@@ -67,7 +67,7 @@ function DeleteAccountScreen() {
                 setLoading(false);
             })
     }
-    const allow = credential.password == currentPassword && credential.password == currentRePassword && credential.username == currentUser
+    const allow = credential.password == currentPassword && credential.password == currentRePassword && profile.tx_username == currentUser
     return (
         <View style={styles.container}>
             <Header
@@ -79,18 +79,21 @@ function DeleteAccountScreen() {
                 label={'Nombre de usuario'}
                 onChangeText={setUser}
                 value={currentUser}
+                autoCapitalize={'none'}
             />
             <AppInput
                 password
                 label={'Contraseña'}
                 onChangeText={setCurrentPassword}
                 value={currentPassword}
+                autoCapitalize={'none'}
             />
             <AppInput
                 password
                 label={'Confirmar Contraseña'}
                 onChangeText={setCurrentRePassword}
                 value={currentRePassword}
+                autoCapitalize={'none'}
             />
             <Space height={30} />
             <Button

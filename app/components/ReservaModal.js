@@ -65,7 +65,11 @@ const ReservaModal = ({
 
     const [loading, setLoadng] = useState(false)
 
-    //se carga la reserva a la base de datos
+
+    //se carga la reserva a la base de datos segun los datos recibidos por parametro.
+    //la api se encargara de verificar que no haya una reserva identica y retornara status
+    //diferente a 1 en caso que haya una reserva igual
+
     function generarReserva(id, idActividad, hora, fechaphp) {
 
         wservice.cargarReserva({
@@ -90,14 +94,61 @@ const ReservaModal = ({
                 setHoraDataAMPM('')
                 setImg('')
                 setPrecioCobro('')
+            }else{
+                Alert.alert(
+                    '¡Atención!',
+                    'Ya has realizado una reserva en este horario, por favor selecioná otro.',
+                    [
+                        { text: 'OK', onPress: () => console.warn('NO Pressed'), style: 'ok' }
+                    ]
+                );
+                setLoadng(false)
             }
         })
+    };
+
+//se envia a la api el id de usuario, id de actividad y la fecha y hora seleccionada y se verifica
+//que el mismo usuario no tenga otra reserva identica. Si el status es igual a 1 se procede a
+//llamar al metodo para procesar el pago
+
+    function verificar(id, actividades, hora, fechaArregada, nombreDeporte, precioCobro){
+        console.log(id, actividades, hora, fechaArregada, nombreDeporte, precioCobro,'Datos en pago')
+
+        wservice.verificarReserva({
+            id,
+            actividades,
+            hora,
+            //se pasa la fecha en otro formato para que lo tome la api
+            fechaphp: moment(fechas).format('YYYY-MM-DD'),
+        }).then(response => {
+            console.log(response.msg)
+        if (response.status == 1) {
+                console.log(id, actividades, hora, fechaArregada, nombreDeporte, precioCobro, detalle)
+                //se inicia el proceso de pago
+                startCheckout(id, actividades, hora, fechaArregada, nombreDeporte, precioCobro, detalle)
+
+        }else{
+            Alert.alert(
+                '¡Atención!',
+                'Ya has realizado una reserva en este horario, por favor selecioná otro.',
+                [
+                    { text: 'OK', onPress: () => console.warn('NO Pressed'), style: 'ok' }
+                ]
+            );
+            setLoadng(false)
+        }
+    })
+
+
     };
 
 
 
     const [paymentResult, setPaymentResult] = useState(null);
 console.log(parseInt(precioCobro), 'precio')
+
+//se reciben los datos necesarios por parametro para iniciar el proceso de pago con la libreria de
+//mercadopago. En caso del status sea 'approved' se ejecutaran los metodos para generar la factura y reservar la actividad
 
     const startCheckout = async (id, actividades, hora, fechaArregada, nombreDeporte, precioCobro) => {
         console.log(id, actividades, hora, fechaArregada, nombreDeporte, precioCobro,'Datos en pago')
@@ -122,7 +173,9 @@ console.log(parseInt(precioCobro), 'precio')
             if (payment.status === 'approved'){
                 console.log(payment);
                 setPaymentResult(payment);
+                //se genera la factura
                 generarFactura(id, actividades, precioCobro, nombreDeporte, payment.id);
+                //se genera la reserva
                 generarReserva(id, actividades, hora, fechaArregada);
                 
             };
@@ -144,7 +197,7 @@ console.log(parseInt(precioCobro), 'precio')
 
 
 
-//se carga la factura a la base de datos
+//se carga la factura a la base de datos segun los datos recibidos por parametro 
     function generarFactura(id, idActividad, precio, nombreDeporte, idPago) {
      console.log(id, idActividad, precio, nombreDeporte, idPago, 'factura')
         wservice.cargarFactura({
@@ -236,7 +289,7 @@ console.log(parseInt(precioCobro), 'precio')
                                 buttonStyle={{ width: '47%', backgroundColor: '#36E26F' }}
                                 onPress={() => {
                                     setLoadng(true)
-                                    startCheckout(id, actividades, hora, fechaArregada, nombreDeporte, parseInt(precioCobro), detalle)
+                                    verificar(id, actividades, hora, fechaArregada, nombreDeporte, parseInt(precioCobro), detalle)
                                     //navigate(Screens.RealizarPago, {id: actividades, nombre: nombreDeporte, valor: arancelado, fec: fechaArregada, hr: hora})
                                 }}
                             />}

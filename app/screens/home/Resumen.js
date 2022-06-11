@@ -54,7 +54,7 @@ function ResumenComponent() {
                     label={'Hoy'}
                     total={safeGetOr(1, 'dia')(resumen)}
                     count={safeGetOr(0, 'dia')(resumen)}
-                    description={'Actividades realizadas\nel día de hoy'}
+                    description={'Actividades por realizar\nel día de hoy'}
                 />
                 
                 <BottomBlock
