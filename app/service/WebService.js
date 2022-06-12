@@ -110,6 +110,13 @@ WService.prototype.getPromociones = function () {
   });
 };
 
+WService.prototype.getPromocion = function (id) {
+  return NetworkHelper.requestPost(this.makeUrl('promocion.php'), {
+    flag: 'promocion',
+    ids: id,
+  });
+};
+
 
 WService.prototype.getPuntos = function (id_usuario) {
   console.log(id_usuario) 

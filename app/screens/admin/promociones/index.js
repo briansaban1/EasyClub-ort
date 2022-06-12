@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Image, ScrollView, View, LayoutAnimation, Text, Modal, StatusBar, TouchableOpacity } from 'react-native';
+import { Image, ScrollView, View, LayoutAnimation, Text, Modal, StatusBar, TouchableOpacity, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { getPromociones } from '../../../store/user/action';
+import { getPromociones, getPromocion } from '../../../store/user/action';
 import { Header, ErrorPromociones } from '../../../components';
 import { Colors, Dimensions } from '../../../constants';
 import { AppText, FlexWrapper } from '../../../components/styled-components';
@@ -22,9 +22,9 @@ const BoldText = styled(AppText)`
 
 function PromocionesScreen() {
 const dispatch = useDispatch();
-useEffect(() => {
-dispatch(getPromociones())
-}, [dispatch, _promociones])
+
+
+
 const profile = useSelector(store => store.user.profile)
 
 const _promociones = useSelector(store => store.user.promociones)
@@ -32,9 +32,21 @@ const [promociones, setPromociones] = useState(_promociones)
 const [modalVisible, setModalVisible] = useState(false);
 const [admin, setAdmin] = useState(true);
 
-useEffect(() => {
-    setPromociones(_promociones)
-})
+
+
+    useEffect(() => {
+        //dispatch(getActividad())
+        dispatch(getPromociones())
+
+    }, [dispatch])
+
+    useEffect(() => {
+        //setActividades(_actividades)
+        setPromociones(_promociones)
+
+    })
+
+
 
 const wservice = new WService();
 
@@ -106,14 +118,14 @@ console.log(promociones, 'IJOASFBNIAUSFJN FLAGH GLAH PROMOCIONES ---------------
                            style={styles.iconModify}
                            source={require('@assets/edit.png')}
                            imageStyle={{ width: 21, height: 21, resizeMode: 'contain' }}
-                           onPress={() => { navigate(Screens.ModifyActivity, {data: i}) }}
+                           onPress={() => {dispatch(getPromociones(i.actividadId)); navigate(Screens.ModifyActivity, {data: i}) }}
                        />
        
                        <ImageButton
                            style={styles.iconDelete}
                            source={require('@assets/eliminarAct.png')}
                            imageStyle={{ width: 21, height: 21, resizeMode: 'contain' }}
-                           onPress={() => { eliminarPromocion(i.id);}}
+                           onPress={() => { eliminarPromocion(i.id); dispatch(getPromociones(i.actividadId));}}
                        />
                    </>
                    }

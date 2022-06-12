@@ -10,7 +10,7 @@ import { View } from 'react-native';
 import WService from '../../../service/WebService';
 import LottieView from 'lottie-react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { getActividades, getHorarios } from '../../../store/user/action';
+import { getActividades, getHorarios, getPromociones } from '../../../store/user/action';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import moment, { min } from 'moment';
 
@@ -185,6 +185,7 @@ const [ids, setIds] = useState('')
             setLoading(false)
             setModalVisible(true);
             dispatch(getActividades());
+            dispatch(getPromociones());
 
         }).catch(e => {
             Alert.alert(
