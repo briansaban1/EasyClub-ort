@@ -82,8 +82,8 @@ function Reportes() {
             <ReportBlockLarge
                     active={true}
                     onPress={() => generarReporte()}
-                    label={'Nuevos Usuarios'}
-                    description={'Cantidad de nuevos usuarios en este mes'}
+                    label={'Ganancias'}
+                    description={'Facturas generadas en los últimos 30 días'}
                 />
                
             </FlexBetweenWrapper>
