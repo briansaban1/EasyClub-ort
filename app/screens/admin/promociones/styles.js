@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white
 },
 mainContainer: {
-    width: Dimensions.deviceWidth - 170,
+    width: Dimensions.deviceWidth - 140,
 },
 location: {
     width: 40,
