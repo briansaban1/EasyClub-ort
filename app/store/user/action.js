@@ -16,7 +16,7 @@ export const loginUser = ({ username, password }, rememberMe = false) => {
     const response = await wservice.login(username, password)
     console.log('login-[response]', response)
     if (response.status == 1 && response.data.id_TipoUsuario != 3) {
-      const resumen = response.data.id_TipoUsuario == 2 ? await wservice.getUserMenu(response.data.id_usuario) : await wservice.getAdminMenu()
+      const resumen = response.data.id_TipoUsuario == 2 ? await wservice.getUserMenu(response.data.id_usuario) : await wservice.getAdminMenu(response.data.id_usuario)
       console.log(resumen)
       if (rememberMe) {
         await AsyncStorage.setItem('profile', JSON.stringify(response.data));
@@ -58,7 +58,7 @@ export const autoLogin = () => {
     const profileData = await AsyncStorage.getItem('profile');
     if (profileData) {
       const profile = JSON.parse(profileData)
-      const resumen = profile.id_TipoUsuario == 2 ? await wservice.getUserMenu(profile.id_usuario) : await wservice.getAdminMenu()
+      const resumen = profile.id_TipoUsuario == 2 ? await wservice.getUserMenu(profile.id_usuario) : await wservice.getAdminMenu(profile.id_usuario)
       const payload = { profile, resumen }
       dispatch({ type: ActionTypes.LOGIN_SUCCESS, payload });
       reset('MainApp')
@@ -285,6 +285,19 @@ export const getPromociones = () => {
   return async (dispatch) => {
     dispatch({ type: ActionTypes.GET_PROMOCIONES_START });
       const data = await wservice.getPromociones()
+      console.log("nueva data", data)
+      if (data.status == 1){
+      dispatch({ type: ActionTypes.GET_PROMOCIONES_SUCCESS, payload: data.data });
+    } 
+      dispatch({ type: ActionTypes.GET_PROMOCIONES_FAILED });
+    
+  };
+};
+
+export const getPromocion = (id) => {
+  return async (dispatch) => {
+    dispatch({ type: ActionTypes.GET_PROMOCIONES_START });
+      const data = await wservice.getPromocion(id)
       console.log("nueva data", data)
       if (data.status == 1){
       dispatch({ type: ActionTypes.GET_PROMOCIONES_SUCCESS, payload: data.data });
