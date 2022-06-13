@@ -172,7 +172,8 @@ console.log(precioPromocional, precioRegular, 'valores')
                     disponible: item.noDisponible,
                     horaOcupada: item.horaReserva,
                     id_act: item.id_actividad,
-                    fechaReserva: item.fechaReserva
+                    fechaReserva: item.fechaReserva,
+                    estado: item.estado
                 })));
                 console.log(response.data, 'aca')
                 //console.log(disponibilidad, 'flag disp')
@@ -191,7 +192,11 @@ console.log(precioPromocional, precioRegular, 'valores')
         for (var i = 0; i < disponibilidad.length; i++) {
             if (horadata == disponibilidad[i].horaOcupada && idActividad == disponibilidad[i].id_act && dia == disponibilidad[i].fechaReserva) {
                
+                if(disponibilidad[i].estado == 'Cancelado'){
+                    cant = cant;
+                }else{
                 cant = cant - (disponibilidad[i].disponible)
+               }
                 if (cant <= 0) {
                     cant = '0'
                 } else {
