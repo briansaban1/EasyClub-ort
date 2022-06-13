@@ -193,7 +193,7 @@ console.log(precioPromocional, precioRegular, 'valores')
             if (horadata == disponibilidad[i].horaOcupada && idActividad == disponibilidad[i].id_act && dia == disponibilidad[i].fechaReserva) {
                
                 if(disponibilidad[i].estado == 'Cancelado'){
-                    cant = cant;
+                    cant;
                 }else{
                 cant = cant - (disponibilidad[i].disponible)
                }
