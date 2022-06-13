@@ -9,9 +9,9 @@
     "test": "jest",
     "lint": "eslint .",
     "android-windows": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android",
-    "clean-build": "cd android && gradlew clean && cd .. && npm run android",
+    "clean-build": "cd android && gradle clean && cd .. && npm run android",
     "android-bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
-    "android-release": "npm run android-bundle && cd android && gradlew assembleRelease",
+    "android-release": "npm run android-bundle && cd android && gradle assembleRelease",
     "android-debug": "npm run android-bundle && cd android && ./gradlew clean &&./gradlew assembleDebug"
   },
   "dependencies": {
