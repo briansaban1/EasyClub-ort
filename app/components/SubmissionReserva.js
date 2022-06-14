@@ -65,7 +65,7 @@ function arancel(arancel){
     //se verifica si la actividad tiene promocion o no, y se muestra el valor correspondiente
     function valor(regular, promocion){
         var precio = <BoldText>{regular}</BoldText>
-        if(regular > promocion && !promocion == ""){
+        if((regular > promocion) && !promocion == "" && promocion != 0){
             console.log(promocion, 'promo')
             precio = <BoldText>{promocion}</BoldText>
         }else{
